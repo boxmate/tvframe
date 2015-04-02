@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark" >
+
+    <reco.frame.tv.view.TvTabHost
+        android:id="@+id/tth_container"
+        android:layout_width="@dimen/px1600"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/px100"
+        tv:cursorRes="@drawable/cursor_shine"
+        tv:textColorDefault="@android:color/holo_blue_dark"
+        tv:textColorSelected="@android:color/white"
+        tv:textSize="@dimen/px36"
+        tv:titleWidth="@dimen/px150"
+        tv:titleHeight="@dimen/px70"
+        tv:cursorWidth="@dimen/px150"
+        tv:cursorHeight="@dimen/px60"
+        tv:cursorMarginTop="@dimen/px30"
+        tv:titleSpace="@dimen/px30"
+        tv:dividerHeight="@dimen/px30"
+        tv:durationScroll="400"
+         />
+
+</RelativeLayout>

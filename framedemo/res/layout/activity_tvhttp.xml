@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingLeft="@dimen/px100"
+    android:paddingRight="@dimen/px100" >
+
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_get"
+        android:layout_width="@dimen/px200"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px100"
+        android:background="@android:color/holo_blue_light"
+        android:text="GET 请求"
+        android:textSize="@dimen/px36"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange" />
+
+    <reco.frame.tv.view.TvMarqueeText
+        android:id="@+id/tv_get"
+        android:layout_width="@dimen/px630"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/px100"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="@dimen/px36"
+        tv:vague="false"
+        android:background="@android:color/holo_blue_light"
+        />
+
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_post"
+        android:layout_width="@dimen/px200"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px200"
+        android:background="@android:color/holo_blue_light"
+        android:text="POST 请求"
+        android:textSize="@dimen/px36"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange" />
+
+    <TextView
+        android:id="@+id/tv_post"
+        android:layout_width="@dimen/px630"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/px200"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="@dimen/px36"
+        android:singleLine="true" />
+
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_download"
+        android:layout_width="@dimen/px300"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px300"
+        android:background="@android:color/holo_blue_light"
+        android:text="断点下载"
+        android:textSize="@dimen/px36"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange" />
+
+    <!-- 条形 方角 单色 -->
+
+    <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_progress"
+        tv:style="RECT"
+        android:layout_width="@dimen/px630"
+        android:layout_height="@dimen/px30"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/px300"
+        tv:backgroundColor="@android:color/darker_gray"
+        tv:progressStartColor="@android:color/holo_blue_light" />
+
+</RelativeLayout>

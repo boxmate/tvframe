@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    >
+    <!-- 此处有四个自定义参数: cursorRes指定光标图片 itemWidth为子项宽度 itemHeight为子项高度 columns为列数-->
+    <reco.frame.tv.view.TvGridView 
+        android:id="@+id/tgv_imagelist"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px1280"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/px300"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        tv:itemWidth="@dimen/px230"
+        tv:itemHeight="@dimen/px230"
+        tv:columns="3"
+        
+        >
+    </reco.frame.tv.view.TvGridView> 
+
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_add"
+        android:layout_width="@dimen/px200"
+        android:layout_height="@dimen/px100"
+        android:layout_marginLeft="@dimen/px17"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/holo_blue_light"
+        android:onClick="add"
+        android:text="加载更多"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+</RelativeLayout>

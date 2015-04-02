@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="cursorRes" format="reference"></attr>
+    <attr name="imageRes" format="reference"></attr>
+    <attr name="scalable" format="boolean"></attr>
+    <attr name="scale" format="float"></attr>
+    <attr name="animationType">
+        <enum name="DEFAULT" value="0"></enum>
+        <enum name="TRASLATE" value="1"></enum>
+    </attr>
+    <attr name="durationLarge" format="integer"></attr>
+    <attr name="durationSmall" format="integer"></attr>
+    <attr name="durationScroll" format="integer"></attr>
+    <attr name="delay" format="integer" />
+    <attr name="boarder" format="dimension"></attr>
+    <attr name="boarderTop" format="dimension"></attr>
+    <attr name="boarderLeft" format="dimension"></attr>
+    <attr name="boarderBottom" format="dimension"></attr>
+    <attr name="boarderRight" format="dimension"></attr>
+    <attr name="backgroundColor" format="color" />
+    <attr name="progressStartColor" format="color" />
+    <attr name="progressEndColor" format="color" />
+    <attr name="roundWidth" format="dimension"></attr>
+    <attr name="rectRadius" format="dimension"></attr>
+    <attr name="text" format="string|reference" />
+    <attr name="textColor" format="color" />
+    <attr name="textColorDefault" format="color" />
+    <attr name="textColorSelected" format="color" />
+    <attr name="textSize" format="dimension" />
+    <attr name="max" format="integer"></attr>
+    <attr name="textDisplayable" format="boolean"></attr>
+    <attr name="style">
+        <enum name="RING" value="0"></enum>
+        <enum name="FAN" value="1"></enum>
+        <enum name="RECT" value="2"></enum>
+    </attr>
+    <attr name="focusable" format="boolean"></attr>
+    <attr name="period" format="integer"></attr>
+    <attr name="clockwise" format="boolean"></attr>
+    <!-- 边缘模糊 -->
+    <attr name="vague" format="boolean"></attr>
+    <attr name="columns" format="integer"></attr>
+    <attr name="spaceHori" format="dimension"></attr>
+    <attr name="spaceVert" format="dimension"></attr>
+    <attr name="itemWidth" format="dimension"></attr>
+    <attr name="itemHeight" format="dimension"></attr>
+    <attr name="titleWidth" format="dimension"></attr>
+    <attr name="titleHeight" format="dimension"></attr>
+    <attr name="titleSpace" format="dimension"></attr>
+    <attr name="pageWidth" format="dimension"></attr>
+    <attr name="dividerHeight" format="dimension"></attr>
+    <attr name="cursorWidth" format="dimension"></attr>
+    <attr name="cursorHeight" format="dimension"></attr>
+    <attr name="cursorMarginLeft" format="dimension"></attr>
+    <attr name="cursorMarginTop" format="dimension"></attr>
+    <attr name="cursorMarginRight" format="dimension"></attr>
+    <attr name="cursorMarginBottom" format="dimension"></attr>
+	
+    <declare-styleable name="TvTabHost">
+        <attr name="cursorRes"></attr>
+        <attr name="textColorDefault"/>
+    	<attr name="textColorSelected"/>
+        <attr name="titleWidth"></attr>
+        <attr name="titleHeight"></attr>
+        <attr name="titleSpace"></attr>
+        <attr name="textSize" />
+        <attr name="dividerHeight"></attr>
+        <attr name="durationScroll"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="delay" />
+        <attr name="cursorWidth"></attr>
+   	    <attr name="cursorHeight"></attr>
+        <attr name="cursorMarginLeft"></attr>
+        <attr name="cursorMarginTop"></attr>
+        <attr name="cursorMarginRight"></attr>
+        <attr name="cursorMarginBottom"></attr>
+    </declare-styleable>
+    <declare-styleable name="TvGridView">
+        <attr name="cursorRes"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="delay" />
+        <attr name="boarder"></attr>
+        <attr name="boarderTop"></attr>
+        <attr name="boarderLeft"></attr>
+        <attr name="boarderBottom"></attr>
+        <attr name="boarderRight"></attr>
+        <attr name="columns"></attr>
+        <attr name="spaceHori"></attr>
+        <attr name="spaceVert"></attr>
+        <attr name="itemWidth"></attr>
+        <attr name="itemHeight"></attr>
+    </declare-styleable>
+    <declare-styleable name="TvRelativeLayout">
+        <attr name="cursorRes"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="delay" />
+        <attr name="boarder"></attr>
+        <attr name="boarderTop"></attr>
+        <attr name="boarderLeft"></attr>
+        <attr name="boarderBottom"></attr>
+        <attr name="boarderRight"></attr>
+    </declare-styleable>
+    <declare-styleable name="TvButton">
+        <attr name="cursorRes"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="delay" />
+        <attr name="boarder"></attr>
+        <attr name="boarderTop"></attr>
+        <attr name="boarderLeft"></attr>
+        <attr name="boarderBottom"></attr>
+        <attr name="boarderRight"></attr>
+    </declare-styleable>
+    <declare-styleable name="TvSubButton">
+        <attr name="cursorRes"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="delay" />
+        <attr name="boarder"></attr>
+        <attr name="boarderTop"></attr>
+        <attr name="boarderLeft"></attr>
+        <attr name="boarderBottom"></attr>
+        <attr name="boarderRight"></attr>
+    </declare-styleable>
+    <declare-styleable name="TvProgressBar">
+        <attr name="backgroundColor" />
+        <attr name="progressStartColor" />
+        <attr name="progressEndColor" />
+        <attr name="roundWidth"></attr>
+        <attr name="rectRadius"></attr>
+        <attr name="textColor" />
+        <attr name="textSize" />
+        <attr name="max"></attr>
+        <attr name="textDisplayable"></attr>
+        <attr name="style"></attr>
+    </declare-styleable>
+    <declare-styleable name="TvMarqueeText">
+        <attr name="text" />
+        <attr name="period" />
+        <attr name="vague" />
+    </declare-styleable>
+    <declare-styleable name="TvLoadingBar">
+        <attr name="imageRes" />
+        <attr name="period" />
+        <attr name="clockwise" />
+        <attr name="textColor" />
+        <attr name="textSize" />
+        <attr name="textDisplayable"></attr>
+    </declare-styleable>
+
+</resources>

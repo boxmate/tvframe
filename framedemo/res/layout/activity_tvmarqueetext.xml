@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TvRelativeLayoutActivity" >
+
+    <!-- period越小 文字滚动速度越快 -->
+    <!--慢速 无背景 边缘不模糊 -->
+    <reco.frame.tv.view.TvMarqueeText
+        android:id="@+id/mt_1"
+        android:layout_width="@dimen/px500"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px100"
+        android:textSize="@dimen/px36"
+        android:textColor="@android:color/holo_red_light"
+        tv:period="100"
+        tv:text="@string/marquee_str_a"
+        tv:vague="false"
+        />
+    
+    <!--中速 无背景 边缘模糊(默认)-->
+    <reco.frame.tv.view.TvMarqueeText
+        android:id="@+id/mt_2"
+        android:layout_width="@dimen/px500"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px400"
+        android:textSize="@dimen/px36"
+        android:textColor="@android:color/black"
+        tv:period="50"
+        tv:text="@string/marquee_str_a"
+        />
+    
+    <!--  快速-->
+    <reco.frame.tv.view.TvMarqueeText
+        android:id="@+id/mt_3"
+        android:layout_width="@dimen/px500"
+        android:layout_height="@dimen/px80"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px700"
+        android:background="@android:color/holo_red_light"
+        android:textSize="@dimen/px36"
+        android:textColor="@android:color/holo_blue_light"
+        android:fadingEdge="horizontal"
+        android:fadingEdgeLength="@dimen/px30"
+        tv:period="5"
+        tv:text="@string/marquee_str_a"
+        />
+  
+    
+    
+    
+    
+
+</RelativeLayout>

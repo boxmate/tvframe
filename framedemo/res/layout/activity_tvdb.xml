@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/px100"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    >
+
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_select"
+        android:layout_width="@dimen/px200"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px100"
+        android:text="查"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_insert"
+        android:layout_width="@dimen/px200"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px200"
+        android:text="增"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_delete"
+        android:layout_width="@dimen/px200"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px300"
+        android:text="删"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_update"
+        android:layout_width="@dimen/px200"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px400"
+        android:text="改"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+  
+    <ListView 
+        android:id="@+id/lv_list"
+        android:layout_width="@dimen/px1000"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/px100"
+        android:layout_marginRight="@dimen/px100"
+        ></ListView>
+    
+    
+    
+
+</RelativeLayout>

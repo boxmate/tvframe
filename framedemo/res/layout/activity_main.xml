@@ -1,0 +1,184 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/px100"
+    android:paddingRight="@dimen/px100"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    >
+    
+    <TextView 
+        android:id="@+id/tv_views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电视控件集"
+        android:textSize="@dimen/px36"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px100"
+        />
+
+    <!--  -->
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px50"
+        android:layout_below="@+id/tv_views"
+        android:text="TvRelativeLayout选中放大容器示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px50"
+        android:layout_below="@+id/tb_tv_relativeLayout"
+        android:text="TvButton选中放大按钮示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px50"
+        android:layout_below="@+id/tb_tv_button"
+        android:text="TvProgressBar自定义进度条示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_marqueetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px50"
+        android:layout_below="@+id/tb_tv_progressbar"
+        android:text="TvMarqueeText无焦点跑马灯示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_tv_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px50"
+        android:layout_below="@+id/tb_tv_marqueetext"
+        android:text="TvGridView简单示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_tv_tabhost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px50"
+        android:layout_below="@+id/tb_tv_gridview"
+        android:text="TvTabHost自带标题栏的fragment翻页容器"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    
+    
+    
+    <!-- 综合框架示例 -->
+    
+    
+    <TextView 
+        android:id="@+id/tv_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络及数据库"
+        android:textSize="@dimen/px36"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/px100"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_bitmap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_frame"
+        android:layout_marginTop="@dimen/px50"
+        android:text="TvBitmap：一行代码完成网络图片加载"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_db"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tb_tv_bitmap"
+        android:layout_marginTop="@dimen/px50"
+        android:text="TvDb:超简单数据库工具示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+    <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_tv_http"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tb_tv_db"
+        android:layout_marginTop="@dimen/px50"
+        android:text="TvHttp文件下载 get及post请求示例"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+   <!--  <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_model_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tb_tv_http"
+        android:layout_marginTop="@dimen/px50"
+        android:text="电视应用模板一"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+    
+     <reco.frame.tv.view.TvButton 
+        android:id="@+id/tb_model_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tb_model_a"
+        android:layout_marginTop="@dimen/px50"
+        android:text="电视应用模板二"
+        android:textSize="@dimen/px36"
+        android:background="@android:color/holo_blue_light"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+     -->
+    
+
+</RelativeLayout>

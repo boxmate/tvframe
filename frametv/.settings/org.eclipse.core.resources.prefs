@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/reco/frame/tv/TvDb.java=UTF-8
+encoding//src/reco/frame/tv/TvHttp.java=UTF-8
+encoding//src/reco/frame/tv/db/sqlite/CursorUtils.java=UTF-8
+encoding//src/reco/frame/tv/http/HttpHandler.java=UTF-8
+encoding//src/reco/frame/tv/view/TvTabHost.java=UTF-8

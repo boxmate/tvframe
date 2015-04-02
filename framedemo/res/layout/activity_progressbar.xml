@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+    
+    <!-- 环形 有字-->
+    <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_ring_a"
+        android:layout_width="@dimen/px230"
+        android:layout_height="@dimen/px230"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px240"
+        android:layout_marginLeft="@dimen/px430"
+        tv:style="RING"
+        tv:backgroundColor="@android:color/darker_gray"
+        tv:progressStartColor="@android:color/holo_blue_light"
+        tv:progressEndColor="@android:color/holo_red_light"
+        tv:roundWidth="@dimen/px70"
+       	tv:textSize="@dimen/px24"
+       	tv:textColor="@android:color/holo_blue_light"
+       	tv:textDisplayable="true"
+        />
+    
+    <!-- 环形 无字 有背景图 最大进度为1000-->
+    <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_ring_b"
+        android:layout_width="@dimen/px230"
+        android:layout_height="@dimen/px230"
+        android:layout_marginTop="@dimen/px240"
+        android:layout_marginLeft="@dimen/px50"
+        android:layout_toRightOf="@+id/tpb_ring_a"
+        android:background="@drawable/color_bg"
+        tv:style="RING"
+        tv:backgroundColor="@android:color/darker_gray"
+        tv:progressStartColor="@android:color/holo_blue_light"
+        tv:roundWidth="@dimen/px30"
+        tv:max="1000"
+        />
+    <!-- 扇形 进度渐变-->
+   <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_fan_a"
+        android:layout_width="@dimen/px230"
+        android:layout_height="@dimen/px230"
+        android:layout_toRightOf="@+id/tpb_ring_b"
+        android:layout_marginLeft="@dimen/px50"
+        android:layout_marginTop="@dimen/px240"
+        tv:progressStartColor="@android:color/holo_blue_light"
+        tv:progressEndColor="@android:color/holo_red_light"
+        tv:backgroundColor="@android:color/darker_gray"
+        tv:style="FAN"
+        />
+   
+     <!-- 扇形带底色 无渐变-->
+   <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_fan_b"
+        android:layout_width="@dimen/px230"
+        android:layout_height="@dimen/px230"
+        android:layout_toRightOf="@+id/tpb_fan_a"
+        android:layout_marginLeft="@dimen/px50"
+        android:layout_marginTop="@dimen/px240"
+        tv:progressStartColor="@android:color/holo_blue_light"
+        tv:backgroundColor="@android:color/holo_red_light"
+        tv:style="FAN"
+        />
+   
+   <!-- 条形 方角 单色-->
+   <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_rect_a"
+        android:layout_width="@dimen/px830"
+        android:layout_height="@dimen/px30"
+        android:layout_below="@+id/tpb_ring_a"
+        android:layout_marginTop="@dimen/px100"
+        android:layout_centerHorizontal="true"
+        tv:backgroundColor="@android:color/holo_red_light"
+        tv:progressStartColor="@android:color/holo_blue_light"
+        tv:style="RECT"
+        />
+   <!-- 条形 圆角 渐变色 -->
+   <reco.frame.tv.view.TvProgressBar
+        android:id="@+id/tpb_rect_b"
+        android:layout_width="@dimen/px830"
+        android:layout_height="@dimen/px30"
+        android:layout_below="@+id/tpb_fan_a"
+        android:layout_marginTop="@dimen/px200"
+        android:layout_centerHorizontal="true"
+        tv:backgroundColor="@android:color/darker_gray"
+        tv:progressStartColor="@android:color/holo_blue_light"
+        tv:progressEndColor="@android:color/holo_red_light"
+        tv:style="RECT"
+        tv:rectRadius="@dimen/px30"
+        />
+  
+
+</RelativeLayout>

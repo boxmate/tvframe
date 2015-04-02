@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingLeft="@dimen/px100"
+    android:paddingRight="@dimen/px100" >
+
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/holo_blue_light"
+        android:text="加载网络图片"
+        android:textSize="@dimen/px36"
+        android:onClick="loadImage"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange" />
+
+    
+    
+    <reco.frame.tv.view.TvImageView
+        android:id="@+id/tiv_image"
+        android:layout_width="@dimen/px430"
+        android:layout_height="@dimen/px260"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px60"
+        />
+
+
+    <reco.frame.tv.view.TvButton
+        android:id="@+id/tb_image"
+        android:layout_width="@dimen/px430"
+        android:layout_height="@dimen/px260"
+        android:layout_below="@+id/tiv_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px30"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="@dimen/px36"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+
+
+    <!-- 条形 方角 单色 -->
+
+    <reco.frame.tv.view.TvRelativeLayout
+        android:id="@+id/trl_image"
+        android:layout_width="@dimen/px430"
+        android:layout_height="@dimen/px260"
+        android:layout_below="@+id/tb_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px30"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TvFrameDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="market_name">全家盒市场</string>
+    
+    <string name="marquee_str_a">全家盒市场是国内专门为智能电视和智能电视盒定制的一款应用市场，致力于为广大电视用户提供各种高质量的电视应用与电视游戏。</string>
+
+</resources>
