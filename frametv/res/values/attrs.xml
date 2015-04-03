@@ -80,6 +80,26 @@
         <attr name="cursorMarginRight"></attr>
         <attr name="cursorMarginBottom"></attr>
     </declare-styleable>
+    
+    
+    <declare-styleable name="TvListView">
+        <attr name="cursorRes"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="delay" />
+        <attr name="boarder"></attr>
+        <attr name="boarderTop"></attr>
+        <attr name="boarderLeft"></attr>
+        <attr name="boarderBottom"></attr>
+        <attr name="boarderRight"></attr>
+        <attr name="spaceVert"></attr>
+        <attr name="itemWidth"></attr>
+        <attr name="itemHeight"></attr>
+    </declare-styleable>
+    
     <declare-styleable name="TvGridView">
         <attr name="cursorRes"></attr>
         <attr name="scalable"></attr>

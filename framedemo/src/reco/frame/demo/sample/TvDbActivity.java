@@ -54,7 +54,7 @@ public class TvDbActivity extends Activity {
 			app.num= i;
 			app.title = "≤‚ ‘√˚" + i;
 			app.imageUrl = Config.TEST_DATA_API;
-			tvDb.save(app);
+			tvDb.insert(app);
 //			boolean result=tvDb.saveBindId(app);
 //			Log.e("", "result="+result);
 		}
@@ -74,7 +74,7 @@ public class TvDbActivity extends Activity {
 		app.num = id;
 		app.title = "≤‚ ‘√˚";
 		app.imageUrl = Config.TEST_DATA_API;
-		tvDb.save(app);
+		tvDb.insert(app);
 		select();
 
 	}

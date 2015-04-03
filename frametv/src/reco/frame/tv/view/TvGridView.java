@@ -11,12 +11,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObservable;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,7 +129,7 @@ public class TvGridView extends RelativeLayout {
 	 */
 	private int rowWidth, rowHeight;
 	private Map<Integer, Integer> itemIds;
-	
+
 	private OnItemSelectListener onItemSelectListener;
 	private OnItemClickListener onItemClickListener;
 	public AdapterDataSetObservable mDataSetObservable;
@@ -222,6 +224,7 @@ public class TvGridView extends RelativeLayout {
 		// 关闭子控件动画缓存 使嵌套动画更流畅
 		// setAnimationCacheEnabled(false);
 
+		
 		init();
 	}
 
@@ -238,6 +241,7 @@ public class TvGridView extends RelativeLayout {
 
 	/**
 	 * 设置适配器
+	 * 
 	 * @param adapter
 	 */
 	public void setAdapter(TvBaseAdapter adapter) {
@@ -245,7 +249,15 @@ public class TvGridView extends RelativeLayout {
 		if (adapter != null) {
 			adapter.registerDataSetObservable(mDataSetObservable);
 		}
+		// 清理原先数据
+		clear();
 		initGridView();
+	}
+
+	private void clear() {
+		itemIds.clear();
+		this.removeAllViews();
+		// this.removeAllViewsInLayout();
 	}
 
 	/**
@@ -266,9 +278,8 @@ public class TvGridView extends RelativeLayout {
 		paddingLeft = (int) (boarderLeft * scale + itemWidth * (scale - 1) / 2
 				+ 3 + this.getPaddingLeft());
 		paddingTop = (int) (boarderTop * scale + itemHeight * (scale - 1) / 2
-				+ 3 + this.getPaddingTop());
-		
-		
+				 + this.getPaddingTop());
+
 		Message msg = handler.obtainMessage();
 		msg.what = ACTION_INIT_ITEMS;
 		handler.sendMessageDelayed(msg, DELAY);
@@ -288,7 +299,12 @@ public class TvGridView extends RelativeLayout {
 			int top = (i / columns) * (spaceVert + itemHeight);
 			RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
 					itemWidth, itemHeight);
-			rlp.setMargins(left, top, 0, 0);
+			if (initLength==1) {
+				rlp.setMargins(left, top, paddingLeft, 0);
+			}else{
+				rlp.setMargins(left, top, 0, 0);
+			}
+			
 			View child = adapter.getView(i, null, this);
 			this.addView(child, rlp);
 			int viewId = child.getId();
@@ -303,12 +319,27 @@ public class TvGridView extends RelativeLayout {
 		}
 		rowCount = itemIds.size() % columns == 0 ? itemIds.size() / columns
 				: itemIds.size() / columns + 1;
-		//this.getChildAt(0).requestFocus();
+
+		cursor = new ImageView(getContext());
+		cursor.setId(TvConfig.buildId());
+		cursor.setBackgroundResource(cursorRes);
+		this.addView(cursor);
+		cursor.setVisibility(View.INVISIBLE);
+		
+		View focus=((ViewGroup)getParent()).findFocus();
+		if (focus==null) {
+			View item=getChildAt(0);
+			if (item!=null) {
+				item.requestFocus();
+			}
+		}
+
 	}
+	
 
 	private void addNewItems() {
 		currentChildCount = getChildCount();
-		//Log.e(VIEW_LOG_TAG, "添加数据" + currentChildCount);
+		// Log.e(VIEW_LOG_TAG, "添加数据" + currentChildCount);
 		parentLayout = false;
 		int start = itemIds.size();
 		int end = Math.min(start + screenMaxRow * 2, adapter.getCount());
@@ -335,6 +366,7 @@ public class TvGridView extends RelativeLayout {
 		rowCount = itemIds.size() % columns == 0 ? itemIds.size() / columns
 				: itemIds.size() / columns + 1;
 		canAdd = true;
+
 	}
 
 	private void bindEventOnChild(View child) {
@@ -367,7 +399,9 @@ public class TvGridView extends RelativeLayout {
 
 			@Override
 			public void onClick(View item) {
-				onItemClickListener.onItemClick(item, selectIndex);
+				if (onItemClickListener != null) {
+					onItemClickListener.onItemClick(item, selectIndex);
+				}
 
 			}
 		});
@@ -402,8 +436,8 @@ public class TvGridView extends RelativeLayout {
 		 * 根据childView计算的出的宽和高，以及设置的margin计算容器的宽和高，主要用于容器是warp_content时
 		 */
 
-//		Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
-//				+ cCount);
+		// Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
+		// + cCount);
 		for (int i = currentChildCount; i < cCount; i++) {
 			View childView = getChildAt(i);
 			cWidth = childView.getMeasuredWidth();
@@ -446,8 +480,9 @@ public class TvGridView extends RelativeLayout {
 			 * 遍历所有childView根据其宽和高，以及margin进行布局
 			 */
 			int start = currentChildCount;
-//			Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount + "---cCount="
-//					+ cCount);
+			// Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount +
+			// "---cCount="
+			// + cCount);
 			for (int i = start; i < cCount; i++) {
 				View childView = getChildAt(i);
 				// 跳过光标子项
@@ -625,13 +660,10 @@ public class TvGridView extends RelativeLayout {
 	 * 光标移动 到达后 与控件同时放大
 	 */
 	private void moveCover(View item) {
-
 		if (cursor == null) {
-			cursor = new ImageView(getContext());
-			cursor.setId(TvConfig.buildId());
-			cursor.setBackgroundResource(cursorRes);
-			this.addView(cursor);
+			return;
 		}
+
 		setBorderParams(item);
 		item.bringToFront();
 		cursor.bringToFront();
@@ -646,8 +678,10 @@ public class TvGridView extends RelativeLayout {
 	 */
 
 	private void returnCover(View item) {
+		if (cursor == null) {
+			return;
+		}
 		cursor.setVisibility(View.INVISIBLE);
-
 		if (scalable) {
 			scaleToNormal(item);
 		}
@@ -702,12 +736,14 @@ public class TvGridView extends RelativeLayout {
 				.getLayoutParams();
 
 		// Log.e(VIEW_LOG_TAG, params.leftMargin + "---" + params.topMargin
-		// + "---" + params.rightMargin + "---" + params.bottomMargin);
+		// + "---" + boarderLeft + "---" + boarderTop
+		// + "---" + paddingLeft + "---" + paddingTop);
 		int l, t, r, b;
-		r = params.leftMargin + itemWidth - boarderLeft + paddingLeft;
-		b = params.topMargin + itemHeight - boarderTop + paddingTop;
-		cursor.layout(params.leftMargin + paddingLeft, params.topMargin
-				+ paddingTop, r, b);
+		l = params.leftMargin + paddingLeft - boarderLeft;
+		t = params.topMargin + paddingTop - boarderTop;
+		r = l + itemWidth + boarderRight;
+		b = t + itemHeight + boarderBottom;
+		cursor.layout(l, t, r, b);
 
 	}
 
