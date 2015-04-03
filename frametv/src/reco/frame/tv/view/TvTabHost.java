@@ -3,6 +3,7 @@ package reco.frame.tv.view;
 import java.util.ArrayList;
 import java.util.List;
 import reco.frame.tv.R;
+import reco.frame.tv.util.ViewUtil;
 import reco.frame.tv.view.component.FragmentAdapter;
 import reco.frame.tv.view.component.TvConfig;
 import reco.frame.tv.view.component.TvSlowViewPager;
@@ -17,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -197,11 +199,10 @@ public class TvTabHost extends RelativeLayout {
 	public void addPage(FragmentManager fm, Fragment frag, String title) {
 		this.fragmentManager = fm;
 		this.fragList.add(frag);
-
 		TextView tv = new TextView(getContext());
 		tv.setFocusable(true);
 		tv.setTextColor(textColorDefault);
-		tv.setTextSize(textSize);
+		tv.setTextSize(ViewUtil.Px2Dp(getContext(), textSize));
 		tv.setText(title);
 		tv.setGravity(Gravity.CENTER);
 		int tempId=TvConfig.buildId();

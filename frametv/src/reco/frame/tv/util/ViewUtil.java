@@ -1,5 +1,6 @@
 package reco.frame.tv.util;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -51,5 +52,10 @@ public class ViewUtil {
 		params.height = topOffset + view.getLayoutParams().height
 				+ bottomOffset;
 
+	}
+
+	public static int Px2Dp(Context context, float px) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (px / scale + 0.5);
 	}
 }
