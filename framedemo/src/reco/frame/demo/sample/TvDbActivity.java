@@ -3,6 +3,8 @@ package reco.frame.demo.sample;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.MainActivity;
 import reco.frame.demo.R;
 import reco.frame.demo.adapter.DbListAdapter;
@@ -29,6 +31,18 @@ public class TvDbActivity extends Activity {
 		init();
 	}
 
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
+	}
+	
+	
 	private void init() {
 		lv_list = (ListView) findViewById(R.id.lv_list);
 		findViewById(R.id.tb_select).setOnClickListener(mClickListener);

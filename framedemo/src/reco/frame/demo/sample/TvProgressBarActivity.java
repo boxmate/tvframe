@@ -3,6 +3,8 @@ package reco.frame.demo.sample;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.R;
 import reco.frame.tv.view.TvProgressBar;
 import android.os.Bundle;
@@ -46,6 +48,19 @@ public class TvProgressBarActivity extends Activity {
 
 	}
 
+	
+	@Override
+	protected void onResume() {
+		show();
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
+	}
+	
 	private void load() {
 		tpb_ring_a = (TvProgressBar) findViewById(R.id.tpb_ring_a);
 		tpb_ring_b = (TvProgressBar) findViewById(R.id.tpb_ring_b);
@@ -55,11 +70,6 @@ public class TvProgressBarActivity extends Activity {
 		tpb_rect_b = (TvProgressBar) findViewById(R.id.tpb_rect_b);
 	}
 	
-	@Override
-	protected void onResume() {
-		show();
-		super.onResume();
-	}
 
 	private int progress,progress2;
 

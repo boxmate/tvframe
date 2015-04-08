@@ -1,5 +1,7 @@
 package reco.frame.demo.sample;
 
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.R;
 import reco.frame.tv.view.TvTabHost;
 import reco.frame.tv.view.TvTabHost.ScrollPageChangerListener;
@@ -17,6 +19,18 @@ public class TvTabHostActivity extends FragmentActivity {
 		loadFrag();
 	}
 
+	
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
+	}
+	
 	private void loadFrag() {
 
 		/**

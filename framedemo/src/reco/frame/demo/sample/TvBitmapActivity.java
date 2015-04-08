@@ -1,6 +1,8 @@
 package reco.frame.demo.sample;
 
 
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.R;
 import reco.frame.tv.view.TvButton;
 import reco.frame.tv.view.TvImageView;
@@ -27,6 +29,17 @@ public class TvBitmapActivity extends Activity {
 		
 	}
 
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
+	}
+	
 	/**
 	 * 一行代码完成加载  此URL来源网络 如失效劳烦自行替换
 	 * @param v

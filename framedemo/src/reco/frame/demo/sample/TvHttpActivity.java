@@ -4,6 +4,9 @@ import java.io.File;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.R;
 import reco.frame.demo.entity.Config;
 import reco.frame.tv.TvHttp;
@@ -41,6 +44,18 @@ public class TvHttpActivity extends Activity {
 		init();
 	}
 
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
+	}
+	
+	
 	private void init() {
 
 		tvHttp = new TvHttp(getApplicationContext());

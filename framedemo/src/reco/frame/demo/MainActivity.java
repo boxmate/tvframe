@@ -1,5 +1,7 @@
 package reco.frame.demo;
 
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.sample.TvBitmapActivity;
 import reco.frame.demo.sample.TvButtonActivity;
 import reco.frame.demo.sample.TvDbActivity;
@@ -29,6 +31,17 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		load();
+	}
+	
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
 	}
 	
 	private void load(){

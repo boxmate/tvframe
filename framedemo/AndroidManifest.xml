@@ -68,6 +68,15 @@
             android:label="@string/app_name" >
         </activity>
         
+        
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5524959ffd98c52a330009fc" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="default" />
+        
     </application>
 
 </manifest>

@@ -2,6 +2,9 @@ package reco.frame.demo.sample;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.umeng.analytics.MobclickAgent;
+
 import reco.frame.demo.R;
 import reco.frame.demo.adapter.TvGridAdapter;
 import reco.frame.demo.entity.AppInfo;
@@ -28,6 +31,19 @@ public class TvGridViewActivity extends Activity {
 
 	}
 
+	
+	
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
+	}
+	
 	/**
 	 * 初始加载45条数据 也可一次加载 1000+数据 TvGridView最多加载总高度为屏幕高度2位的数据 无需担心溢出
 	 * 光标移动到页尾时,将自动加载更多
