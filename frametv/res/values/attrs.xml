@@ -18,6 +18,11 @@
     <attr name="boarderLeft" format="dimension"></attr>
     <attr name="boarderBottom" format="dimension"></attr>
     <attr name="boarderRight" format="dimension"></attr>
+    <attr name="boarderInt" format="integer"></attr>
+    <attr name="boarderTopInt" format="integer"></attr>
+    <attr name="boarderLeftInt" format="integer"></attr>
+    <attr name="boarderBottomInt" format="integer"></attr>
+    <attr name="boarderRightInt" format="integer"></attr>
     <attr name="backgroundColor" format="color" />
     <attr name="progressStartColor" format="color" />
     <attr name="progressEndColor" format="color" />
@@ -56,11 +61,11 @@
     <attr name="cursorMarginTop" format="dimension"></attr>
     <attr name="cursorMarginRight" format="dimension"></attr>
     <attr name="cursorMarginBottom" format="dimension"></attr>
-	
+
     <declare-styleable name="TvTabHost">
         <attr name="cursorRes"></attr>
-        <attr name="textColorDefault"/>
-    	<attr name="textColorSelected"/>
+        <attr name="textColorDefault" />
+        <attr name="textColorSelected" />
         <attr name="titleWidth"></attr>
         <attr name="titleHeight"></attr>
         <attr name="titleSpace"></attr>
@@ -74,14 +79,12 @@
         <attr name="durationSmall"></attr>
         <attr name="delay" />
         <attr name="cursorWidth"></attr>
-   	    <attr name="cursorHeight"></attr>
+        <attr name="cursorHeight"></attr>
         <attr name="cursorMarginLeft"></attr>
         <attr name="cursorMarginTop"></attr>
         <attr name="cursorMarginRight"></attr>
         <attr name="cursorMarginBottom"></attr>
     </declare-styleable>
-    
-    
     <declare-styleable name="TvListView">
         <attr name="cursorRes"></attr>
         <attr name="scalable"></attr>
@@ -95,11 +98,15 @@
         <attr name="boarderLeft"></attr>
         <attr name="boarderBottom"></attr>
         <attr name="boarderRight"></attr>
+        <attr name="boarderInt"></attr>
+        <attr name="boarderTopInt"></attr>
+        <attr name="boarderLeftInt"></attr>
+        <attr name="boarderBottomInt"></attr>
+        <attr name="boarderRightInt"></attr>
         <attr name="spaceVert"></attr>
         <attr name="itemWidth"></attr>
         <attr name="itemHeight"></attr>
     </declare-styleable>
-    
     <declare-styleable name="TvGridView">
         <attr name="cursorRes"></attr>
         <attr name="scalable"></attr>
@@ -113,6 +120,11 @@
         <attr name="boarderLeft"></attr>
         <attr name="boarderBottom"></attr>
         <attr name="boarderRight"></attr>
+        <attr name="boarderInt"></attr>
+        <attr name="boarderTopInt"></attr>
+        <attr name="boarderLeftInt"></attr>
+        <attr name="boarderBottomInt"></attr>
+        <attr name="boarderRightInt"></attr>
         <attr name="columns"></attr>
         <attr name="spaceHori"></attr>
         <attr name="spaceVert"></attr>
@@ -132,6 +144,11 @@
         <attr name="boarderLeft"></attr>
         <attr name="boarderBottom"></attr>
         <attr name="boarderRight"></attr>
+        <attr name="boarderInt"></attr>
+        <attr name="boarderTopInt"></attr>
+        <attr name="boarderLeftInt"></attr>
+        <attr name="boarderBottomInt"></attr>
+        <attr name="boarderRightInt"></attr>
     </declare-styleable>
     <declare-styleable name="TvButton">
         <attr name="cursorRes"></attr>
@@ -146,6 +163,11 @@
         <attr name="boarderLeft"></attr>
         <attr name="boarderBottom"></attr>
         <attr name="boarderRight"></attr>
+        <attr name="boarderInt"></attr>
+        <attr name="boarderTopInt"></attr>
+        <attr name="boarderLeftInt"></attr>
+        <attr name="boarderBottomInt"></attr>
+        <attr name="boarderRightInt"></attr>
     </declare-styleable>
     <declare-styleable name="TvSubButton">
         <attr name="cursorRes"></attr>
@@ -160,6 +182,11 @@
         <attr name="boarderLeft"></attr>
         <attr name="boarderBottom"></attr>
         <attr name="boarderRight"></attr>
+        <attr name="boarderInt"></attr>
+        <attr name="boarderTopInt"></attr>
+        <attr name="boarderLeftInt"></attr>
+        <attr name="boarderBottomInt"></attr>
+        <attr name="boarderRightInt"></attr>
     </declare-styleable>
     <declare-styleable name="TvProgressBar">
         <attr name="backgroundColor" />
@@ -181,6 +208,7 @@
     <declare-styleable name="TvLoadingBar">
         <attr name="imageRes" />
         <attr name="period" />
+        <attr name="delay" />
         <attr name="clockwise" />
         <attr name="textColor" />
         <attr name="textSize" />

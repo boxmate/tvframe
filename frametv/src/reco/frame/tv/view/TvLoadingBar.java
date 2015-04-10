@@ -52,6 +52,7 @@ public class TvLoadingBar extends RelativeLayout {
 	 * 动画周期 越小转动越快
 	 */
 	private int period;
+	private int delay;
 	private ObjectAnimator rotateAnimator;
 	private View loadingBar;
 	private int imageRes;
@@ -74,11 +75,13 @@ public class TvLoadingBar extends RelativeLayout {
 		imageRes = custom.getResourceId(R.styleable.TvLoadingBar_imageRes, 0);
 		clockWise = custom.getBoolean(R.styleable.TvLoadingBar_clockwise, true);
 		period = custom.getInteger(R.styleable.TvLoadingBar_period, 1000);
+		delay=custom.getInteger(R.styleable.TvLoadingBar_delay, 1);
 		textDisplayable = custom.getBoolean(
 				R.styleable.TvLoadingBar_textDisplayable, false);
 		textColor = custom.getColor(R.styleable.TvLoadingBar_textColor,
 				Color.GREEN);
 		textSize = custom.getDimension(R.styleable.TvLoadingBar_textSize, 15);
+		
 		custom.recycle();
 
 	}
@@ -97,7 +100,7 @@ public class TvLoadingBar extends RelativeLayout {
 		
 		loadingBar = new View(getContext());
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-				getWidth(), getHeight());
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		params.addRule(RelativeLayout.ALIGN_LEFT);
 		params.addRule(RelativeLayout.ALIGN_TOP);
 		params.setMargins(1, 1, 1, 1);
@@ -121,6 +124,7 @@ public class TvLoadingBar extends RelativeLayout {
 				359.0F).setDuration(period);
 		rotateAnimator.setRepeatCount(-1);
 		rotateAnimator.setInterpolator(new LinearInterpolator());
+		rotateAnimator.setStartDelay(delay);
 		rotateAnimator.start();
 
 	}

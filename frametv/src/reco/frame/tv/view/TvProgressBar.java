@@ -311,7 +311,7 @@ public class TvProgressBar extends View {
 	 */
 	public synchronized void setProgress(int progress) {
 		if (progress < 0) {
-			throw new IllegalArgumentException("progress not less than 0");
+			progress=0;
 		}
 		if (progress > max) {
 			progress = max;

@@ -114,18 +114,23 @@ public class TvRelativeLayout extends RelativeLayout {
 				R.styleable.TvRelativeLayout_durationLarge, 100);
 		this.durationSmall = custom.getInteger(
 				R.styleable.TvRelativeLayout_durationSmall, 100);
-		this.boarder = (int) custom.getDimension(
-				R.styleable.TvRelativeLayout_boarder, 0);
+		this.boarder = (int) custom.getDimension(R.styleable.TvRelativeLayout_boarder, 0)
+				+ custom.getInteger(R.styleable.TvRelativeLayout_boarderInt, 0);
 
 		if (boarder == 0) {
 			this.boarderLeft = (int) custom.getDimension(
-					R.styleable.TvRelativeLayout_boarderLeft, 0);
+					R.styleable.TvRelativeLayout_boarderLeft, 0)
+					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderLeftInt, 0);
 			this.boarderTop = (int) custom.getDimension(
-					R.styleable.TvRelativeLayout_boarderTop, 0);
+					R.styleable.TvRelativeLayout_boarderTop, 0)
+					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderTopInt, 0);
 			this.boarderRight = (int) custom.getDimension(
-					R.styleable.TvRelativeLayout_boarderRight, 0);
+					R.styleable.TvRelativeLayout_boarderRight, 0)
+					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderRightInt, 0);
 			this.boarderBottom = (int) custom.getDimension(
-					R.styleable.TvRelativeLayout_boarderBottom, 0);
+					R.styleable.TvRelativeLayout_boarderBottom, 0)
+					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderBottomInt,
+							0);
 		} else {
 			this.boarderLeft = boarder;
 			this.boarderTop = boarder;

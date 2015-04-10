@@ -196,18 +196,24 @@ public class TvButton extends TextView {
 				R.styleable.TvButton_durationLarge, 100);
 		this.durationSmall = custom.getInteger(
 				R.styleable.TvButton_durationSmall, 100);
-		this.boarder = (int) custom.getDimension(R.styleable.TvButton_boarder,
-				0);
+		this.boarder = (int) custom.getDimension(R.styleable.TvButton_boarder, 0)
+				+ custom.getInteger(R.styleable.TvButton_boarderInt, 0);
 
 		if (boarder == 0) {
 			this.boarderLeft = (int) custom.getDimension(
-					R.styleable.TvButton_boarderLeft, 0);
+					R.styleable.TvButton_boarderLeft, 0)
+					+ custom.getInteger(R.styleable.TvButton_boarderLeftInt, 0);
 			this.boarderTop = (int) custom.getDimension(
-					R.styleable.TvButton_boarderTop, 0);
+					R.styleable.TvButton_boarderTop, 0)
+					+ custom.getInteger(R.styleable.TvButton_boarderTopInt, 0);
 			this.boarderRight = (int) custom.getDimension(
-					R.styleable.TvButton_boarderRight, 0);
+					R.styleable.TvButton_boarderRight, 0)
+					+ custom.getInteger(R.styleable.TvButton_boarderRightInt, 0);
 			this.boarderBottom = (int) custom.getDimension(
-					R.styleable.TvButton_boarderBottom, 0);
+					R.styleable.TvButton_boarderBottom, 0)
+					+ custom.getInteger(R.styleable.TvButton_boarderBottomInt,
+							0);
+
 		} else {
 			this.boarderLeft = boarder;
 			this.boarderTop = boarder;
@@ -373,8 +379,7 @@ public class TvButton extends TextView {
 	 */
 	public void configImageUrl(String url, int loadingRes) {
 
-		TvBitmap.create(getContext()).display(this, url,
-				BitmapFactory.decodeResource(getResources(), loadingRes));
+		TvBitmap.create(getContext()).display(this, url, loadingRes);
 
 	}
 

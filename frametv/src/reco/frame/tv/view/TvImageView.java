@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import reco.frame.tv.TvBitmap;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -52,5 +53,17 @@ public class TvImageView extends View {
 		
 		TvBitmap.create(getContext()).display(this, url);
 		
+	}
+
+	/**
+	 * ø…≈‰÷√Õ¯¬ÁÕº∆¨
+	 * 
+	 * @param url
+	 * @param loadingRes
+	 */
+	public void configImageUrl(String url, int loadingRes) {
+
+		TvBitmap.create(getContext()).display(this, url,loadingRes);
+
 	}
 }

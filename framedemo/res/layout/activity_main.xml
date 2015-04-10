@@ -179,6 +179,18 @@
         tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
         />
      -->
+     
+     
+     <TextView 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="@dimen/px100"
+         android:textSize="@dimen/px36"
+         android:textColor="@android:color/holo_blue_light"
+         android:text="电视开发交流群:414801661"
+         />
     
 
 </RelativeLayout>

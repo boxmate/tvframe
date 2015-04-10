@@ -194,9 +194,6 @@ public class TvGridView extends RelativeLayout {
 		this.spaceVert = (int) custom.getDimension(
 				R.styleable.TvGridView_spaceVert, 10);
 
-		this.boarder = (int) custom.getDimension(
-				R.styleable.TvGridView_boarder, 0);
-
 		itemWidth = (int) custom.getDimension(R.styleable.TvGridView_itemWidth,
 				10);
 		itemHeight = (int) custom.getDimension(
@@ -204,15 +201,23 @@ public class TvGridView extends RelativeLayout {
 		rowHeight = itemHeight + spaceVert;
 		rowWidth = itemWidth + spaceHori;
 
+		this.boarder = (int) custom.getDimension(R.styleable.TvGridView_boarder, 0)
+				+ custom.getInteger(R.styleable.TvGridView_boarderInt, 0);
+
 		if (boarder == 0) {
 			this.boarderLeft = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderLeft, 1);
+					R.styleable.TvGridView_boarderLeft, 0)
+					+ custom.getInteger(R.styleable.TvGridView_boarderLeftInt, 0);
 			this.boarderTop = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderTop, 1);
+					R.styleable.TvGridView_boarderTop, 0)
+					+ custom.getInteger(R.styleable.TvGridView_boarderTopInt, 0);
 			this.boarderRight = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderRight, 1);
+					R.styleable.TvGridView_boarderRight, 0)
+					+ custom.getInteger(R.styleable.TvGridView_boarderRightInt, 0);
 			this.boarderBottom = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderBottom, 1);
+					R.styleable.TvGridView_boarderBottom, 0)
+					+ custom.getInteger(R.styleable.TvGridView_boarderBottomInt,
+							0);
 		} else {
 			this.boarderLeft = boarder;
 			this.boarderTop = boarder;
@@ -278,7 +283,7 @@ public class TvGridView extends RelativeLayout {
 		paddingLeft = (int) (boarderLeft * scale + itemWidth * (scale - 1) / 2
 				+ 3 + this.getPaddingLeft());
 		paddingTop = (int) (boarderTop * scale + itemHeight * (scale - 1) / 2
-				 + this.getPaddingTop());
+				 + this.getPaddingTop())+3;
 
 		Message msg = handler.obtainMessage();
 		msg.what = ACTION_INIT_ITEMS;

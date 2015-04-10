@@ -49,21 +49,26 @@ public class TvSubButton extends Button {
 	public TvSubButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		TypedArray custom = getContext().obtainStyledAttributes(attrs,
-				R.styleable.TvButton);
+				R.styleable.TvSubButton);
 		this.cursorRes = custom.getResourceId(
-				R.styleable.TvButton_cursorRes, 0);
-		this.boarder = (int) custom.getDimension(
-				R.styleable.TvButton_boarder, 0);
+				R.styleable.TvSubButton_cursorRes, 0);
+		this.boarder = (int) custom.getDimension(R.styleable.TvSubButton_boarder, 0)
+				+ custom.getInteger(R.styleable.TvSubButton_boarderInt, 0);
 
 		if (boarder == 0) {
 			this.boarderLeft = (int) custom.getDimension(
-					R.styleable.TvButton_boarderLeft, 0);
+					R.styleable.TvSubButton_boarderLeft, 0)
+					+ custom.getInteger(R.styleable.TvSubButton_boarderLeftInt, 0);
 			this.boarderTop = (int) custom.getDimension(
-					R.styleable.TvButton_boarderTop, 0);
+					R.styleable.TvSubButton_boarderTop, 0)
+					+ custom.getInteger(R.styleable.TvSubButton_boarderTopInt, 0);
 			this.boarderRight = (int) custom.getDimension(
-					R.styleable.TvButton_boarderRight, 0);
+					R.styleable.TvSubButton_boarderRight, 0)
+					+ custom.getInteger(R.styleable.TvSubButton_boarderRightInt, 0);
 			this.boarderBottom = (int) custom.getDimension(
-					R.styleable.TvButton_boarderBottom, 0);
+					R.styleable.TvSubButton_boarderBottom, 0)
+					+ custom.getInteger(R.styleable.TvSubButton_boarderBottomInt,
+							0);
 		} else {
 			this.boarderLeft = boarder;
 			this.boarderTop = boarder;
