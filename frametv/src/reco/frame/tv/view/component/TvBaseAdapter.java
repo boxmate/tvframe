@@ -1,6 +1,5 @@
 package reco.frame.tv.view.component;
 
-import java.util.List;
 
 import android.database.DataSetObservable;
 import android.view.View;

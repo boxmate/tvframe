@@ -1,5 +1,4 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,33 +29,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
-/**
- * <p>
- * ä½¿ç?¨æ?¹æ??:
- * <p>
- * <pre>
- * AjaxParams params = new AjaxParams();
- * params.put("username", "michael");
- * params.put("password", "123456");
- * params.put("email", "test@tsz.net");
- * params.put("profile_picture", new File("/mnt/sdcard/pic.jpg")); // ä¸?ä¼????ä»?
- * params.put("profile_picture2", inputStream); // ä¸?ä¼???°æ??æµ?
- * params.put("profile_picture3", new ByteArrayInputStream(bytes)); // ???äº¤å?????æµ?
- *
- * FinalHttp fh = new FinalHttp();
- * fh.post("http://www.xxxx.com", params, new AjaxCallBack<String>(){
- * 		@Override
- *		public void onLoading(long count, long current) {
- *				textView.setText(current+"/"+count);
- *		}
- *
- *		@Override
- *		public void onSuccess(String t) {
- *			textView.setText(t==null?"null":t);
- *		}
- * });
- * </pre>
- */
 public class AjaxParams {
     private static String ENCODING = "UTF-8";
 
@@ -111,7 +83,7 @@ public class AjaxParams {
     }
 
     /**
-     * æ·»å?? inputStream ??°è?·æ??ä¸?.
+     * æ·»åŠ  inputStream åˆ°è¯·æ±‚ä¸­.
      * @param key the key name for the new param.
      * @param stream the input stream to add.
      * @param fileName the name of the file.

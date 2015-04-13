@@ -105,7 +105,7 @@ public class TvHttpActivity extends Activity {
 	}
 
 	/**
-	 * get¼òµ¥Ê¾Àı *´Ë´¦»ñµÃÎÄ¼şµØÖ· ÓÃÓÚºóÃæµÄ ÏÂÔØÊ¾Àı
+	 * getç®€å•ç¤ºä¾‹ *æ­¤å¤„è·å¾—æ–‡ä»¶åœ°å€ ç”¨äºåé¢çš„ ä¸‹è½½ç¤ºä¾‹
 	 */
 	private void testGet() {
 		tvHttp.get(Config.TEST_GET_API, new AjaxCallBack<Object>() {
@@ -113,7 +113,7 @@ public class TvHttpActivity extends Activity {
 			@Override
 			public void onSuccess(Object t) {
 
-				// »ñÈ¡ÎÄ¼şÏÂÔØÂ·¾¶
+				// è·å–æ–‡ä»¶ä¸‹è½½è·¯å¾„
 				try {
 					JSONObject jsonObject = new JSONObject(t.toString());
 					Config.TEST_FILE_URL = jsonObject.getString("apk_url") + "";
@@ -128,14 +128,14 @@ public class TvHttpActivity extends Activity {
 
 			@Override
 			public void onFailure(Throwable t, int errorNo, String strMsg) {
-				Toast.makeText(getApplicationContext(), "ÇëÇóÊ§°Ü!!!", 1).show();
+				Toast.makeText(getApplicationContext(), "è¯·æ±‚å¤±è´¥!!!", 1).show();
 				super.onFailure(t, errorNo, strMsg);
 			}
 		});
 	}
 
 	/**
-	 * post¼òµ¥Ê¾Àı
+	 * postç®€å•ç¤ºä¾‹
 	 */
 	private void testPost() {
 
@@ -154,7 +154,7 @@ public class TvHttpActivity extends Activity {
 
 			@Override
 			public void onFailure(Throwable t, int errorNo, String strMsg) {
-				Toast.makeText(getApplicationContext(), "ÇëÇóÊ§°Ü!!!", 1).show();
+				Toast.makeText(getApplicationContext(), "è¯·æ±‚å¤±è´¥!!!", 1).show();
 				super.onFailure(t, errorNo, strMsg);
 			}
 		});
@@ -162,11 +162,11 @@ public class TvHttpActivity extends Activity {
 	}
 
 	/**
-	 * ÎÄ¼ş¶ÏµãĞøÊ¾Àı *ÏÈÍ¨¹ıGET·½·¨µÃµ½ ÎÄ¼şÏÂÔØµØÖ·
+	 * æ–‡ä»¶æ–­ç‚¹ç»­ç¤ºä¾‹ *å…ˆé€šè¿‡GETæ–¹æ³•å¾—åˆ° æ–‡ä»¶ä¸‹è½½åœ°å€
 	 */
 	private void testDownload() {
 
-		// Ö¸¶¨ÎÄ¼ş±£´æÄ¿Â¼  ¿¼ÂÇµ½²¿·İºĞ×Ó Ã»ÓĞSD¿¨ ½¨Òé±£´æÖÁgetFilesDir()
+		// æŒ‡å®šæ–‡ä»¶ä¿å­˜ç›®å½•  è€ƒè™‘åˆ°éƒ¨ä»½ç›’å­ æ²¡æœ‰SDå¡ å»ºè®®ä¿å­˜è‡³getFilesDir()
 		String savePath = getFilesDir()+ "/" + "boxmate.apk";
 		handler = tvHttp.download(Config.TEST_FILE_URL, savePath, true,
 				new AjaxCallBack<File>() {
@@ -180,7 +180,7 @@ public class TvHttpActivity extends Activity {
 
 					@Override
 					public void onSuccess(File t) {
-						Toast.makeText(getApplicationContext(), "ÏÂÔØ³É¹¦!!!", 1)
+						Toast.makeText(getApplicationContext(), "ä¸‹è½½æˆåŠŸ!!!", 1)
 								.show();
 						super.onSuccess(t);
 					}
@@ -201,9 +201,9 @@ public class TvHttpActivity extends Activity {
 		try {
 			boolean sdCardExist = Environment.getExternalStorageState().equals(
 					Environment.MEDIA_MOUNTED);
-			// ÅĞ¶Ïsd¿¨ÊÇ·ñ´æÔÚ
+			// åˆ¤æ–­sdå¡æ˜¯å¦å­˜åœ¨
 			if (sdCardExist) {
-				sdDir = Environment.getExternalStorageDirectory();// »ñÈ¡¸úÄ¿Â¼
+				sdDir = Environment.getExternalStorageDirectory();// è·å–è·Ÿç›®å½•
 				return sdDir.toString();
 			} else {
 				return "/data/data/";

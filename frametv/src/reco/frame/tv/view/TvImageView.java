@@ -20,7 +20,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 /**
- * ´Ë¿Ø¼ş½ûÓÃ½¹µã
+ * æ­¤æ§ä»¶ç¦ç”¨ç„¦ç‚¹
  * @author reco
  *
  */
@@ -46,7 +46,7 @@ public class TvImageView extends View {
 
 	
 	/**
-	 * ¼ÓÔØÍøÂçÍ¼Æ¬
+	 * åŠ è½½ç½‘ç»œå›¾ç‰‡
 	 * @param url
 	 */
 	public void configImageUrl(String url) {
@@ -56,7 +56,7 @@ public class TvImageView extends View {
 	}
 
 	/**
-	 * ¿ÉÅäÖÃÍøÂçÍ¼Æ¬
+	 * å¯é…ç½®ç½‘ç»œå›¾ç‰‡
 	 * 
 	 * @param url
 	 * @param loadingRes

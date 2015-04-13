@@ -3,7 +3,7 @@
 //import android.app.Activity;
 //
 ///**
-// * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+// * Copyright (c) 2012-2013, Michael Yang ??ã„§??å¨´? (www.yangfuhai.com).
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
 // * you may not use this file except in compliance with the License.

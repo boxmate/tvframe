@@ -21,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * ×¨ÓÃÓÚµçÊÓ£¬Æä¸¸ÈİÆ÷ĞëÎª RelativeLayout
+ * ä¸“ç”¨äºç”µè§†ï¼Œå…¶çˆ¶å®¹å™¨é¡»ä¸º RelativeLayout
  * 
  * @author reco
  * 
@@ -29,28 +29,28 @@ import android.widget.TextView;
 public class TvButton extends TextView {
 	private final int SCREEN_720 = 0, SCREEN_1080 = 1;
 	/**
-	 * ¹â±ê
+	 * å…‰æ ‡
 	 */
 	private ImageView cursor;
 	private final String cursorTag = "TvSubButton";
 	/**
-	 * ¹â±ê×ÊÔ´
+	 * å…‰æ ‡èµ„æº
 	 */
 	private int cursorRes;
 	/**
-	 * ¿É·ñËõ·Å
+	 * å¯å¦ç¼©æ”¾
 	 */
 	private boolean scalable;
 	/**
-	 * ·Å´ó±ÈÂÊ
+	 * æ”¾å¤§æ¯”ç‡
 	 */
 	private float scale;
 	/**
-	 * ¹â±êÆ®ÒÆ¶¯»­ Ä¬ÈÏÎŞĞ§¹û
+	 * å…‰æ ‡é£˜ç§»åŠ¨ç”» é»˜è®¤æ— æ•ˆæœ
 	 */
 	private int animationType;
-	public final static int ANIM_DEFAULT = 0;// ÎŞĞ§¹û
-	public final static int ANIM_TRASLATE = 1;// Æ½ÒÆ
+	public final static int ANIM_DEFAULT = 0;// æ— æ•ˆæœ
+	public final static int ANIM_TRASLATE = 1;// å¹³ç§»
 
 	public int getCursorRes() {
 		return cursorRes;
@@ -141,35 +141,35 @@ public class TvButton extends TextView {
 	}
 
 	/**
-	 * ·Å´óÓÃÊ±
+	 * æ”¾å¤§ç”¨æ—¶
 	 */
 	private int durationLarge = 100;
 	/**
-	 * ËõĞ¡ÓÃÊ±
+	 * ç¼©å°ç”¨æ—¶
 	 */
 	private int durationSmall = 100;
 	/**
-	 * ´¥·¢ÑÓ³Ù
+	 * è§¦å‘å»¶è¿Ÿ
 	 */
 	private int delay = 110;
 	/**
-	 * ¹â±ê±ß¿ò¿í¶È °üÀ¨ÒõÓ°
+	 * å…‰æ ‡è¾¹æ¡†å®½åº¦ åŒ…æ‹¬é˜´å½±
 	 */
 	private int boarder;
 	/**
-	 * ¹â±ê×ó±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡å·¦è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderLeft;
 	/**
-	 * ¹â±ê¶¥±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡é¡¶è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderTop;
 	/**
-	 * ¹â±êÓÒ±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡å³è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderRight;
 	/**
-	 * ¹â±êµ×±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡åº•è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderBottom;
 
@@ -222,8 +222,8 @@ public class TvButton extends TextView {
 		}
 
 		/**
-		 * ´Ë´¦ĞèĞ¡ĞÄ£¬Èô¹â±êÓĞÔ²½Ç ÇÒ±ß¿òÏß¼«Ï¸ µçÊÓ·Ö±æÂÊ²»Í¬ ÆäÔ²»¡´¦·Å´óºóÓë°´Å¥²»ÄÜÎÇºÏ ¹ÊĞèÕë¶ÔÁ½ÖÖÖ÷Á÷·Ö±æÂÊ
-		 * ÈÃÃÀ¹¤ÖÆ×÷Á½ÕÅ.9.png¸ñÊ½Ñ¡ÖĞÍ¼£¬Õë¶ÔÁ½ÖÖÖ÷Á÷·Ö±æÂÊ£»
+		 * æ­¤å¤„éœ€å°å¿ƒï¼Œè‹¥å…‰æ ‡æœ‰åœ†è§’ ä¸”è¾¹æ¡†çº¿æç»† ç”µè§†åˆ†è¾¨ç‡ä¸åŒ å…¶åœ†å¼§å¤„æ”¾å¤§åä¸æŒ‰é’®ä¸èƒ½å»åˆ æ•…éœ€é’ˆå¯¹ä¸¤ç§ä¸»æµåˆ†è¾¨ç‡
+		 * è®©ç¾å·¥åˆ¶ä½œä¸¤å¼ .9.pngæ ¼å¼é€‰ä¸­å›¾ï¼Œé’ˆå¯¹ä¸¤ç§ä¸»æµåˆ†è¾¨ç‡ï¼›
 		 * 
 		 */
 		// int screenType = Integer.parseInt(getResources().getString(
@@ -243,7 +243,7 @@ public class TvButton extends TextView {
 
 		setFocusable(true);
 		setClickable(true);
-		// ÎÄ×Ö¾ÓÖĞ
+		// æ–‡å­—å±…ä¸­
 		setGravity(Gravity.CENTER);
 
 	}
@@ -267,7 +267,7 @@ public class TvButton extends TextView {
 	}
 
 	/**
-	 * ¹â±êÒÆ¶¯ µ½´ïºó Óë¿Ø¼şÍ¬Ê±·Å´ó
+	 * å…‰æ ‡ç§»åŠ¨ åˆ°è¾¾å ä¸æ§ä»¶åŒæ—¶æ”¾å¤§
 	 */
 	private void moveCover() {
 		if (getParent() == null) {
@@ -303,7 +303,7 @@ public class TvButton extends TextView {
 	}
 
 	/**
-	 * »¹Ô­¿Ø¼ş×´Ì¬
+	 * è¿˜åŸæ§ä»¶çŠ¶æ€
 	 */
 	public void removeCover() {
 		if (cursor != null) {
@@ -361,7 +361,7 @@ public class TvButton extends TextView {
 	}
 
 	/**
-	 * ÅäÖÃÍøÂçÍ¼Æ¬µØÖ·
+	 * é…ç½®ç½‘ç»œå›¾ç‰‡åœ°å€
 	 * 
 	 * @param url
 	 */
@@ -372,7 +372,7 @@ public class TvButton extends TextView {
 	}
 
 	/**
-	 * ¿ÉÅäÖÃÍøÂçÍ¼Æ¬
+	 * å¯é…ç½®ç½‘ç»œå›¾ç‰‡
 	 * 
 	 * @param url
 	 * @param loadingRes
@@ -384,7 +384,7 @@ public class TvButton extends TextView {
 	}
 
 	/**
-	 * Ö¸¶¨¹â±êÏà¶ÔÎ»ÖÃ
+	 * æŒ‡å®šå…‰æ ‡ç›¸å¯¹ä½ç½®
 	 */
 	private void setBorderParams() {
 		cursor.clearAnimation();
@@ -408,7 +408,7 @@ public class TvButton extends TextView {
 		// int top = getTop();
 		//
 		// int coverLeft = left - boarderLeft;
-		// int coverTop = top - boarderTop;// offset;¶î
+		// int coverTop = top - boarderTop;// offset;é¢
 		//
 		// cursor.layout(coverLeft, coverTop, getRight() + boarderRight,
 		// getBottom() + boarderBottom);

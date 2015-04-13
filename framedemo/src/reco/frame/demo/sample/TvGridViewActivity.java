@@ -45,17 +45,17 @@ public class TvGridViewActivity extends Activity {
 	}
 	
 	/**
-	 * ЁУй╪╪сть45лУйЩ╬щ р╡©ир╩╢н╪сть 1000+йЩ╬щ TvGridViewвН╤Ю╪стьвэ╦ъ╤хн╙фад╩╦ъ╤х2н╩╣дйЩ╬щ нчпХ╣ёпдрГЁЖ
-	 * ╧Б╠Йрф╤╞╣╫рЁн╡й╠,╫╚вт╤╞╪сть╦Э╤Ю
+	 * Е┬²Е╖▀Е┼═Х╫╫45Ф²║Ф∙╟Ф█╝ Д╧÷Е▐╞Д╦─Ф╛║Е┼═Х╫╫ 1000+Ф∙╟Ф█╝ TvGridViewФ°─Е╓ Е┼═Х╫╫Ф─╩И╚≤Е╨╕Д╦╨Е╠▐Е╧∙И╚≤Е╨╕2Д╫█Г └Ф∙╟Ф█╝ Ф≈═И°─Ф▀┘Е©┐Ф╨╒Е┤╨
+	 * Е┘┴Ф═┤Г╖╩Е┼╗Е┬╟И║╣Е╟╬Ф≈╤,Е╟├Х┤╙Е┼╗Е┼═Х╫╫Ф⌡╢Е╓ 
 	 */
 	private void load() {
 
-		// ЁУй╪╪стьдёдБйЩ╬щ
+		// Е┬²Е╖▀Е┼═Х╫╫Ф╗║Ф▀÷Ф∙╟Ф█╝
 
 		List<AppInfo> appList = new ArrayList<AppInfo>();
 		for (int i = 0; i < 45; i++) {
 			AppInfo app = new AppInfo();
-			app.title = "х╚╪р╨п©Р╪э" + i;
+			app.title = "Е┘╗Е╝╤Г⌡▓Ф║├Ф·╤" + i;
 			appList.add(app);
 
 		}
@@ -63,7 +63,7 @@ public class TvGridViewActivity extends Activity {
 		tgv_imagelist.setAdapter(adapter);
 		
 		/**
-		 * ╢к╢╕╪сть100лУмЬбГйЩ╬щ
+		 * Ф╜╓Е╓└Е┼═Х╫╫100Ф²║Г╫▒Г╩°Ф∙╟Ф█╝
 		 */
 //		TvHttp http = new TvHttp(this);
 //		http.get(Config.TEST_DATA_API, new AjaxCallBack<Object>() {
@@ -114,14 +114,14 @@ public class TvGridViewActivity extends Activity {
 	}
 
 	/**
-	 * ╪сть╦Э╤ЮйЩ╬щ ╤Юсцсз╥жрЁ╪сть ╢к╢╕ц©╢н╪сть45лУйЩ╬щ
+	 * Е┼═Х╫╫Ф⌡╢Е╓ Ф∙╟Ф█╝ Е╓ Г■╗Д╨▌Е┬├И║╣Е┼═Х╫╫ Ф╜╓Е╓└Ф╞▐Ф╛║Е┼═Х╫╫45Ф²║Ф∙╟Ф█╝
 	 * 
 	 * @param v
 	 */
 	public void add(View v) {
 		for (int i = 0; i < 45; i++) {
 			AppInfo app = new AppInfo();
-			app.title = "х╚╪р╨п©Р╪э" + i;
+			app.title = "Е┘╗Е╝╤Г⌡▓Ф║├Ф·╤" + i;
 			adapter.addItem(app);
 		}
 

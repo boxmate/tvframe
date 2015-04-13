@@ -1,5 +1,4 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,8 +55,6 @@ public class SyncRequestHandler {
 				cause = e;
 				retry = retryHandler.retryRequest(cause, ++executionCount,context);
 			} catch (NullPointerException e) {
-				// HttpClient 4.0.x ä¹???????ä¸?ä¸?bug
-				// http://code.google.com/p/android/issues/detail?id=5255
 				cause = new IOException("NPE in HttpClient" + e.getMessage());
 				retry = retryHandler.retryRequest(cause, ++executionCount,context);
 			}catch (Exception e) {

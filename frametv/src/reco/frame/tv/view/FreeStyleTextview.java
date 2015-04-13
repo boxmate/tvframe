@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * ´Ë¿Ø¼şÔİÖ»Ö§³ÖÀ¼Í¤ºÚ ÉĞÎ´ÍêÉÆ ÇëÕå×ÃÊ¹ÓÃ
+ * æ­¤æ§ä»¶æš‚åªæ”¯æŒå…°äº­é»‘ å°šæœªå®Œå–„ è¯·æ–Ÿé…Œä½¿ç”¨
  * @author keYence
  *
  */

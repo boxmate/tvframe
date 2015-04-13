@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ï¿½ï¿½??ï¿½? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,8 @@ import java.util.Date;
 import reco.frame.tv.util.FieldUtils;
 
 /**
- * @title ÊôĞÔ
- * @description ¡¾·ÇÖ÷¼ü¡¿µÄ¡¾»ù±¾Êı¾İÀàĞÍ¡¿ ¶¼ÊÇÊôĞÔ
- * @author michael Young (www.YangFuhai.com)
+ * @title å±æ€§
+ * @description ã€éä¸»é”®ã€‘çš„ã€åŸºæœ¬æ•°æ®ç±»å‹ã€‘ éƒ½æ˜¯å±æ€§
  * @version 1.0
  * @created 2012-10-10
  */
@@ -73,7 +72,7 @@ public class Property {
 	}
 	
 	/**
-	 * »ñÈ¡Ä³¸öÊµÌåÖ´ĞĞÄ³¸ö·½·¨µÄ½á¹û
+	 * è·å–æŸä¸ªå®ä½“æ‰§è¡ŒæŸä¸ªæ–¹æ³•çš„ç»“æœ
 	 * @param obj
 	 * @param method
 	 * @return

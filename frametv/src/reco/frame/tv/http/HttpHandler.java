@@ -1,5 +1,4 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang 锟斤拷��э拷锟藉ù锟� (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

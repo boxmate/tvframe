@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ã„§??å¨´? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package reco.frame.tv.bitmap.download;
 public interface Downloader  {
 	
 	/**
-	 * ÇëÇóÍøÂçµÄinputStreamÌî³äoutputStream
+	 * è¯·æ±‚ç½‘ç»œçš„inputStreamå¡«å……outputStream
 	 * @param urlString
 	 * @param outputStream
 	 * @return

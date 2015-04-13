@@ -18,7 +18,7 @@ public class ViewUtil {
 		int top = view.getTop();
 
 		int coverLeft = left - leftOffset;
-		int coverTop = top - topOffset;// offset;¶î
+		int coverTop = top - topOffset;
 
 		border.layout(coverLeft, coverTop, view.getRight() + rightOffset,
 				view.getBottom() + bottomOffset);

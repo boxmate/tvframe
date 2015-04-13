@@ -2,7 +2,7 @@ package reco.frame.demo.entity;
 
 public class AppInfo {
 	/**
-	 * 此属性用于数据库操作
+	 * 姝ゅ睘鎬х敤浜庢暟鎹簱鎿嶄綔
 	 */
 	public int id;
 	public String title;

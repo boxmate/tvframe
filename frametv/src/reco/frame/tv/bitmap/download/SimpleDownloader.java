@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ã„§??å¨´? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ import java.net.URL;
 import android.util.Log;
 
 /**
- * @title ¸ù¾İ Í¼Æ¬urlµØÖ·ÏÂÔØÍ¼Æ¬ ¿ÉÒÔÊÇ±¾µØºÍÍøÂç
- * @author Ñî¸£º££¨michael£© www.yangfuhai.com
+ * @title æ ¹æ® å›¾ç‰‡urlåœ°å€ä¸‹è½½å›¾ç‰‡ å¯ä»¥æ˜¯æœ¬åœ°å’Œç½‘ç»œ
+ * @author æ¨ç¦æµ·ï¼ˆmichaelï¼‰ www.yangfuhai.com
  */
 public class SimpleDownloader implements Downloader {
 

@@ -2,30 +2,19 @@ package reco.frame.tv.view;
 
 import reco.frame.tv.R;
 import reco.frame.tv.TvBitmap;
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.animation.Animator.AnimatorListener;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 /**
- * ×¨ÓÃÓÚµçÊÓ£¬Æä¸¸ÈİÆ÷ĞëÎª RelativeLayout
+ * ä¸“ç”¨äºç”µè§†ï¼Œå…¶çˆ¶å®¹å™¨é¡»ä¸º RelativeLayout
  * 
  * @author reco
  * 
@@ -33,58 +22,58 @@ import android.widget.RelativeLayout;
 public class TvRelativeLayout extends RelativeLayout {
 	private final int SCREEN_720 = 0, SCREEN_1080 = 1;
 	/**
-	 * ¹â±ê
+	 * å…‰æ ‡
 	 */
 	private ImageView cursor;
 	private final String cursorTag = "TvRelativeLayout";
 	/**
-	 * ¹â±ê×ÊÔ´
+	 * å…‰æ ‡èµ„æº
 	 */
 	private int cursorRes;
 	/**
-	 * ¿É·ñËõ·Å
+	 * å¯å¦ç¼©æ”¾
 	 */
 	private boolean scalable;
 	/**
-	 * ·Å´ó±ÈÂÊ
+	 * æ”¾å¤§æ¯”ç‡
 	 */
 	private float scale;
 	/**
-	 * ¹â±êÆ®ÒÆ¶¯»­ Ä¬ÈÏÎŞĞ§¹û
+	 * å…‰æ ‡é£˜ç§»åŠ¨ç”» é»˜è®¤æ— æ•ˆæœ
 	 */
 	private int animationType;
-	public final static int ANIM_DEFAULT = 0;// ÎŞĞ§¹û
-	public final static int ANIM_TRASLATE = 1;// Æ½ÒÆ
+	public final static int ANIM_DEFAULT = 0;// æ— æ•ˆæœ
+	public final static int ANIM_TRASLATE = 1;// å¹³ç§»
 	/**
-	 * ·Å´óÓÃÊ±
+	 * æ”¾å¤§ç”¨æ—¶
 	 */
 	private int durationLarge = 100;
 	/**
-	 * ËõĞ¡ÓÃÊ±
+	 * ç¼©å°ç”¨æ—¶
 	 */
 	private int durationSmall = 100;
 	/**
-	 * ´¥·¢ÑÓ³Ù
+	 * è§¦å‘å»¶è¿Ÿ
 	 */
 	private int delay = 110;
 	/**
-	 * ¹â±ê±ß¿ò¿í¶È °üÀ¨ÒõÓ°
+	 * å…‰æ ‡è¾¹æ¡†å®½åº¦ åŒ…æ‹¬é˜´å½±
 	 */
 	private int boarder;
 	/**
-	 * ¹â±ê×ó±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡å·¦è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderLeft;
 	/**
-	 * ¹â±ê¶¥±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡é¡¶è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderTop;
 	/**
-	 * ¹â±êÓÒ±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡å³è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderRight;
 	/**
-	 * ¹â±êµ×±ß¿ò¿í¶È º¬ÒõÓ°
+	 * å…‰æ ‡åº•è¾¹æ¡†å®½åº¦ å«é˜´å½±
 	 */
 	private int boarderBottom;
 
@@ -114,23 +103,27 @@ public class TvRelativeLayout extends RelativeLayout {
 				R.styleable.TvRelativeLayout_durationLarge, 100);
 		this.durationSmall = custom.getInteger(
 				R.styleable.TvRelativeLayout_durationSmall, 100);
-		this.boarder = (int) custom.getDimension(R.styleable.TvRelativeLayout_boarder, 0)
+		this.boarder = (int) custom.getDimension(
+				R.styleable.TvRelativeLayout_boarder, 0)
 				+ custom.getInteger(R.styleable.TvRelativeLayout_boarderInt, 0);
 
 		if (boarder == 0) {
 			this.boarderLeft = (int) custom.getDimension(
 					R.styleable.TvRelativeLayout_boarderLeft, 0)
-					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderLeftInt, 0);
+					+ custom.getInteger(
+							R.styleable.TvRelativeLayout_boarderLeftInt, 0);
 			this.boarderTop = (int) custom.getDimension(
 					R.styleable.TvRelativeLayout_boarderTop, 0)
-					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderTopInt, 0);
+					+ custom.getInteger(
+							R.styleable.TvRelativeLayout_boarderTopInt, 0);
 			this.boarderRight = (int) custom.getDimension(
 					R.styleable.TvRelativeLayout_boarderRight, 0)
-					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderRightInt, 0);
+					+ custom.getInteger(
+							R.styleable.TvRelativeLayout_boarderRightInt, 0);
 			this.boarderBottom = (int) custom.getDimension(
 					R.styleable.TvRelativeLayout_boarderBottom, 0)
-					+ custom.getInteger(R.styleable.TvRelativeLayout_boarderBottomInt,
-							0);
+					+ custom.getInteger(
+							R.styleable.TvRelativeLayout_boarderBottomInt, 0);
 		} else {
 			this.boarderLeft = boarder;
 			this.boarderTop = boarder;
@@ -139,8 +132,8 @@ public class TvRelativeLayout extends RelativeLayout {
 		}
 
 		/**
-		 * ´Ë´¦ĞèĞ¡ĞÄ£¬Èô¹â±êÓĞÔ²½Ç ÇÒ±ß¿òÏß¼«Ï¸ µçÊÓ·Ö±æÂÊ²»Í¬ ÆäÔ²»¡´¦·Å´óºóÓë°´Å¥²»ÄÜÎÇºÏ ¹ÊĞèÕë¶ÔÁ½ÖÖÖ÷Á÷·Ö±æÂÊ
-		 * ÈÃÃÀ¹¤ÖÆ×÷Á½ÕÅ.9.png¸ñÊ½Ñ¡ÖĞÍ¼£¬Õë¶ÔÁ½ÖÖÖ÷Á÷·Ö±æÂÊ£»
+		 * æ­¤å¤„éœ€å°å¿ƒï¼Œè‹¥å…‰æ ‡æœ‰åœ†è§’ ä¸”è¾¹æ¡†çº¿æç»† ç”µè§†åˆ†è¾¨ç‡ä¸åŒ å…¶åœ†å¼§å¤„æ”¾å¤§åä¸æŒ‰é’®ä¸èƒ½å»åˆ æ•…éœ€é’ˆå¯¹ä¸¤ç§ä¸»æµåˆ†è¾¨ç‡
+		 * è®©ç¾å·¥åˆ¶ä½œä¸¤å¼ .9.pngæ ¼å¼é€‰ä¸­å›¾ï¼Œé’ˆå¯¹ä¸¤ç§ä¸»æµåˆ†è¾¨ç‡ï¼›
 		 * 
 		 */
 		// int screenType = Integer.parseInt(getResources().getString(
@@ -158,10 +151,10 @@ public class TvRelativeLayout extends RelativeLayout {
 		// }
 		custom.recycle();
 
-		// Ä¬ÈÏ¿ÉµÃ½¹µã
+		// é»˜è®¤å¯å¾—ç„¦ç‚¹
 		setFocusable(true);
 
-		// ¹Ø±Õ×Ó¿Ø¼ş¶¯»­»º´æ Ê¹Ç¶Ì×¶¯»­¸üÁ÷³©
+		// å…³é—­å­æ§ä»¶åŠ¨ç”»ç¼“å­˜ ä½¿åµŒå¥—åŠ¨ç”»æ›´æµç•…
 		setAnimationCacheEnabled(false);
 	}
 
@@ -184,7 +177,7 @@ public class TvRelativeLayout extends RelativeLayout {
 	}
 
 	/**
-	 * ¹â±êÒÆ¶¯ µ½´ïºó Óë¿Ø¼şÍ¬Ê±·Å´ó
+	 * å…‰æ ‡ç§»åŠ¨ åˆ°è¾¾å ä¸æ§ä»¶åŒæ—¶æ”¾å¤§
 	 */
 	private void moveCover() {
 
@@ -219,9 +212,8 @@ public class TvRelativeLayout extends RelativeLayout {
 	}
 
 	/**
-	 * »¹Ô­¿Ø¼ş×´Ì¬
+	 * è¿˜åŸæ§ä»¶çŠ¶æ€
 	 */
-
 	public void removeCover() {
 		if (cursor != null) {
 			cursor.setVisibility(View.INVISIBLE);
@@ -278,7 +270,7 @@ public class TvRelativeLayout extends RelativeLayout {
 	}
 
 	/**
-	 * ÅäÖÃÍøÂçÍ¼Æ¬µØÖ·
+	 * é…ç½®ç½‘ç»œå›¾ç‰‡åœ°å€
 	 * 
 	 * @param url
 	 */
@@ -289,13 +281,13 @@ public class TvRelativeLayout extends RelativeLayout {
 	}
 
 	/**
-	 * Ö¸¶¨¹â±êÏà¶ÔÎ»ÖÃ
+	 * æŒ‡å®šå…‰æ ‡ç›¸å¯¹ä½ç½®
 	 */
 	private void setBorderParams() {
 		cursor.clearAnimation();
 		cursor.setVisibility(View.VISIBLE);
 
-		// ÅĞ¶ÏÀàĞÍ
+		// ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) cursor
 				.getLayoutParams();
@@ -310,11 +302,9 @@ public class TvRelativeLayout extends RelativeLayout {
 
 		params.width = boarderLeft + getWidth() + boarderRight;
 		params.height = boarderBottom + getHeight() + boarderTop;
-		
-		
+
 		cursor.setLayoutParams(params);
 
-		
 	}
 
 }

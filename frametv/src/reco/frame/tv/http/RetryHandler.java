@@ -1,6 +1,4 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,10 +32,10 @@ import android.os.SystemClock;
 public class RetryHandler implements HttpRequestRetryHandler {
     private static final int RETRY_SLEEP_TIME_MILLIS = 1000;
     
-    //ÍøÂçÒì³££¬¼ÌĞø
+    //ç½‘ç»œå¼‚å¸¸ï¼Œç»§ç»­
     private static HashSet<Class<?>> exceptionWhitelist = new HashSet<Class<?>>();
     
-    //ÓÃ»§Òì³££¬²»¼ÌĞø£¨Èç£¬ÓÃ»§ÖĞ¶ÏÏß³Ì£©
+    //ç”¨æˆ·å¼‚å¸¸ï¼Œä¸ç»§ç»­ï¼ˆå¦‚ï¼Œç”¨æˆ·ä¸­æ–­çº¿ç¨‹ï¼‰
     private static HashSet<Class<?>> exceptionBlacklist = new HashSet<Class<?>>();
 
     static {
@@ -63,10 +61,10 @@ public class RetryHandler implements HttpRequestRetryHandler {
         boolean sent = (b != null && b.booleanValue());
 
         if(executionCount > maxRetries) {
-            // å°?è¯?æ¬¡æ?°è??è¿???¨æ?·å??ä¹????æµ?è¯?ï¼?é»?è®?5æ¬?
+            // ç?ç’‡?å¨†â„ƒ?æ‹Œ??æ©???ã„¦?å³°??æ¶”????å¨´?ç’‡?é”›?æ¦›?ç’?5å¨†?
             retry = false;
         } else if (exceptionBlacklist.contains(exception.getClass())) {
-            // çº¿ç??è¢???¨æ?·ä¸­???ï¼????ä¸?ç»§ç»­å°?è¯?
+            // ç»¾è·¨??çš???ã„¦?èœ‚è…‘???é”›????æ¶“?ç¼Ñ…ç”»ç?ç’‡?
             retry = false;
         } else if (exceptionWhitelist.contains(exception.getClass())) {
             retry = true;
@@ -80,7 +78,7 @@ public class RetryHandler implements HttpRequestRetryHandler {
         }
 
         if(retry) {
-        	//ä¼????1ç§??????????ç»§ç»­å°?è¯?
+        	//æµ¼????1ç»‰??????????ç¼Ñ…ç”»ç?ç’‡?
             SystemClock.sleep(RETRY_SLEEP_TIME_MILLIS);
         } else {
             exception.printStackTrace();

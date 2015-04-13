@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??®Á??Êµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??„Ñß??Â®¥? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 /**
- * ±£¥ÊµΩ Preferences µƒcookie
+ * ‰øùÂ≠òÂà∞ Preferences ÁöÑcookie
  * @author michael yang
  *
  */
@@ -115,7 +115,7 @@ public class PreferencesCookieStore implements CookieStore {
             String name = entry.getKey();
             Cookie cookie = entry.getValue();
             if(cookie.isExpired(date)) {
-                // Ê∏????cookies
+                // Â®ì????cookies
                 cookies.remove(name);
 
                 // Clear cookies from persistent store

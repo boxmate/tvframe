@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * ´ıÍêÉÆ Õå×ÃÊ¹ÓÃ *¼ÓÔØÍ¼¿íÓë¸ßĞëÎªÆæÊı ¼´ÒÔÔ²ĞÄÍêÈ«¶Ô³Æ
+ * å¾…å®Œå–„ æ–Ÿé…Œä½¿ç”¨ *åŠ è½½å›¾å®½ä¸é«˜é¡»ä¸ºå¥‡æ•° å³ä»¥åœ†å¿ƒå®Œå…¨å¯¹ç§°
  * 
  * @author reco
  * 
@@ -27,7 +27,7 @@ public class TvLoadingBar extends RelativeLayout {
 
 	private final static int FLUSH = 0;
 	/**
-	 * µ±Ç°½ø¶È
+	 * å½“å‰è¿›åº¦
 	 */
 	private int progress;
 	/**
@@ -35,21 +35,21 @@ public class TvLoadingBar extends RelativeLayout {
 	 */
 	private final static int MAX = 100;
 	/**
-	 * ÊÇ·ñÏÔÊ¾ÖĞ¼äµÄ½ø¶È
+	 * æ˜¯å¦æ˜¾ç¤ºä¸­é—´çš„è¿›åº¦
 	 */
 	private boolean textDisplayable;
 	/**
-	 * ÖĞ¼ä½ø¶È°Ù·Ö±ÈµÄ×Ö·û´®µÄÑÕÉ«
+	 * ä¸­é—´è¿›åº¦ç™¾åˆ†æ¯”çš„å­—ç¬¦ä¸²çš„é¢œè‰²
 	 */
 	private int textColor;
 
 	/**
-	 * ÖĞ¼ä½ø¶È°Ù·Ö±ÈµÄ×Ö·û´®µÄ×ÖÌå
+	 * ä¸­é—´è¿›åº¦ç™¾åˆ†æ¯”çš„å­—ç¬¦ä¸²çš„å­—ä½“
 	 */
 	private float textSize;
 	private boolean clockWise;
 	/**
-	 * ¶¯»­ÖÜÆÚ Ô½Ğ¡×ª¶¯Ô½¿ì
+	 * åŠ¨ç”»å‘¨æœŸ è¶Šå°è½¬åŠ¨è¶Šå¿«
 	 */
 	private int period;
 	private int delay;
@@ -71,7 +71,7 @@ public class TvLoadingBar extends RelativeLayout {
 		TypedArray custom = context.obtainStyledAttributes(attrs,
 				R.styleable.TvLoadingBar);
 
-		// »ñÈ¡×Ô¶¨ÒåÊôĞÔºÍÄ¬ÈÏÖµ
+		// è·å–è‡ªå®šä¹‰å±æ€§å’Œé»˜è®¤å€¼
 		imageRes = custom.getResourceId(R.styleable.TvLoadingBar_imageRes, 0);
 		clockWise = custom.getBoolean(R.styleable.TvLoadingBar_clockwise, true);
 		period = custom.getInteger(R.styleable.TvLoadingBar_period, 1000);
@@ -117,7 +117,7 @@ public class TvLoadingBar extends RelativeLayout {
 	}
 
 	/**
-	 * Æô¶¯Ğı×ª
+	 * å¯åŠ¨æ—‹è½¬
 	 */
 	public void startAnim() {
 		rotateAnimator = ObjectAnimator.ofFloat(loadingBar, "rotation", 0.0F,
@@ -130,14 +130,14 @@ public class TvLoadingBar extends RelativeLayout {
 	}
 
 	/**
-	 * Í£Ö¹Ğı×ª
+	 * åœæ­¢æ—‹è½¬
 	 */
 	public void stopAnim() {
 		rotateAnimator.cancel();
 	}
 
 	/**
-	 * »ñÈ¡½ø¶È.ĞèÒªÍ¬²½
+	 * è·å–è¿›åº¦.éœ€è¦åŒæ­¥
 	 * 
 	 * @return
 	 */
@@ -146,7 +146,7 @@ public class TvLoadingBar extends RelativeLayout {
 	}
 
 	/**
-	 * ÉèÖÃ½ø¶È
+	 * è®¾ç½®è¿›åº¦
 	 * 
 	 * @param progress
 	 */

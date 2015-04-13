@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ã„§??å¨´? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package reco.frame.tv.bitmap.display;
 
 import reco.frame.tv.bitmap.core.BitmapDisplayConfig;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -55,7 +56,7 @@ public class SimpleDisplayer implements Displayer{
 	private void fadeInDisplay(View imageView,Bitmap bitmap){
 		final TransitionDrawable td =
                 new TransitionDrawable(new Drawable[] {
-                        new ColorDrawable(android.R.color.transparent),
+                        new ColorDrawable(Color.TRANSPARENT),
                         new BitmapDrawable(imageView.getResources(), bitmap)
                 });
         if(imageView instanceof ImageView){

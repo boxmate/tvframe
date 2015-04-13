@@ -53,7 +53,7 @@ public class TvDbActivity extends Activity {
 		tvDb = TvDb.create(getApplicationContext());
 		
 		
-		//Çå³ı±í
+		//æ¸…é™¤è¡¨
 		try {
 			tvDb.deleteAll(AppInfo.class);
 		} catch (Exception e) {
@@ -61,12 +61,12 @@ public class TvDbActivity extends Activity {
 		}
 		
 		
-		// ´Ë´¦Ìí¼Ó7ÌõÄ£ÄâÊı¾İ
+		// æ­¤å¤„æ·»åŠ 7æ¡æ¨¡æ‹Ÿæ•°æ®
 
 		for (int i = 1; i < 8; i++) {
 			AppInfo app = new AppInfo();
 			app.num= i;
-			app.title = "²âÊÔÃû" + i;
+			app.title = "æµ‹è¯•å" + i;
 			app.imageUrl = Config.TEST_DATA_API;
 			tvDb.insert(app);
 //			boolean result=tvDb.saveBindId(app);
@@ -76,7 +76,7 @@ public class TvDbActivity extends Activity {
 
 	public void select() {
 
-		// ´Ë´¦Ê¾Àı¸ù¾İ Ö÷¼ü ²éÕÒÊı¾İ
+		// æ­¤å¤„ç¤ºä¾‹æ ¹æ® ä¸»é”® æŸ¥æ‰¾æ•°æ®
 		appList.clear();
 		appList=tvDb.findAll(AppInfo.class);
 		lv_list.setAdapter(new DbListAdapter(this, appList));
@@ -86,7 +86,7 @@ public class TvDbActivity extends Activity {
 		int id = appList.size() + 1;
 		AppInfo app = new AppInfo();
 		app.num = id;
-		app.title = "²âÊÔÃû";
+		app.title = "æµ‹è¯•å";
 		app.imageUrl = Config.TEST_DATA_API;
 		tvDb.insert(app);
 		select();
@@ -95,7 +95,7 @@ public class TvDbActivity extends Activity {
 
 	public void delete() {
 
-		// ´Ë´¦Ê¾Àı É¾³ıËùÓĞ num×Ö¶ÎÎªÅ¼ÊıµÄÊı¾İ
+		// æ­¤å¤„ç¤ºä¾‹ åˆ é™¤æ‰€æœ‰ numå­—æ®µä¸ºå¶æ•°çš„æ•°æ®
 		if (appList.size() > 0)
 			tvDb.deleteByWhere(AppInfo.class, "num%2=0");
 		
@@ -103,9 +103,9 @@ public class TvDbActivity extends Activity {
 	}
 
 	public void update() {
-		// ´Ë´¦Ê¾Àı ĞŞ¸Ä×Ö¶Î num ÎªÆæÊıµÄÊı¾İ
+		// æ­¤å¤„ç¤ºä¾‹ ä¿®æ”¹å­—æ®µ num ä¸ºå¥‡æ•°çš„æ•°æ®
 		AppInfo newApp = new AppInfo();
-		newApp.imageUrl = "Â·¾¶ÒÑĞŞ¸Ä";
+		newApp.imageUrl = "è·¯å¾„å·²ä¿®æ”¹";
 		if (appList.size() > 0)
 			tvDb.update(newApp, "num%2=1");
 		

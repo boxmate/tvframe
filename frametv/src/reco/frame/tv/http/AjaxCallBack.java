@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ã„§??å¨´? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@ package reco.frame.tv.http;
  * 
  * @author michael
  *
- * @param <T> Ä¿Ç°·ºĞÍÖ§³Ö String,File, ÒÔºóÀ©Õ¹£ºJSONObject,Bitmap,byte[],XmlDom
+ * @param <T> ç›®å‰æ³›å‹æ”¯æŒ String,File, ä»¥åæ‰©å±•ï¼šJSONObject,Bitmap,byte[],XmlDom
  */
 public abstract class AjaxCallBack<T> {
 	
 	private boolean progress = true;
-	private int rate = 1000 * 1;//æ¯?ç§?
+	private int rate = 1000 * 1;//å§£?ç»‰?
 	
 //	private Class<T> type;
 //	
@@ -41,9 +41,9 @@ public abstract class AjaxCallBack<T> {
 	}
 	
 	/**
-	 * ÉèÖÃ½ø¶È,¶øÇÒÖ»ÓĞÉèÖÃÁËÕâ¸öÁËÒÔºó£¬onLoading²ÅÄÜÓĞĞ§¡£
-	 * @param progress ÊÇ·ñÆôÓÃ½ø¶ÈÏÔÊ¾
-	 * @param rate ½ø¶È¸üĞÂÆµÂÊ
+	 * è®¾ç½®è¿›åº¦,è€Œä¸”åªæœ‰è®¾ç½®äº†è¿™ä¸ªäº†ä»¥åï¼ŒonLoadingæ‰èƒ½æœ‰æ•ˆã€‚
+	 * @param progress æ˜¯å¦å¯ç”¨è¿›åº¦æ˜¾ç¤º
+	 * @param rate è¿›åº¦æ›´æ–°é¢‘ç‡
 	 */
 	public AjaxCallBack<T> progress(boolean progress , int rate) {
 		this.progress = progress;
@@ -53,7 +53,7 @@ public abstract class AjaxCallBack<T> {
 	
 	public void onStart(){};
 	/**
-	 * onLoading·½·¨ÓĞĞ§progress
+	 * onLoadingæ–¹æ³•æœ‰æ•ˆprogress
 	 * @param count
 	 * @param current
 	 */

@@ -17,7 +17,7 @@ import android.util.Log;
 import android.view.View;
 
 /**
- * ×¨ÓÃÓÚµçÊÓ£¬ÓĞÉÈĞÎ »·ĞÎ Á½ÖÖ·ç¸ñ
+ * ä¸“ç”¨äºç”µè§†ï¼Œæœ‰æ‰‡å½¢ ç¯å½¢ ä¸¤ç§é£æ ¼
  * 
  * @author xiaanming
  * 
@@ -25,65 +25,65 @@ import android.view.View;
 public class TvProgressBar extends View {
 
 	/**
-	 * »­±Ê¶ÔÏóµÄÒıÓÃ
+	 * ç”»ç¬”å¯¹è±¡çš„å¼•ç”¨
 	 */
 	private Paint paint;
 
 	/**
-	 * Ô²»·µÄÑÕÉ«
+	 * åœ†ç¯çš„é¢œè‰²
 	 */
 	private int backgroundColor;
 
 	/**
-	 * Ô²»·½ø¶ÈµÄÆôÊ¼ÑÕÉ«
+	 * åœ†ç¯è¿›åº¦çš„å¯å§‹é¢œè‰²
 	 */
 	private int progressStartColor;
 	/**
-	 * Ô²»·½ø¶ÈµÄÖÕÄ©ÑÕÉ«
+	 * åœ†ç¯è¿›åº¦çš„ç»ˆæœ«é¢œè‰²
 	 */
 	private int progressEndColor;
 
 	/**
-	 * ÖĞ¼ä½ø¶È°Ù·Ö±ÈµÄ×Ö·û´®µÄÑÕÉ«
+	 * ä¸­é—´è¿›åº¦ç™¾åˆ†æ¯”çš„å­—ç¬¦ä¸²çš„é¢œè‰²
 	 */
 	private int textColor;
 
 	/**
-	 * ÖĞ¼ä½ø¶È°Ù·Ö±ÈµÄ×Ö·û´®µÄ×ÖÌå
+	 * ä¸­é—´è¿›åº¦ç™¾åˆ†æ¯”çš„å­—ç¬¦ä¸²çš„å­—ä½“
 	 */
 	private float textSize;
 
 	/**
-	 * Ô²»·µÄ¿í¶È
+	 * åœ†ç¯çš„å®½åº¦
 	 */
 	private float roundWidth;
 
 	/**
-	 * Ô²½Ç°ë¾¶ Ä¬ÈÏÎª0 ´ËÊ±ºáÏß½ø¶ÈÌõÎª·½½Ç
+	 * åœ†è§’åŠå¾„ é»˜è®¤ä¸º0 æ­¤æ—¶æ¨ªçº¿è¿›åº¦æ¡ä¸ºæ–¹è§’
 	 */
 	private float rectRadius;
 
 	/**
-	 * ×î´ó½ø¶È
+	 * æœ€å¤§è¿›åº¦
 	 */
 	private int max;
 	/**
-	 * ½ø¶Èµ¥Î»
+	 * è¿›åº¦å•ä½
 	 */
 	private int progressPercent;
 
 	/**
-	 * µ±Ç°½ø¶È
+	 * å½“å‰è¿›åº¦
 	 */
 	private int progress;
 	private int targetProgress;
 	/**
-	 * ÊÇ·ñÏÔÊ¾ÖĞ¼äµÄ½ø¶È
+	 * æ˜¯å¦æ˜¾ç¤ºä¸­é—´çš„è¿›åº¦
 	 */
 	private boolean textDisplayable;
 
 	/**
-	 * ½ø¶ÈµÄ·ç¸ñ£¬ÊµĞÄ»òÕß¿ÕĞÄ
+	 * è¿›åº¦æ¡é£æ ¼:ç¯å½¢ æ‰‡å½¢ æˆ– é•¿æ¡
 	 */
 	private int style;
 
@@ -106,7 +106,7 @@ public class TvProgressBar extends View {
 		TypedArray mTypedArray = context.obtainStyledAttributes(attrs,
 				R.styleable.TvProgressBar);
 
-		// »ñÈ¡×Ô¶¨ÒåÊôĞÔºÍÄ¬ÈÏÖµ
+		// è·å–è‡ªå®šä¹‰å±æ€§å’Œé»˜è®¤å€¼
 		backgroundColor = mTypedArray.getColor(
 				R.styleable.TvProgressBar_backgroundColor, Color.TRANSPARENT);
 		progressStartColor = mTypedArray.getColor(
@@ -117,7 +117,7 @@ public class TvProgressBar extends View {
 				Color.GREEN);
 		textSize = mTypedArray.getDimension(R.styleable.TvProgressBar_textSize,
 				15);
-		// textSize=CommonUtil.Px2Dp(context, textSize);//PX ×ª DP
+		// textSize=CommonUtil.Px2Dp(context, textSize);//PX è½¬ DP
 		rectRadius = mTypedArray.getDimension(
 				R.styleable.TvProgressBar_rectRadius, 0);
 		roundWidth = mTypedArray.getDimension(
@@ -142,7 +142,7 @@ public class TvProgressBar extends View {
 		super.onDraw(canvas);
 
 		// /**
-		// * ÓÃÓÚ½ø¶ÈÆ½»¬
+		// * ç”¨äºè¿›åº¦å¹³æ»‘
 		// */
 		// if (targetProgress > progress) {
 		// progress+=progressPercent;
@@ -153,31 +153,31 @@ public class TvProgressBar extends View {
 		// progress=0;
 		// }
 		paint=new Paint();
-		int centre = getWidth() / 2; // »ñÈ¡Ô²ĞÄµÄx×ø±ê
+		int centre = getWidth() / 2; // è·å–åœ†å¿ƒçš„xåæ ‡
 
-		paint.setStyle(Paint.Style.STROKE); // ÉèÖÃ¿ÕĞÄ
+		paint.setStyle(Paint.Style.STROKE); // è®¾ç½®ç©ºå¿ƒ
 		paint.setColor(backgroundColor);
-		paint.setStrokeWidth(roundWidth); // ÉèÖÃÔ²»·µÄ¿í¶È
-		paint.setAntiAlias(true); // Ïû³ı¾â³İ
+		paint.setStrokeWidth(roundWidth); // è®¾ç½®åœ†ç¯çš„å®½åº¦
+		paint.setAntiAlias(true); // æ¶ˆé™¤é”¯é½¿
 		paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
 		switch (style) {
 		case RING: {
-			int radius = (int) (centre - roundWidth / 2); // Ô²»·µÄ°ë¾¶
+			int radius = (int) (centre - roundWidth / 2); // åœ†ç¯çš„åŠå¾„
 			/**
-			 * »­»·µ×É«
+			 * ç”»ç¯åº•è‰²
 			 */
-			canvas.drawCircle(centre, centre, radius, paint); // »­³öÔ²»·
+			canvas.drawCircle(centre, centre, radius, paint); // ç”»å‡ºåœ†ç¯
 
 			/**
-			 * »­»·½ø¶È
+			 * ç”»ç¯è¿›åº¦
 			 */
-			paint.setStrokeWidth(roundWidth); // ÉèÖÃÔ²»·µÄ¿í¶È
-			// ÉèÖÃ½ø¶ÈµÄÑÕÉ«
+			paint.setStrokeWidth(roundWidth); // è®¾ç½®åœ†ç¯çš„å®½åº¦
+			// è®¾ç½®è¿›åº¦çš„é¢œè‰²
 			if (progressEndColor == 0) {
 				paint.setColor(progressStartColor);
 			} else {
-				// ½¥±äÉ«
+				// æ¸å˜è‰²
 				Shader  sweep = new SweepGradient(centre, centre, 
 						new int[] {progressStartColor,progressEndColor,progressStartColor
 						}, null); 
@@ -185,38 +185,38 @@ public class TvProgressBar extends View {
 			}
 
 			RectF oval = new RectF(centre - radius, centre - radius, centre
-					+ radius, centre + radius); // ÓÃÓÚ¶¨ÒåµÄÔ²»¡µÄĞÎ×´ºÍ´óĞ¡µÄ½çÏŞ
+					+ radius, centre + radius); // ç”¨äºå®šä¹‰çš„åœ†å¼§çš„å½¢çŠ¶å’Œå¤§å°çš„ç•Œé™
 			paint.setStyle(Paint.Style.STROKE);
 			if (progress != 0)
-				canvas.drawArc(oval, -90, 360 * progress / max, false, paint); // ¸ù¾İ½ø¶È»­Ô²»¡
+				canvas.drawArc(oval, -90, 360 * progress / max, false, paint); // æ ¹æ®è¿›åº¦ç”»åœ†å¼§
 			break;
 		}
 		case FAN: {
-			int radius = (int) (centre - roundWidth / 2) + 1; // Ô²»·µÄ°ë¾¶
+			int radius = (int) (centre - roundWidth / 2) + 1; // åœ†ç¯çš„åŠå¾„
 			paint.setStyle(Paint.Style.FILL);
 			/**
-			 * »­ÉÈµ×É«
+			 * ç”»æ‰‡åº•è‰²
 			 */
 			if (backgroundColor!=0) {
-				canvas.drawCircle(centre, centre, radius, paint); // »­³öÔ²»·
+				canvas.drawCircle(centre, centre, radius, paint); // ç”»å‡ºåœ†ç¯
 			}
 			/**
-			 * »­ÉÈ½ø¶È
+			 * ç”»æ‰‡è¿›åº¦
 			 */
-			// ÉèÖÃ½ø¶ÈµÄÑÕÉ«
+			// è®¾ç½®è¿›åº¦çš„é¢œè‰²
 			if (progressEndColor == 0) {
 				paint.setColor(progressStartColor);
 			} else {
-				// ½¥±äÉ«
+				// æ¸å˜è‰²
 				Shader sweep = new SweepGradient(centre, centre, 
 						new int[] {progressStartColor,progressEndColor,progressStartColor
 						}, null); 
 				paint.setShader(sweep);
 			}
 			RectF oval = new RectF(centre - radius, centre - radius, centre
-					+ radius, centre + radius); // ¶¨ÒåµÄÔ²»¡µÄĞÎ×´ºÍ´óĞ¡µÄ½çÏŞ
+					+ radius, centre + radius); // å®šä¹‰çš„åœ†å¼§çš„å½¢çŠ¶å’Œå¤§å°çš„ç•Œé™
 			if (progress != 0)
-				canvas.drawArc(oval, -90, 360 * progress / max, true, paint); // ¸ù¾İ½ø¶È»­Ô²»¡
+				canvas.drawArc(oval, -90, 360 * progress / max, true, paint); // æ ¹æ®è¿›åº¦ç”»åœ†å¼§
 				
 				
 			break;
@@ -226,7 +226,7 @@ public class TvProgressBar extends View {
 			paint.setStyle(Paint.Style.FILL);
 			int current = getWidth() * progress / max;
 			/**
-			 * »­Ïßµ×É«
+			 * ç”»çº¿åº•è‰²
 			 */
 			if (backgroundColor!=0) {
 				if (rectRadius>getHeight()) {
@@ -237,13 +237,13 @@ public class TvProgressBar extends View {
 			}
 			
 			/**
-			 * »­Ïß½ø¶È
+			 * ç”»çº¿è¿›åº¦
 			 */
-			// ÉèÖÃ½ø¶ÈµÄÑÕÉ«
+			// è®¾ç½®è¿›åº¦çš„é¢œè‰²
 			if (progressEndColor == 0) {
 				paint.setColor(progressStartColor);
 			} else {
-				// ½¥±äÉ«
+				// æ¸å˜è‰²
 				Shader shader = new LinearGradient(0, 0, current, 0,
 						new int[]{progressStartColor, progressEndColor},
 						null,Shader.TileMode.REPEAT);
@@ -257,23 +257,23 @@ public class TvProgressBar extends View {
 		}
 
 		/**
-		 * »­½ø¶ÈÎÄ×Ö
+		 * ç”»è¿›åº¦æ–‡å­—
 		 */
 		paint.setStrokeWidth(0);
 		paint.setColor(textColor);
 		paint.setTextSize(textSize);
-		paint.setTypeface(Typeface.DEFAULT_BOLD); // ÉèÖÃ×ÖÌå
-		int percent = (int) (((float) progress / (float) max) * 100); // ÖĞ¼äµÄ½ø¶È°Ù·Ö±È£¬ÏÈ×ª»»³ÉfloatÔÚ½øĞĞ³ı·¨ÔËËã£¬²»È»¶¼Îª0
-		float textWidth = paint.measureText(percent + "%"); // ²âÁ¿×ÖÌå¿í¶È£¬ÎÒÃÇĞèÒª¸ù¾İ×ÖÌåµÄ¿í¶ÈÉèÖÃÔÚÔ²»·ÖĞ¼ä
+		paint.setTypeface(Typeface.DEFAULT_BOLD); // è®¾ç½®å­—ä½“
+		int percent = (int) (((float) progress / (float) max) * 100); // ä¸­é—´çš„è¿›åº¦ç™¾åˆ†æ¯”ï¼Œå…ˆè½¬æ¢æˆfloatåœ¨è¿›è¡Œé™¤æ³•è¿ç®—ï¼Œä¸ç„¶éƒ½ä¸º0
+		float textWidth = paint.measureText(percent + "%"); // æµ‹é‡å­—ä½“å®½åº¦ï¼Œæˆ‘ä»¬éœ€è¦æ ¹æ®å­—ä½“çš„å®½åº¦è®¾ç½®åœ¨åœ†ç¯ä¸­é—´
 
 		if (textDisplayable && percent != 0) {
 
 			if (percent < 10) {
 				canvas.drawText(" " + percent + "%", centre - textWidth / 2,
-						centre + textSize / 2, paint); // »­³ö½ø¶È°Ù·Ö±È
+						centre + textSize / 2, paint); // ç”»å‡ºè¿›åº¦ç™¾åˆ†æ¯”
 			} else {
 				canvas.drawText(percent + "%", centre - textWidth / 2, centre
-						+ textSize / 2, paint); // »­³ö½ø¶È°Ù·Ö±È
+						+ textSize / 2, paint); // ç”»å‡ºè¿›åº¦ç™¾åˆ†æ¯”
 			}
 		}
 
@@ -284,7 +284,7 @@ public class TvProgressBar extends View {
 	}
 
 	/**
-	 * ÉèÖÃ½ø¶ÈµÄ×î´óÖµ
+	 * è®¾ç½®è¿›åº¦çš„æœ€å¤§å€¼
 	 * 
 	 * @param max
 	 */
@@ -296,7 +296,7 @@ public class TvProgressBar extends View {
 	}
 
 	/**
-	 * »ñÈ¡½ø¶È.ĞèÒªÍ¬²½
+	 * è·å–è¿›åº¦.éœ€è¦åŒæ­¥
 	 * 
 	 * @return
 	 */
@@ -305,7 +305,7 @@ public class TvProgressBar extends View {
 	}
 
 	/**
-	 * ÉèÖÃ½ø¶È£¬´ËÎªÏß³Ì°²È«¿Ø¼ş£¬ÓÉÓÚ¿¼ÂÇ¶àÏßµÄÎÊÌâ£¬ĞèÒªÍ¬²½ Ë¢ĞÂ½çÃæµ÷ÓÃpostInvalidate()ÄÜÔÚ·ÇUIÏß³ÌË¢ĞÂ
+	 * è®¾ç½®è¿›åº¦ï¼Œæ­¤ä¸ºçº¿ç¨‹å®‰å…¨æ§ä»¶ï¼Œç”±äºè€ƒè™‘å¤šçº¿çš„é—®é¢˜ï¼Œéœ€è¦åŒæ­¥ åˆ·æ–°ç•Œé¢è°ƒç”¨postInvalidate()èƒ½åœ¨éUIçº¿ç¨‹åˆ·æ–°
 	 * 
 	 * @param progress
 	 */

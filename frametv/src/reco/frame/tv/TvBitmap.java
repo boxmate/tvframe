@@ -1,8 +1,3 @@
-/**
- * Îª¿ÉÍøÂç¿Æ¼¼
- * ±àĞ´Õß£ºÍõÇïÊ¯ ĞíĞ¨
- *
- */
 package reco.frame.tv;
 
 import java.lang.ref.WeakReference;
@@ -29,7 +24,6 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 public class TvBitmap {
@@ -45,19 +39,18 @@ public class TvBitmap {
 
 	private static TvBitmap mTvBitmap;
 
-	// //////////////////////// config method
-	// start////////////////////////////////////
+
 	private TvBitmap(Context context) {
 		mContext = context;
 		mConfig = new TvBitmapConfig(context);
 		configDiskCachePath(Utils.getDiskCacheDir(context, "afinalCache")
-				.getAbsolutePath());// ï¿½ï¿½ï¿½ç??ï¿½ç??ï¿½ç??ï¿½ç?ºï¿½å¯°ï¿½
-		configDisplayer(new SimpleDisplayer());// ï¿½ï¿½ï¿½ç??ï¿½ï¿½ï¿½å?§ã??ï¿½ï¿½ï¿?
-		configDownlader(new SimpleDownloader());// ï¿½ï¿½ï¿½ç??ï¿½æ??ï¿½æ?????ï¿½ï¿½
+				.getAbsolutePath());// é…ç½®ç¼“å­˜è·¯å¾„
+		configDisplayer(new SimpleDisplayer());////é…ç½®æ˜¾ç¤ºå™¨
+		configDownlader(new SimpleDownloader());////é…ç½®ä¸‹è½½å™¨
 	}
 
 	/**
-	 * ´´½¨finalbitmap
+	 * åˆ›å»º
 	 * 
 	 * @param ctx
 	 * @return
@@ -70,7 +63,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃÍ¼Æ¬ÕıÔÚ¼ÓÔØµÄÊ±ºòÏÔÊ¾µÄÍ¼Æ¬
+	 * è®¾ç½®ç»Ÿä¸€åŠ è½½å›¾
 	 * 
 	 * @param bitmap
 	 */
@@ -80,7 +73,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃÍ¼Æ¬ÕıÔÚ¼ÓÔØµÄÊ±ºòÏÔÊ¾µÄÍ¼Æ¬
+	 * è®¾ç½®ç»Ÿä¸€åŠ è½½å›¾
 	 * 
 	 * @param bitmap
 	 */
@@ -91,7 +84,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃÍ¼Æ¬¼ÓÔØÊ§°ÜÊ±ºòÏÔÊ¾µÄÍ¼Æ¬
+	 * è®¾ç½®ç»Ÿä¸€åŠ è½½å¤±è´¥å›¾
 	 * 
 	 * @param bitmap
 	 */
@@ -101,7 +94,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃÍ¼Æ¬¼ÓÔØÊ§°ÜÊ±ºòÏÔÊ¾µÄÍ¼Æ¬
+	 * è®¾ç½®ç»Ÿä¸€åŠ è½½å¤±è´¥å›¾
 	 * 
 	 * @param resId
 	 */
@@ -112,7 +105,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÅäÖÃÄ¬ÈÏÍ¼Æ¬×î´óµÄ¸ß¶È
+	 * è®¾ç½®å›¾ç‰‡æœ€å¤§é«˜åº¦
 	 * 
 	 * @param bitmapHeight
 	 */
@@ -122,7 +115,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÅäÖÃÄ¬ÈÏÍ¼Æ¬×î´óµÄ¿í¶È
+	 * è®¾ç½®å›¾ç‰‡æœ€å¤§å®½åº¦
 	 * 
 	 * @param bitmapHeight
 	 */
@@ -132,7 +125,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃÏÂÔØÆ÷£¬±ÈÈçÍ¨¹ıftp»òÕßÆäËûĞ­ÒéÈ¥ÍøÂç¶ÁÈ¡Í¼Æ¬µÄÊ±ºò¿ÉÒÔÉèÖÃÕâÏî
+	 * è®¾ç½®ä¸‹è½½å™¨ï¼Œæ¯”å¦‚é€šè¿‡ftpæˆ–è€…å…¶ä»–åè®®å»ç½‘ç»œè¯»å–å›¾ç‰‡çš„æ—¶å€™å¯ä»¥è®¾ç½®è¿™é¡¹
 	 * 
 	 * @param downlader
 	 * @return
@@ -143,7 +136,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃÏÔÊ¾Æ÷£¬±ÈÈçÔÚÏÔÊ¾µÄ¹ı³ÌÖĞÏÔÊ¾¶¯»­µÈ
+	 * è®¾ç½®æ˜¾ç¤ºå™¨ï¼Œæ¯”å¦‚åœ¨æ˜¾ç¤ºçš„è¿‡ç¨‹ä¸­æ˜¾ç¤ºåŠ¨ç”»ç­‰
 	 * 
 	 * @param displayer
 	 * @return
@@ -154,7 +147,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÅäÖÃ´ÅÅÌ»º´æÂ·¾¶
+	 * é…ç½®ç£ç›˜ç¼“å­˜è·¯å¾„
 	 * 
 	 * @param strPath
 	 * @return
@@ -167,10 +160,9 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÅäÖÃÄÚ´æ»º´æ´óĞ¡ ´óÓÚ2MBÒÔÉÏÓĞĞ§
+	 * é…ç½®å†…å­˜ç¼“å­˜å¤§å° å¤§äº2MBä»¥ä¸Šæœ‰æ•ˆ
 	 * 
-	 * @param size
-	 *            »º´æ´óĞ¡
+	 * @param size ç¼“å­˜å¤§å°
 	 */
 	public TvBitmap configMemoryCacheSize(int size) {
 		mConfig.memCacheSize = size;
@@ -178,7 +170,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃ´ÅÅÌ»º´æ°Ù·Ö±È 5MB ÒÔÉÏÓĞĞ§
+	 * è®¾ç½®åº”ç¼“å­˜çš„åœ¨APKæ€»å†…å­˜çš„ç™¾åˆ†æ¯”ï¼Œä¼˜å…ˆçº§å¤§äºconfigMemoryCacheSize
 	 * 
 	 * @param percent
 	 */
@@ -188,7 +180,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃ´ÅÅÌ»º´æ´óĞ¡ 5MB ÒÔÉÏÓĞĞ§
+	 * è®¾ç½®ç£ç›˜ç¼“å­˜å¤§å° 5MB ä»¥ä¸Šæœ‰æ•ˆ
 	 * 
 	 * @param size
 	 */
@@ -198,7 +190,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÉèÖÃ¼ÓÔØÍ¼Æ¬µÄÏß³Ì²¢·¢ÊıÁ¿
+	 * è®¾ç½®åŠ è½½çº¿ç¨‹å¹¶å‘æ•°é‡
 	 * 
 	 * @param size
 	 */
@@ -209,7 +201,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÅäÖÃÊÇ·ñÁ¢¼´»ØÊÕÍ¼Æ¬×ÊÔ´
+	 * é…ç½®æ˜¯å¦ç«‹å³å›æ”¶å›¾ç‰‡èµ„æº
 	 * 
 	 * @param recycleImmediately
 	 * @return
@@ -220,7 +212,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ³õÊ¼»¯finalBitmap
+	 * åˆå§‹åŒ–
 	 * 
 	 * @return
 	 */
@@ -238,7 +230,7 @@ public class TvBitmap {
 				if (mConfig.memCacheSize > 1024 * 1024 * 2) {
 					imageCacheParams.setMemCacheSize(mConfig.memCacheSize);
 				} else {
-					// ?????§ç??æ¦?ï¿½ç?????ï¿½ï¿½ï¿½ï¿½ï¿½ç??ï¿½ç??ï¿½ç??ï¿½æ¾¶??ï¿½ï¿½
+					//è®¾ç½®é»˜è®¤çš„å†…å­˜ç¼“å­˜å¤§å°
 					imageCacheParams.setMemCacheSizePercent(mContext, 0.3f);
 				}
 			}
@@ -256,7 +248,7 @@ public class TvBitmap {
 						@Override
 						public Thread newThread(Runnable r) {
 							Thread t = new Thread(r);
-							// ?????§ç??ç»¾è·¨ï¿½ï¿½ï¿½ï¿½ï¿½æµ¼ï¿½ï¿½ï¿½ï¿½ç»¾Ñ?ï¿½ï¿½???ï¿½ç????????ç»?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ¤¤???ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½???ï¿½ç»¾??ï¿½ï¿½???ï¿½æ??ï¿½é??ï¿½ï¿½ï¿½ã??ï¿½ï¿½cpuï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å??ï¿½ç??ï¿½ï¿½æ¾¶ï¿½???ï¿?
+							// è®¾ç½®çº¿ç¨‹çš„ä¼˜å…ˆçº§åˆ«ï¼Œè®©çº¿ç¨‹å…ˆåé¡ºåºæ‰§è¡Œï¼ˆçº§åˆ«è¶Šé«˜ï¼ŒæŠ¢åˆ°cpuæ‰§è¡Œçš„æ—¶é—´è¶Šå¤šï¼‰
 							t.setPriority(Thread.NORM_PRIORITY - 1);
 							return t;
 						}
@@ -271,14 +263,12 @@ public class TvBitmap {
 		return this;
 	}
 
-	// //////////////////////// config method
-	// end////////////////////////////////////
 
-	public void display(View imageView, String uri) {
-		doDisplay(imageView, uri, null);
+	public void display(View view, String uri) {
+		doDisplay(view, uri, null);
 	}
 
-	public void display(View imageView, String uri, int imageWidth,
+	public void display(View view, String uri, int imageWidth,
 			int imageHeight) {
 		BitmapDisplayConfig displayConfig = configMap.get(imageWidth + "_"
 				+ imageHeight);
@@ -289,21 +279,21 @@ public class TvBitmap {
 			configMap.put(imageWidth + "_" + imageHeight, displayConfig);
 		}
 
-		doDisplay(imageView, uri, displayConfig);
+		doDisplay(view, uri, displayConfig);
 	}
 
-	public void display(View imageView, String uri, int resId) {
+	public void display(View view, String uri, int resId) {
 		Bitmap loadingBitmap = BitmapFactory.decodeResource(
 				mContext.getResources(), resId);
 		if (loadingBitmap == null) {
-			display(imageView, uri);
+			display(view, uri);
 		} else {
-			display(imageView, uri, loadingBitmap);
+			display(view, uri, loadingBitmap);
 		}
 
 	}
 
-	public void display(View imageView, String uri, Bitmap loadingBitmap) {
+	public void display(View view, String uri, Bitmap loadingBitmap) {
 		BitmapDisplayConfig displayConfig = configMap.get(String
 				.valueOf(loadingBitmap));
 		if (displayConfig == null) {
@@ -312,7 +302,7 @@ public class TvBitmap {
 			configMap.put(String.valueOf(loadingBitmap), displayConfig);
 		}
 
-		doDisplay(imageView, uri, displayConfig);
+		doDisplay(view, uri, displayConfig);
 	}
 
 	public void display(View imageView, String uri, Bitmap loadingBitmap,
@@ -331,7 +321,7 @@ public class TvBitmap {
 		doDisplay(imageView, uri, displayConfig);
 	}
 
-	public void display(View imageView, String uri, int imageWidth,
+	public void display(View view, String uri, int imageWidth,
 			int imageHeight, Bitmap loadingBitmap, Bitmap laodfailBitmap) {
 		BitmapDisplayConfig displayConfig = configMap.get(imageWidth + "_"
 				+ imageHeight + "_" + String.valueOf(loadingBitmap) + "_"
@@ -348,20 +338,20 @@ public class TvBitmap {
 							+ String.valueOf(laodfailBitmap), displayConfig);
 		}
 
-		doDisplay(imageView, uri, displayConfig);
+		doDisplay(view, uri, displayConfig);
 	}
 
-	public void display(View imageView, String uri, BitmapDisplayConfig config) {
-		doDisplay(imageView, uri, config);
+	public void display(View view, String uri, BitmapDisplayConfig config) {
+		doDisplay(view, uri, config);
 	}
 
-	private void doDisplay(View imageView, String uri,
+	private void doDisplay(View view, String uri,
 			BitmapDisplayConfig displayConfig) {
 		if (!mInit) {
 			init();
 		}
 
-		if (TextUtils.isEmpty(uri) || imageView == null) {
+		if (TextUtils.isEmpty(uri) || view == null) {
 			return;
 		}
 
@@ -375,69 +365,30 @@ public class TvBitmap {
 		}
 
 		if (bitmap != null) {
-			if (imageView instanceof ImageView) {
-				((ImageView) imageView).setImageBitmap(bitmap);
+			if (view instanceof ImageView) {
+				((ImageView) view).setImageBitmap(bitmap);
 			} else {
-				imageView.setBackgroundDrawable(new BitmapDrawable(bitmap));
+				view.setBackgroundDrawable(new BitmapDrawable(bitmap));
 			}
 
-		} else if (checkImageTask(uri, imageView)) {
+		} else if (checkImageTask(uri, view)) {
 			final BitmapLoadAndDisplayTask task = new BitmapLoadAndDisplayTask(
-					imageView, displayConfig);
-			// ?????§ç??æ¦?ï¿½ç?????ï¿½å?§ï¿½ï¿?
+					view, displayConfig);
+			//è®¾ç½®é»˜è®¤å›¾ç‰‡
 			final AsyncDrawable asyncDrawable = new AsyncDrawable(
 					mContext.getResources(), displayConfig.getLoadingBitmap(),
 					task);
 
-			if (imageView instanceof ImageView) {
-				((ImageView) imageView).setImageDrawable(asyncDrawable);
+			if (view instanceof ImageView) {
+				((ImageView) view).setImageDrawable(asyncDrawable);
 			} else {
-				imageView.setBackgroundDrawable(asyncDrawable);
+				view.setBackgroundDrawable(asyncDrawable);
 			}
 
 			task.executeOnExecutor(bitmapLoadAndDisplayExecutor, uri);
 		}
 	}
 
-	public void display(Button button, String uri) {
-		doDisplay(button, uri, null);
-	}
-
-	private void doDisplay(Button button, String uri,
-			BitmapDisplayConfig displayConfig) {
-		if (!mInit) {
-			init();
-		}
-
-		if (TextUtils.isEmpty(uri) || button == null) {
-			return;
-		}
-
-		if (displayConfig == null)
-			displayConfig = mConfig.defaultDisplayConfig;
-
-		Bitmap bitmap = null;
-
-		if (mImageCache != null) {
-			bitmap = mImageCache.getBitmapFromMemoryCache(uri);
-		}
-
-		if (bitmap != null) {
-			button.setBackgroundDrawable(new BitmapDrawable(bitmap));
-
-		} else if (checkImageTask(uri, button)) {
-			final BitmapLoadAndDisplayTask task = new BitmapLoadAndDisplayTask(
-					button, displayConfig);
-			// ?????§ç??æ¦?ï¿½ç?????ï¿½å?§ï¿½ï¿?
-			final AsyncDrawable asyncDrawable = new AsyncDrawable(
-					mContext.getResources(), displayConfig.getLoadingBitmap(),
-					task);
-
-			button.setBackgroundDrawable(asyncDrawable);
-
-			task.executeOnExecutor(bitmapLoadAndDisplayExecutor, uri);
-		}
-	}
 
 	private HashMap<String, BitmapDisplayConfig> configMap = new HashMap<String, BitmapDisplayConfig>();
 
@@ -478,7 +429,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * Ö´ĞĞ¹ı´Ë·½·¨ºó,FinalBitmapµÄ»º´æÒÑ¾­Ê§Ğ§,½¨ÒéÍ¨¹ıFinalBitmap.create()»ñÈ¡ĞÂµÄÊµÀı
+	 * æ‰§è¡Œè¿‡æ­¤æ–¹æ³•å,TvBitmapçš„ç¼“å­˜å·²ç»å¤±æ•ˆ,å»ºè®®é€šè¿‡TvBitmap.create()è·å–æ–°çš„å®ä¾‹
 	 * 
 	 * @author fantouch
 	 */
@@ -491,7 +442,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÍøÂç¼ÓÔØbitmap
+	 * ç½‘ç»œåŠ è½½bitmap
 	 * 
 	 * @param data
 	 * @return
@@ -504,8 +455,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ´Ó»º´æ£¨ÄÚ´æ»º´æºÍ´ÅÅÌ»º´æ£©ÖĞÖ±½Ó»ñÈ¡bitmap£¬×¢ÒâÕâÀïÓĞio²Ù×÷£¬×îºÃ²»Òª·ÅÔÚuiÏß³ÌÖ´ĞĞ
-	 * 
+	 * ä»ç¼“å­˜ï¼ˆå†…å­˜ç¼“å­˜å’Œç£ç›˜ç¼“å­˜ï¼‰ä¸­ç›´æ¥è·å–bitmapï¼Œæ³¨æ„æ­¤å¤„æœ‰ioæ“ä½œï¼Œä¸å¯ç½®äºuiçº¿ç¨‹æ‰§è¡Œ
 	 * @param key
 	 * @return
 	 */
@@ -518,7 +468,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ´ÓÄÚ´æ»º´æÖĞ»ñÈ¡bitmap
+	 * ä»å†…å­˜ç¼“å­˜ä¸­è·å–bitmap
 	 * 
 	 * @param key
 	 * @return
@@ -528,7 +478,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ´Ó´ÅÅÌ»º´æÖĞ»ñÈ¡bitmap£¬£¬×¢ÒâÕâÀïÓĞio²Ù×÷£¬×îºÃ²»Òª·ÅÔÚuiÏß³ÌÖ´ĞĞ
+	 * ä»ç£ç›˜ç¼“å­˜ä¸­è·å–bitmap
 	 * 
 	 * @param key
 	 * @return
@@ -546,22 +496,22 @@ public class TvBitmap {
 	}
 
 	/**
-	 * activity onResumeµÄÊ±ºòµ÷ÓÃÕâ¸ö·½·¨£¬ÈÃ¼ÓÔØÍ¼Æ¬Ïß³Ì¼ÌĞø
+	 * activity onResumeçš„æ—¶å€™è°ƒç”¨è¿™ä¸ªæ–¹æ³•ï¼Œè®©åŠ è½½å›¾ç‰‡çº¿ç¨‹ç»§ç»­
 	 */
 	public void onResume() {
 		setExitTasksEarly(false);
 	}
 
 	/**
-	 * activity onPauseµÄÊ±ºòµ÷ÓÃÕâ¸ö·½·¨£¬ÈÃÏß³ÌÔİÍ£
+	 * activity onPauseçš„æ—¶å€™è°ƒç”¨è¿™ä¸ªæ–¹æ³•ï¼Œè®©çº¿ç¨‹æš‚åœ
 	 */
 	public void onPause() {
 		setExitTasksEarly(true);
 	}
 
 	/**
-	 * activity onDestroyµÄÊ±ºòµ÷ÓÃÕâ¸ö·½·¨£¬ÊÍ·Å»º´æ
-	 * Ö´ĞĞ¹ı´Ë·½·¨ºó,FinalBitmapµÄ»º´æÒÑ¾­Ê§Ğ§,½¨ÒéÍ¨¹ıFinalBitmap.create()»ñÈ¡ĞÂµÄÊµÀı
+	 * activity onDestroyçš„æ—¶å€™è°ƒç”¨è¿™ä¸ªæ–¹æ³•ï¼Œé‡Šæ”¾ç¼“å­˜
+     * æ‰§è¡Œè¿‡æ­¤æ–¹æ³•å,TvBitmapçš„ç¼“å­˜å°†å¤±æ•ˆ,å»ºè®®é€šè¿‡TvBitmap.create()è·å–æ–°çš„å®ä¾‹
 	 * 
 	 * @author fantouch
 	 */
@@ -570,14 +520,14 @@ public class TvBitmap {
 	}
 
 	/**
-	 * Çå³ıËùÓĞ»º´æ£¨´ÅÅÌºÍÄÚ´æ£©
+	 * æ¸…é™¤æ‰€æœ‰ç¼“å­˜ï¼ˆç£ç›˜å’Œå†…å­˜ï¼‰
 	 */
 	public void clearCache() {
 		new CacheExecutecTask().execute(CacheExecutecTask.MESSAGE_CLEAR);
 	}
 
 	/**
-	 * ¸ù¾İkeyÇå³ıÖ¸¶¨µÄÄÚ´æ»º´æ
+	 * æ ¹æ®keyæ¸…é™¤æŒ‡å®šçš„å†…å­˜ç¼“å­˜
 	 * 
 	 * @param key
 	 */
@@ -587,7 +537,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * Çå³ı»º´æ
+	 * æ¸…é™¤ç¼“å­˜
 	 */
 	public void clearMemoryCache() {
 		if (mImageCache != null)
@@ -595,7 +545,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ¸ù¾İkeyÇå³ıÖ¸¶¨µÄÄÚ´æ»º´æ
+	 * æ ¹æ®keyæ¸…é™¤æŒ‡å®šçš„å†…å­˜ç¼“å­˜
 	 * 
 	 * @param key
 	 */
@@ -605,14 +555,14 @@ public class TvBitmap {
 	}
 
 	/**
-	 * å¨?ï¿½ï¿½ï¿½ã??ï¿½ï¿½ï¿½ï¿½ï¿½ç??ï¿½ç??ï¿?
+	 * æ¸…é™¤ç£ç›˜ç¼“å­˜
 	 */
 	public void clearDiskCache() {
 		new CacheExecutecTask().execute(CacheExecutecTask.MESSAGE_CLEAR_DISK);
 	}
 
 	/**
-	 * Çå³ı´ÅÅÌ»º´æ
+	 * æ ¹æ®keyæ¸…é™¤æŒ‡å®šç£ç›˜ç¼“å­˜
 	 * 
 	 * @param key
 	 */
@@ -622,7 +572,8 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ¹Ø±Õ»º´æ Ö´ĞĞ¹ı´Ë·½·¨ºó,FinalBitmapµÄ»º´æÒÑ¾­Ê§Ğ§,½¨ÒéÍ¨¹ıFinalBitmap.create()»ñÈ¡ĞÂµÄÊµÀı
+	 * å…³é—­ç¼“å­˜
+     * æ‰§è¡Œè¿‡æ­¤æ–¹æ³•å,TvBitmapçš„ç¼“å­˜å·²ç»å¤±æ•ˆ,å»ºè®®é€šè¿‡TvBitmap.create()è·å–æ–°çš„å®ä¾‹
 	 * 
 	 * @author fantouch
 	 */
@@ -631,21 +582,19 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ÍË³öÕıÔÚ¼ÓÔØµÄÏß³Ì£¬³ÌĞòÍË³öµÄÊ±ºòµ÷ÓÃ´Ê·½·¨
+	 * é€€å‡ºæ­£åœ¨åŠ è½½çš„çº¿ç¨‹ï¼Œç¨‹åºé€€å‡ºçš„æ—¶å€™è°ƒç”¨è¯æ–¹æ³•
 	 * 
 	 * @param exitTasksEarly
 	 */
 	public void exitTasksEarly(boolean exitTasksEarly) {
 		mExitTasksEarly = exitTasksEarly;
 		if (exitTasksEarly)
-			pauseWork(false);// ??????ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç»¾è·¨ï¿½ï¿½ç¼?ï¿½ï¿½ï¿½ï¿½
+			pauseWork(false);// ??????é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ç¼ææ³•é”Ÿæ–¤æ‹·é”Ÿï¿½?é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	}
 
 	/**
-	 * ÔİÍ£ÕıÔÚ¼ÓÔØµÄÏß³Ì£¬¼àÌılistview»òÕßgridviewÕıÔÚ»¬¶¯µÄÊ±ºòÌõÓÃ´Ê·½·¨
-	 * 
-	 * @param pauseWork
-	 *            trueÍ£Ö¹ÔİÍ£Ïß³Ì£¬false¼ÌĞøÏß³Ì
+	 * æš‚åœæ­£åœ¨åŠ è½½çš„çº¿ç¨‹ï¼Œç›‘å¬listviewæˆ–è€…gridviewæ­£åœ¨æ»‘åŠ¨çš„æ—¶å€™æ¡ç”¨è¯æ–¹æ³•
+	 * @param pauseWork trueåœæ­¢æš‚åœçº¿ç¨‹ï¼Œfalseç»§ç»­çº¿ç¨‹
 	 */
 	public void pauseWork(boolean pauseWork) {
 		synchronized (mPauseWorkLock) {
@@ -675,12 +624,11 @@ public class TvBitmap {
 	}
 
 	/**
-	 * ¼ì²â imageViewÖĞÊÇ·ñÒÑ¾­ÓĞÏß³ÌÔÚÔËĞĞ
-	 * 
-	 * @param data
-	 * @param imageView
-	 * @return true Ã»ÓĞ false ÓĞÏß³ÌÔÚÔËĞĞÁË
-	 */
+     * æ£€æµ‹ imageViewä¸­æ˜¯å¦å·²ç»æœ‰çº¿ç¨‹åœ¨è¿è¡Œ
+     * @param data
+     * @param imageView
+     * @return true æ²¡æœ‰ false æœ‰çº¿ç¨‹åœ¨è¿è¡Œäº†
+     */
 	public static boolean checkImageTask(Object data, View imageView) {
 		final BitmapLoadAndDisplayTask bitmapWorkerTask = getBitmapTaskFromImageView(imageView);
 
@@ -689,7 +637,7 @@ public class TvBitmap {
 			if (bitmapData == null || !bitmapData.equals(data)) {
 				bitmapWorkerTask.cancel(true);
 			} else {
-				// ï¿½ï¿½ï¿½æ??ï¿½æ??ï¿½ç»¾è·?ï¿½ï¿½å®¸è??ï¿½ï¿½ï¿½ï¿½???ï¿½Ñ?ï¿½ï¿½
+				// åŒä¸€ä¸ªçº¿ç¨‹å·²ç»åœ¨æ‰§è¡Œ
 				return false;
 			}
 		}
@@ -742,7 +690,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * bitmapÏÂÔØÏÔÊ¾µÄÏß³Ì
+	 * bitmapä¸‹è½½æ˜¾ç¤ºçš„çº¿ç¨‹
 	 * 
 	 * @author michael yang
 	 */
@@ -791,7 +739,7 @@ public class TvBitmap {
 				bitmap = null;
 			}
 
-			// ï¿½ï¿½???ï¿½ï¿½ç»¾è·¨ï¿½ï¿½ï¿½ï¿½ï¿½è¤°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?imageviewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å??ï¿½ï¿½
+			// åˆ¤æ–­çº¿ç¨‹å’Œå½“å‰çš„imageviewæ˜¯å¦æ˜¯åŒ¹é…
 			final View imageView = getAttachedImageView();
 			if (bitmap != null && imageView != null) {
 				mConfig.displayer.loadCompletedisplay(imageView, bitmap,
@@ -811,7 +759,7 @@ public class TvBitmap {
 		}
 
 		/**
-		 * »ñÈ¡Ïß³ÌÆ¥ÅäµÄimageView,·ÀÖ¹³öÏÖÉÁ¶¯µÄÏÖÏó
+		 * è·å–çº¿ç¨‹åŒ¹é…çš„imageView,é˜²æ­¢å‡ºç°é—ªåŠ¨çš„ç°è±¡
 		 * 
 		 * @return
 		 */
@@ -828,23 +776,20 @@ public class TvBitmap {
 	}
 
 	/**
-	 * @title ÅäÖÃĞÅÏ¢
-	 * @description FinalBitmapµÄÅäÖÃĞÅÏ¢
-	 * @company Ì½Ë÷ÕßÍøÂç¹¤×÷ÊÒ(www.tsz.net)
-	 * @author michael Young (www.YangFuhai.com)
+	 * @title é…ç½®ä¿¡æ¯
+	 * @description TvBitmapçš„é…ç½®ä¿¡æ¯
 	 * @version 1.0
-	 * @created 2012-10-28
 	 */
 	private class TvBitmapConfig {
 		public String cachePath;
 		public Displayer displayer;
 		public Downloader downloader;
 		public BitmapDisplayConfig defaultDisplayConfig;
-		public float memCacheSizePercent;// »º´æ°Ù·Ö±È£¬androidÏµÍ³·ÖÅä¸øÃ¿¸öapkÄÚ´æµÄ´óĞ¡
-		public int memCacheSize;// ÄÚ´æ»º´æ°Ù·Ö±È
-		public int diskCacheSize;// ´ÅÅÌ°Ù·Ö±È
-		public int poolSize = 3;// Ä¬ÈÏµÄÏß³Ì³ØÏß³Ì²¢·¢ÊıÁ¿
-		public boolean recycleImmediately = true;// ÊÇ·ñÁ¢¼´»ØÊÕÄÚ´æ
+		public float memCacheSizePercent;//ç¼“å­˜ç™¾åˆ†æ¯”ï¼Œandroidç³»ç»Ÿåˆ†é…ç»™æ¯ä¸ªapkå†…å­˜çš„å¤§å°
+		public int memCacheSize;//å†…å­˜ç¼“å­˜ç™¾åˆ†æ¯”
+		public int diskCacheSize;//ç£ç›˜ç™¾åˆ†æ¯”
+		public int poolSize = 3;//é»˜è®¤çš„çº¿ç¨‹æ± çº¿ç¨‹å¹¶å‘æ•°é‡
+		public boolean recycleImmediately = true;//æ˜¯å¦ç«‹å³å›æ”¶å†…å­˜
 
 		public TvBitmapConfig(Context context) {
 			defaultDisplayConfig = new BitmapDisplayConfig();
@@ -853,7 +798,7 @@ public class TvBitmap {
 			defaultDisplayConfig
 					.setAnimationType(BitmapDisplayConfig.AnimationType.fadeIn);
 
-			// ?????§ç??ï¿½ï¿½??§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??§ã??ï¿½ï¿½ï¿½æ¾¶???????µé?©ï¿½ï¿½æ?????ï¿½ï¿½éª?ï¿½ï¿½ï¿½ï¿½æ¾¶Ñ?ï¿½ï¿½,æ¦?ï¿½ç?????è´????ï¿½é??ï¿½ç?¹è??å®³ï¿½ï¿½ï¿½1/2???ï¿?
+			//è®¾ç½®å›¾ç‰‡çš„æ˜¾ç¤ºæœ€å¤§å°ºå¯¸ï¼ˆä¸ºå±å¹•çš„å¤§å°,é»˜è®¤ä¸ºå±å¹•å®½åº¦çš„1/2ï¼‰
 			DisplayMetrics displayMetrics = context.getResources()
 					.getDisplayMetrics();
 			int defaultWidth = (int) Math.floor(displayMetrics.widthPixels / 2);

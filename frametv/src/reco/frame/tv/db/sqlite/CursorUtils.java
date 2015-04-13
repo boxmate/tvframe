@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ��ㄧ��娴� (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang 杨福海(www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class CursorUtils {
 
 					}
                     /**
-                     * 澶����OneToMany���lazyLoad褰㈠��
+                     * 处理OneToMany的lazyLoad形式
                      */
                     for(OneToMany oneToManyProp : table.oneToManyMap.values()){
                         if(oneToManyProp.getDataType()==OneToManyLazyLoader.class){
@@ -61,7 +61,7 @@ public class CursorUtils {
                     }
 
                     /**
-                     * 澶����ManyToOne���lazyLoad褰㈠��
+                     * 处理ManyToOne的lazyLoad形式
                      */
                     for(ManyToOne manyToOneProp : table.manyToOneMap.values()){
                         if(manyToOneProp.getDataType()==ManyToOneLazyLoader.class){

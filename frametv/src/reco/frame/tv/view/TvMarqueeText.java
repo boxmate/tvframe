@@ -20,28 +20,28 @@ import android.util.Log;
 import android.widget.TextView;
 
 /**
- * ÅÜÂíµÆ,×¨ÓÃÓÚµçÊÓÓ¦ÓÃ ÎŞĞè½¹µãÒ²ÄÜÅÜ¶¯
+ * è·‘é©¬ç¯,ä¸“ç”¨äºç”µè§†åº”ç”¨ æ— éœ€ç„¦ç‚¹ä¹Ÿèƒ½è·‘åŠ¨
  * 
  * @author reco
  * 
  */
 public class TvMarqueeText extends TextView {
-	/** ÊÇ·ñÍ£Ö¹¹ö¶¯ */
+	/** æ˜¯å¦åœæ­¢æ»šåŠ¨ */
 	private boolean mStopMarquee;
 	private String mText;
 	private float mCoordinateX;
 	private float mCoordinateY;
 	private float mTextWidth, mTextHeight;
 	/**
-	 * ¹ö¶¯ÖÜÆÚ
+	 * æ»šåŠ¨å‘¨æœŸ
 	 */
 	private int period;
 	/**
-	 * ±ßÔµµ­³ö
+	 * è¾¹ç¼˜æ·¡å‡º
 	 */
 	private boolean vague;
 	/**
-	 * ±³¾°É« Ä¬ÈÏÎªÍ¸Ã÷É«
+	 * èƒŒæ™¯è‰² é»˜è®¤ä¸ºé€æ˜è‰²
 	 */
 	private int backgroundColor;
 
@@ -122,7 +122,7 @@ public class TvMarqueeText extends TextView {
 				- (getHeight() - (fontMetrics.bottom - fontMetrics.top)) / 2
 				- fontMetrics.bottom;
 
-		// ±ßÔµµ­³ö
+		// è¾¹ç¼˜æ·¡å‡º
 		if (vague) {
 			Shader shader = new LinearGradient(0, 0, getWidth(), 0, new int[] {
 					backgroundColor, getTextColors().getDefaultColor(),
@@ -142,7 +142,7 @@ public class TvMarqueeText extends TextView {
 
 	}
 	/**
-	 * ¿ªÆôÅÜÂíµÆ
+	 * å¼€å¯è·‘é©¬ç¯
 	 */
 	public void startMarquee() {
 		mStopMarquee = false;
@@ -150,7 +150,7 @@ public class TvMarqueeText extends TextView {
 			mHandler.sendEmptyMessageDelayed(0, 300);
 	}
 	/**
-	 * Í£Ö¹ÅÜÂíµÆ
+	 * åœæ­¢è·‘é©¬ç¯
 	 */
 	public void stopMarquee() {
 		mStopMarquee = true;

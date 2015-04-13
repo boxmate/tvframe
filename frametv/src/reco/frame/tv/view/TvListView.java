@@ -29,96 +29,96 @@
 //public class TvListView extends RelativeLayout {
 //
 //	/**
-//	 * ¹â±ê
+//	 * å…‰æ ‡
 //	 */
 //	private ImageView cursor;
 //	/**
-//	 * ¹â±ê×ÊÔ´
+//	 * å…‰æ ‡èµ„æº
 //	 */
 //	private int cursorRes;
 //	/**
-//	 * item¿É·ñËõ·Å
+//	 * itemå¯å¦ç¼©æ”¾
 //	 */
 //	private boolean scalable;
 //	/**
-//	 * ·Å´ó±ÈÂÊ
+//	 * æ”¾å¤§æ¯”ç‡
 //	 */
 //	private float scale;
 //	/**
-//	 * ¹â±êÆ®ÒÆ¶¯»­ Ä¬ÈÏÎŞĞ§¹û(ÉĞÎ´ÊµÏÖ)
+//	 * å…‰æ ‡é£˜ç§»åŠ¨ç”» é»˜è®¤æ— æ•ˆæœ(å°šæœªå®ç°)
 //	 */
 //	private int animationType;
-//	public final static int ANIM_DEFAULT = 0;// ÎŞĞ§¹û
-//	public final static int ANIM_TRASLATE = 1;// Æ½ÒÆ
+//	public final static int ANIM_DEFAULT = 0;// æ— æ•ˆæœ
+//	public final static int ANIM_TRASLATE = 1;// å¹³ç§»
 //	/**
-//	 * ·Å´óÓÃÊ±
+//	 * æ”¾å¤§ç”¨æ—¶
 //	 */
 //	private int durationLarge = 100;
 //	/**
-//	 * ËõĞ¡ÓÃÊ±
+//	 * ç¼©å°ç”¨æ—¶
 //	 */
 //	private int durationSmall = 100;
 //	/**
-//	 * ´¥·¢ÑÓ³Ù
+//	 * è§¦å‘å»¶è¿Ÿ
 //	 */
 //	private int delay = 110;
 //	/**
-//	 * ¹â±ê±ß¿ò¿í¶È °üÀ¨ÒõÓ°
+//	 * å…‰æ ‡è¾¹æ¡†å®½åº¦ åŒ…æ‹¬é˜´å½±
 //	 */
 //	private int boarder;
 //	/**
-//	 * ¹â±ê×ó±ß¿ò¿í¶È º¬ÒõÓ°
+//	 * å…‰æ ‡å·¦è¾¹æ¡†å®½åº¦ å«é˜´å½±
 //	 */
 //	private int boarderLeft;
 //	/**
-//	 * ¹â±ê¶¥±ß¿ò¿í¶È º¬ÒõÓ°
+//	 * å…‰æ ‡é¡¶è¾¹æ¡†å®½åº¦ å«é˜´å½±
 //	 */
 //	private int boarderTop;
 //	/**
-//	 * ¹â±êÓÒ±ß¿ò¿í¶È º¬ÒõÓ°
+//	 * å…‰æ ‡å³è¾¹æ¡†å®½åº¦ å«é˜´å½±
 //	 */
 //	private int boarderRight;
 //	/**
-//	 * ¹â±êµ×±ß¿ò¿í¶È º¬ÒõÓ°
+//	 * å…‰æ ‡åº•è¾¹æ¡†å®½åº¦ å«é˜´å½±
 //	 */
 //	private int boarderBottom;
 //
 //	/**
-//	 * Íâ²ãÈİÆ÷²¼¾ÖÊÇ·ñ¸Ä±ä
+//	 * å¤–å±‚å®¹å™¨å¸ƒå±€æ˜¯å¦æ”¹å˜
 //	 */
 //	private boolean parentLayout = true;
 //
 //	/**
-//	 * ³ı¹â±êÍâ µ±Ç°×ÓÀàÊı
+//	 * é™¤å…‰æ ‡å¤– å½“å‰å­ç±»æ•°
 //	 */
 //	private int currentChildCount = 0;
 //
 //	/**
-//	 * ¿É·ñ¹ö¶¯
+//	 * å¯å¦æ»šåŠ¨
 //	 */
 //	private final int ACTION_START_SCROLL = 0, ACTION_INIT_ITEMS = 1,
 //			ACTION_ADD_ITEMS = 2;
 //	private boolean scrollable;
 //	/**
-//	 * ¹ö¶¯ÑÓÊ±¼°¹ö¶¯ÓÃÊ±
+//	 * æ»šåŠ¨å»¶æ—¶åŠæ»šåŠ¨ç”¨æ—¶
 //	 */
 //	private final int DELAY = 231, DURATION = 570;
 //	/**
-//	 * ÆÁÄ»¿ÉÏÔÊ¾×î´óĞĞÊı
+//	 * å±å¹•å¯æ˜¾ç¤ºæœ€å¤§è¡Œæ•°
 //	 */
 //	private int screenMaxRow;
 //	/**
-//	 * µ±Ç°Ñ¡ÖĞ×ÓÏîÏÂÊ¾
+//	 * å½“å‰é€‰ä¸­å­é¡¹ä¸‹ç¤º
 //	 */
 //	private int selectIndex;
 //	private int paddingLeft, paddingTop;
 //	private int spaceVert;
 //	/**
-//	 * item¿í¸ß ²»°üÀ¨×İºá¼ä¾à
+//	 * itemå®½é«˜ ä¸åŒ…æ‹¬çºµæ¨ªé—´è·
 //	 */
 //	private int itemWidth, itemHeight;
 //	/**
-//	 * itemÕæÊµ¿í¸ß °üÀ¨×İºá¼ä¾à
+//	 * itemçœŸå®å®½é«˜ åŒ…æ‹¬çºµæ¨ªé—´è·
 //	 */
 //	private int rowWidth, rowHeight;
 //	private Map<Integer, Integer> itemIds;
@@ -210,7 +210,7 @@
 //		}
 //
 //		custom.recycle();
-//		// ¹Ø±Õ×Ó¿Ø¼ş¶¯»­»º´æ Ê¹Ç¶Ì×¶¯»­¸üÁ÷³©
+//		// å…³é—­å­æ§ä»¶åŠ¨ç”»ç¼“å­˜ ä½¿åµŒå¥—åŠ¨ç”»æ›´æµç•…
 //		// setAnimationCacheEnabled(false);
 //
 //		init();
@@ -228,7 +228,7 @@
 //	}
 //
 //	/**
-//	 * ÉèÖÃÊÊÅäÆ÷
+//	 * è®¾ç½®é€‚é…å™¨
 //	 * 
 //	 * @param adapter
 //	 */
@@ -241,10 +241,10 @@
 //	}
 //
 //	/**
-//	 * Ê×´Î¼ÓÔØÆÁÄ»¿É¼ûĞĞÊı*2
+//	 * é¦–æ¬¡åŠ è½½å±å¹•å¯è§è¡Œæ•°*2
 //	 */
 //	public void initGridView() {
-//		// ÖØÉè²ÎÊı
+//		// é‡è®¾å‚æ•°
 //		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) getLayoutParams();
 //
 //		RelativeLayout.LayoutParams newParams = new RelativeLayout.LayoutParams(
@@ -284,7 +284,7 @@
 //			int viewId = child.getId();
 //			if (viewId == -1) {
 //				viewId = TvConfig.buildId();
-//				// ´Ë´¦Ó²ÉèÖÃidÍ¬Ê±½¨Òé¿ª·¢Õß²»ÓÃ´Ë·¶Î§id
+//				// æ­¤å¤„ç¡¬è®¾ç½®idåŒæ—¶å»ºè®®å¼€å‘è€…ä¸ç”¨æ­¤èŒƒå›´id
 //			}
 //			child.setId(viewId);
 //			itemIds.put(viewId, i);
@@ -296,7 +296,7 @@
 //
 //	private void addNewItems() {
 //		currentChildCount = getChildCount();
-//		// Log.e(VIEW_LOG_TAG, "Ìí¼ÓÊı¾İ" + currentChildCount);
+//		// Log.e(VIEW_LOG_TAG, "æ·»åŠ æ•°æ®" + currentChildCount);
 //		parentLayout = false;
 //		int start = itemIds.size();
 //		int end = Math.min(start + screenMaxRow * 2, adapter.getCount());
@@ -310,7 +310,7 @@
 //			int viewId = child.getId();
 //			if (viewId == -1) {
 //				viewId = TvConfig.buildId();
-//				// ´Ë´¦Ó²ÉèÖÃidÍ¬Ê±½¨Òé¿ª·¢Õß²»ÓÃ´Ë·¶Î§id
+//				// æ­¤å¤„ç¡¬è®¾ç½®idåŒæ—¶å»ºè®®å¼€å‘è€…ä¸ç”¨æ­¤èŒƒå›´id
 //			}
 //			child.setId(viewId);
 //			this.addView(child, rlp);
@@ -338,7 +338,7 @@
 //							moveCover(item);
 //						}
 //					}, delay);
-//					// Ñ¡ÖĞÊÂ¼ş
+//					// é€‰ä¸­äº‹ä»¶
 //					if (onItemSelectListener != null) {
 //						onItemSelectListener.onItemSelect(item, selectIndex);
 //					}
@@ -364,17 +364,17 @@
 //	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //
 //		/**
-//		 * »ñµÃ´ËViewGroupÉÏ¼¶ÈİÆ÷ÎªÆäÍÆ¼öµÄ¿íºÍ¸ß£¬ÒÔ¼°¼ÆËãÄ£Ê½
+//		 * è·å¾—æ­¤ViewGroupä¸Šçº§å®¹å™¨ä¸ºå…¶æ¨èçš„å®½å’Œé«˜ï¼Œä»¥åŠè®¡ç®—æ¨¡å¼
 //		 */
 //		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 //		int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 //		int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
 //		int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
 //
-//		// ¼ÆËã³öËùÓĞµÄchildViewµÄ¿íºÍ¸ß
+//		// è®¡ç®—å‡ºæ‰€æœ‰çš„childViewçš„å®½å’Œé«˜
 //		measureChildren(widthMeasureSpec, heightMeasureSpec);
 //		/**
-//		 * ¼ÇÂ¼Èç¹ûÊÇwrap_contentÊÇÉèÖÃµÄ¿íºÍ¸ß
+//		 * è®°å½•å¦‚æœæ˜¯wrap_contentæ˜¯è®¾ç½®çš„å®½å’Œé«˜
 //		 */
 //		int width = 0;
 //		int height = 0;
@@ -385,7 +385,7 @@
 //		int cHeight = 0;
 //		MarginLayoutParams cParams = null;
 //		/**
-//		 * ¸ù¾İchildView¼ÆËãµÄ³öµÄ¿íºÍ¸ß£¬ÒÔ¼°ÉèÖÃµÄmargin¼ÆËãÈİÆ÷µÄ¿íºÍ¸ß£¬Ö÷ÒªÓÃÓÚÈİÆ÷ÊÇwarp_contentÊ±
+//		 * æ ¹æ®childViewè®¡ç®—çš„å‡ºçš„å®½å’Œé«˜ï¼Œä»¥åŠè®¾ç½®çš„marginè®¡ç®—å®¹å™¨çš„å®½å’Œé«˜ï¼Œä¸»è¦ç”¨äºå®¹å™¨æ˜¯warp_contentæ—¶
 //		 */
 //
 //		// Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
@@ -396,14 +396,14 @@
 //			cHeight = childView.getMeasuredHeight();
 //			cParams = (MarginLayoutParams) childView.getLayoutParams();
 //
-//			// ÉÏÃæÁ½¸öchildView
+//			// ä¸Šé¢ä¸¤ä¸ªchildView
 //			width += cWidth + cParams.leftMargin + cParams.rightMargin;
 //			height += cHeight + cParams.topMargin + cParams.bottomMargin;
 //
 //		}
 //
 //		/**
-//		 * Èç¹ûÊÇwrap_contentÉèÖÃÎªÎÒÃÇ¼ÆËãµÄÖµ ·ñÔò£ºÖ±½ÓÉèÖÃÎª¸¸ÈİÆ÷¼ÆËãµÄÖµ
+//		 * å¦‚æœæ˜¯wrap_contentè®¾ç½®ä¸ºæˆ‘ä»¬è®¡ç®—çš„å€¼ å¦åˆ™ï¼šç›´æ¥è®¾ç½®ä¸ºçˆ¶å®¹å™¨è®¡ç®—çš„å€¼
 //		 */
 //		setMeasuredDimension(
 //				(widthMode == MeasureSpec.EXACTLY || width == 0) ? sizeWidth
@@ -429,7 +429,7 @@
 //			int cHeight = 0;
 //			// boolean cursorFlag=false;
 //			/**
-//			 * ±éÀúËùÓĞchildView¸ù¾İÆä¿íºÍ¸ß£¬ÒÔ¼°margin½øĞĞ²¼¾Ö
+//			 * éå†æ‰€æœ‰childViewæ ¹æ®å…¶å®½å’Œé«˜ï¼Œä»¥åŠmarginè¿›è¡Œå¸ƒå±€
 //			 */
 //			int start = currentChildCount;
 //			// Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount +
@@ -437,7 +437,7 @@
 //			// + cCount);
 //			for (int i = start; i < cCount; i++) {
 //				View childView = getChildAt(i);
-//				// Ìø¹ı¹â±ê×ÓÏî
+//				// è·³è¿‡å…‰æ ‡å­é¡¹
 //				int index = i;
 //				if (currentChildCount != 0) {
 //					index = i - 1;
@@ -489,14 +489,14 @@
 //			View focused = this.findFocus();
 //			if (focused != null && direction != 0) {
 //				View next = focused.focusSearch(direction);
-//				// ¸ù¾İÏÂ±êËã³öËùÔÚĞĞ
+//				// æ ¹æ®ä¸‹æ ‡ç®—å‡ºæ‰€åœ¨è¡Œ
 //				if (next != null) {
 //
 //					int focusIndex = itemIds.get(focused.getId());
 //
 //					Integer temp = itemIds.get(next.getId());
 //
-//					// ½¹µãÇĞ³öÈİÆ÷Ê±
+//					// ç„¦ç‚¹åˆ‡å‡ºå®¹å™¨æ—¶
 //					if (temp != null) {
 //						selectIndex = temp;
 //					} else {
@@ -509,7 +509,7 @@
 //					selectIndex = focusIndex;
 //					nextIndex = selectIndex;
 //
-//					// ÏòÏÂµ½´ï×îºóÒ»ÍêÕûĞĞÊ±,¿É¹ö¶¯; ÏòÉÏµ½´ï×îÉÏÒ»ĞĞÍêÕûĞĞÊ±,¿É¹ö¶¯
+//					// å‘ä¸‹åˆ°è¾¾æœ€åä¸€å®Œæ•´è¡Œæ—¶,å¯æ»šåŠ¨; å‘ä¸Šåˆ°è¾¾æœ€ä¸Šä¸€è¡Œå®Œæ•´è¡Œæ—¶,å¯æ»šåŠ¨
 //
 //					if (nextIndex > selectIndex) {
 //						if ((next.getTop() - mScroller.getFinalY()) >= (rowHeight * (screenMaxRow - 1))
@@ -527,7 +527,7 @@
 //					if (flag) {
 //						if (nextIndex > -1 && !scrollable
 //								&& mScroller.isFinished()) {
-//							// ÏÈÇå³ı°´Å¥¶¯»­
+//							// å…ˆæ¸…é™¤æŒ‰é’®åŠ¨ç”»
 //							scrollable = true;
 //							Message msg = handler.obtainMessage();
 //							msg.obj = direction;
@@ -554,7 +554,7 @@
 //			// Log.e(VIEW_LOG_TAG,"screenMaxRow="+screenMaxRow+
 //			// "---selectRow="+selectRow+"---selectIndex="+selectIndex+"---rowCount="+rowCount);
 //			if (t > oldt) {
-//				// ÏÂ·­¼ÓÔØ µ±Ê£ÓàĞĞÊıĞ¡ÓÚÒ»ÆÁÊ±
+//				// ä¸‹ç¿»åŠ è½½ å½“å‰©ä½™è¡Œæ•°å°äºä¸€å±æ—¶
 //				if ((itemIds.size() - selectIndex) < screenMaxRow) {
 //					canAdd = false;
 //					Message msg = handler.obtainMessage();
@@ -563,7 +563,7 @@
 //				}
 //
 //			} else if (oldt > t) {
-//				// ÉÏ·­Ë¢ĞÂ
+//				// ä¸Šç¿»åˆ·æ–°
 //			}
 //
 //		}
@@ -572,7 +572,7 @@
 //	}
 //
 //	/**
-//	 * ·­Ò³
+//	 * ç¿»é¡µ
 //	 * 
 //	 * @param page
 //	 */
@@ -597,19 +597,19 @@
 //	public void computeScroll() {
 //		super.computeScroll();
 //
-//		// ÏÈÅĞ¶ÏmScroller¹ö¶¯ÊÇ·ñÍê³É
+//		// å…ˆåˆ¤æ–­mScrolleræ»šåŠ¨æ˜¯å¦å®Œæˆ
 //		if (mScroller.computeScrollOffset()) {
 //
-//			// ÕâÀïµ÷ÓÃViewµÄscrollTo()Íê³ÉÊµ¼ÊµÄ¹ö¶¯
+//			// è¿™é‡Œè°ƒç”¨Viewçš„scrollTo()å®Œæˆå®é™…çš„æ»šåŠ¨
 //			scrollTo(0, mScroller.getCurrY());
-//			// ±ØĞëµ÷ÓÃ¸Ã·½·¨£¬·ñÔò²»Ò»¶¨ÄÜ¿´µ½¹ö¶¯Ğ§¹û
+//			// å¿…é¡»è°ƒç”¨è¯¥æ–¹æ³•ï¼Œå¦åˆ™ä¸ä¸€å®šèƒ½çœ‹åˆ°æ»šåŠ¨æ•ˆæœ
 //			postInvalidate();
 //		}
 //		super.computeScroll();
 //	}
 //
 //	/**
-//	 * ¹â±êÒÆ¶¯ µ½´ïºó Óë¿Ø¼şÍ¬Ê±·Å´ó
+//	 * å…‰æ ‡ç§»åŠ¨ åˆ°è¾¾å ä¸æ§ä»¶åŒæ—¶æ”¾å¤§
 //	 */
 //	private void moveCover(View item) {
 //
@@ -629,7 +629,7 @@
 //	}
 //
 //	/**
-//	 * »¹Ô­¿Ø¼ş×´Ì¬
+//	 * è¿˜åŸæ§ä»¶çŠ¶æ€
 //	 */
 //
 //	private void returnCover(View item) {
@@ -677,13 +677,13 @@
 //	}
 //
 //	/**
-//	 * Ö¸¶¨¹â±êÏà¶ÔÎ»ÖÃ
+//	 * æŒ‡å®šå…‰æ ‡ç›¸å¯¹ä½ç½®
 //	 */
 //	private void setBorderParams(View item) {
 //		cursor.clearAnimation();
 //		cursor.setVisibility(View.VISIBLE);
 //
-//		// ÅĞ¶ÏÀàĞÍ
+//		// åˆ¤æ–­ç±»å‹
 //
 //		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) item
 //				.getLayoutParams();
@@ -722,7 +722,7 @@
 //		private RecyclerListener mRecyclerListener;
 //
 //		public void recycleSingleView(View scrapView) {
-//			// Ïú»ÙÍ¼Æ¬
+//			// é”€æ¯å›¾ç‰‡
 //			if (scrapView instanceof ImageView) {
 //				Drawable front = ((ImageView) scrapView).getDrawable();
 //				if (front != null && front instanceof BitmapDrawable) {
@@ -787,8 +787,8 @@
 //	public class AdapterDataSetObservable extends DataSetObservable {
 //		@Override
 //		public void notifyChanged() {
-//			// Êı¾İ¸Ä±ä ÈôÒÑ·­ÖÁÄ©¶Ë ÔòÁ¢¼´µ÷ÓÃaddNewItems
-//			Log.i(VIEW_LOG_TAG, "ÊÕµ½Êı¾İ¸Ä±äÍ¨Öª");
+//			// æ•°æ®æ”¹å˜ è‹¥å·²ç¿»è‡³æœ«ç«¯ åˆ™ç«‹å³è°ƒç”¨addNewItems
+//			Log.i(VIEW_LOG_TAG, "æ”¶åˆ°æ•°æ®æ”¹å˜é€šçŸ¥");
 //
 //			if ((itemIds.size() - selectIndex) < screenMaxRow) {
 //				canAdd = false;

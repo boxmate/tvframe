@@ -41,7 +41,7 @@ public class TvBitmapActivity extends Activity {
 	}
 	
 	/**
-	 * Ò»ĞĞ´úÂëÍê³É¼ÓÔØ  ´ËURLÀ´Ô´ÍøÂç ÈçÊ§Ğ§ÀÍ·³×ÔĞĞÌæ»»
+	 * ä¸€è¡Œä»£ç å®ŒæˆåŠ è½½  æ­¤URLæ¥æºç½‘ç»œ å¦‚å¤±æ•ˆåŠ³çƒ¦è‡ªè¡Œæ›¿æ¢
 	 * @param v
 	 */
 	public void loadImage(View v){

@@ -30,9 +30,9 @@ import org.apache.http.HttpEntity;
 import org.apache.http.message.BasicHeader;
 
 /**
- * ?????? http://blog.rafaelccsanches.com/2011/01/29/upload-using-multipart-post-
- * using-httpclient-in-android/  ??挎?ヤ富涔?...   :)
- * @author michael yang 锛?www.yangfuhai.com锛?
+ * 参考 http://blog.rafaelsanches.com/2011/01/29/upload-using-multipart-post-
+ * using-httpclient-in-android/  拿来主义...   :)
+ * @author michael yang （www.yangfuhai.com）
  */
 class MultipartEntity implements HttpEntity {
 	

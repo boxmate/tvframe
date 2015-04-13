@@ -140,7 +140,7 @@
 //						int nextPage=Integer.parseInt(focusTagNext);
 //						if (nextPage>0&& !scollFlag
 //								&& mScroller.isFinished()) {
-//							// ÏÈÇå³ı°´Å¥¶¯»­
+//							// å…ˆæ¸…é™¤æŒ‰é’®åŠ¨ç”»
 //							scollFlag = true;
 //							Message msg = handler.obtainMessage();
 //							msg.obj = nextPage-1;
@@ -172,7 +172,7 @@
 //	}
 //
 //	/**
-//	 * µ÷ÓÃ´Ë·½·¨¹ö¶¯µ½Ä¿±êÎ»ÖÃ
+//	 * è°ƒç”¨æ­¤æ–¹æ³•æ»šåŠ¨åˆ°ç›®æ ‡ä½ç½®
 //	 * 
 //	 * @param fx
 //	 * @param fy
@@ -184,21 +184,21 @@
 //	}
 //
 //	/**
-//	 * µ÷ÓÃ´Ë·½·¨ÉèÖÃ¹ö¶¯µÄÏà¶ÔÆ«ÒÆ
+//	 * è°ƒç”¨æ­¤æ–¹æ³•è®¾ç½®æ»šåŠ¨çš„ç›¸å¯¹åç§»
 //	 * 
 //	 * @param dx
 //	 * @param dy
 //	 */
 //	public void smoothScrollBy(int dx, int dy) {
 //
-//		// ÉèÖÃmScrollerµÄ¹ö¶¯Æ«ÒÆÁ¿
+//		// è®¾ç½®mScrollerçš„æ»šåŠ¨åç§»é‡
 //		mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), dx,
 //				dy);
 //		invalidate();
 //	}
 //
 //	/**
-//	 * Ìø×ªÖÁÖ¸¶¨Ò³Ãæ
+//	 * è·³è½¬è‡³æŒ‡å®šé¡µé¢
 //	 * 
 //	 * @param page
 //	 */
@@ -292,12 +292,12 @@
 //	public void computeScroll() {
 //		super.computeScroll();
 //
-//		// ÏÈÅĞ¶ÏmScroller¹ö¶¯ÊÇ·ñÍê³É
+//		// å…ˆåˆ¤æ–­mScrolleræ»šåŠ¨æ˜¯å¦å®Œæˆ
 //		if (mScroller.computeScrollOffset()) {
 //
-//			// ÕâÀïµ÷ÓÃViewµÄscrollTo()Íê³ÉÊµ¼ÊµÄ¹ö¶¯
+//			// è¿™é‡Œè°ƒç”¨Viewçš„scrollTo()å®Œæˆå®é™…çš„æ»šåŠ¨
 //			scrollTo(0, mScroller.getCurrY());
-//			// ±ØĞëµ÷ÓÃ¸Ã·½·¨£¬·ñÔò²»Ò»¶¨ÄÜ¿´µ½¹ö¶¯Ğ§¹û
+//			// å¿…é¡»è°ƒç”¨è¯¥æ–¹æ³•ï¼Œå¦åˆ™ä¸ä¸€å®šèƒ½çœ‹åˆ°æ»šåŠ¨æ•ˆæœ
 //			postInvalidate();
 //		}
 //		super.computeScroll();

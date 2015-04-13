@@ -34,31 +34,31 @@ public class TvTabHostActivity extends FragmentActivity {
 	private void loadFrag() {
 
 		/**
-		 * Ìí¼ÓÒ³Ãæ
+		 * æ·»åŠ é¡µé¢
 		 */
 		TvTabHost tth_container = (TvTabHost) findViewById(R.id.tth_container);
 		tth_container.addPage(getSupportFragmentManager(), new FragmentA(),
-				"Ê×Ò³");
+				"é¦–é¡µ");
 		tth_container.addPage(getSupportFragmentManager(), new FragmentB(),
-				"ÖĞÒ³");
+				"ä¸­é¡µ");
 		tth_container.addPage(getSupportFragmentManager(), new FragmentC(),
-				"Î²Ò³");
+				"å°¾é¡µ");
 		tth_container.buildLayout();
 		
 		/**
-		 * Éè¼àÌı
+		 * è®¾ç›‘å¬
 		 */
 		tth_container.setOnPageChangeListener(new ScrollPageChangerListener() {
 			
 			@Override
 			public void onPageSelected(int pageCurrent) {
 				
-				Log.i(TAG, "µÚ "+(pageCurrent+1)+" Ò³");
+				Log.i(TAG, "ç¬¬ "+(pageCurrent+1)+" é¡µ");
 				
 			}
 		});
 		/**
-		 * Ò³ÃæÌø×ª
+		 * é¡µé¢è·³è½¬
 		 */
 		tth_container.setCurrentPage(0);
 	}

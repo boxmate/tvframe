@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ��??���娴�? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang 锟斤拷??э拷锟藉ù锟? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,9 @@ public class Utils {
 
     private static long[] sCrcTable = new long[256];
     /**
-	 * ��ȡ����ʹ�õĻ���Ŀ¼
+	 * 获取可以使用的缓存目录
 	 * @param context
-	 * @param uniqueName Ŀ¼����
+	 * @param uniqueName 目录名称
 	 * @return
 	 */
     public static File getDiskCacheDir(Context context, String uniqueName) {
@@ -46,7 +46,7 @@ public class Utils {
   
 
     /**
-     * ��ȡbitmap���ֽڴ�С
+     * 获取bitmap的字节大小
      * @param bitmap
      * @return
      */
@@ -56,7 +56,7 @@ public class Utils {
 
 
     /**
-     * ��ȡ�����ⲿ�Ļ���Ŀ¼
+     * 获取程序外部的缓存目录
      * @param context
      * @return
      */
@@ -66,7 +66,7 @@ public class Utils {
     }
 
     /**
-     * ��ȡ�ļ�·���ռ��С
+     * 获取文件路径空间大小
      * @param path
      * @return
      */
@@ -75,7 +75,7 @@ public class Utils {
     		 final StatFs stats = new StatFs(path.getPath());
     	     return (long) stats.getBlockSize() * (long) stats.getAvailableBlocks();
     	}catch (Exception e) {
-			Log.e(TAG, "��峰��? sdcard �?��??�澶??�� ���?��???��?????��?���?AndroidManifest.xml ������娣�?����??�?sdcard����?????��������");
+			Log.e(TAG, "锟斤拷宄帮拷锟? sdcard 缂?锟界??锟芥径??锟斤拷 锟斤拷娲?锟斤拷???锟界?????锟姐?э拷锟?AndroidManifest.xml 锟斤拷锟斤拷锟斤拷濞ｈ?诧拷锟芥??锟?sdcard锟斤拷锟界?????锟斤拷锟斤拷锟斤拷锟斤拷");
 			e.printStackTrace();
 			return -1;
 		}
@@ -118,7 +118,7 @@ public class Utils {
     
     
     static {
-        //������ http://bioinf.cs.ucl.ac.uk/downloads/crc64/crc64.c
+        //锟斤拷锟斤拷锟斤拷 http://bioinf.cs.ucl.ac.uk/downloads/crc64/crc64.c
         long part;
         for (int i = 0; i < 256; i++) {
             part = i;

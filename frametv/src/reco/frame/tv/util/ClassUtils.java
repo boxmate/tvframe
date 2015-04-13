@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ï¿½ï¿½??§ï¿½ï¿½å¨´ï¿? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang é”Ÿæ–¤æ‹·??Ñæ‹·é”Ÿè—‰Ã¹é”Ÿ? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,14 +33,14 @@ public class ClassUtils {
 	
 	
 	/**
-	 * ¸ù¾İÊµÌåÀà »ñµÃ ÊµÌåÀà¶ÔÓ¦µÄ±íÃû
+	 * æ ¹æ®å®ä½“ç±» è·å¾— å®ä½“ç±»å¯¹åº”çš„è¡¨å
 	 * @param entity
 	 * @return
 	 */
 	public static String getTableName(Class<?> clazz) {
 		Table table = clazz.getAnnotation(Table.class);
 		if(table == null || table.name().trim().length() == 0 ){
-			//è¤°ï¿½å¨????ï¿½ï¿½å¨???¨Ğ?ï¿½ï¿½ï¿½ï¿½ï¿½è·ºï¿½ï¿½æ¦?ï¿½ç?????ï¿½ã?§è??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç»?é¢?ï¿½ï¿½æ¶?é¸¿ã??ï¿½ï¿½ï¿?,éª???µï¿½ï¿½ï¿½ï¿½ç?¸ï¿½ï¿?.???ï¿½ï¿½ï¿½æ??ï¿½ï¿½æ¶?è½°ï¿½ï¿½ï¿½ï¿½ï¿½ç»¾ï¿½(_)
+			//å½“æ²¡æœ‰æ³¨è§£çš„æ—¶å€™é»˜è®¤ç”¨ç±»çš„åç§°ä½œä¸ºè¡¨å,å¹¶æŠŠç‚¹ï¼ˆ.ï¼‰æ›¿æ¢ä¸ºä¸‹åˆ’çº¿(_)
 			return clazz.getName().replace('.', '_');
 		}
 		return table.name();
@@ -51,7 +51,7 @@ public class ClassUtils {
 	}
 	
 	/**
-	 * ¸ù¾İÊµÌåÀà »ñµÃ ÊµÌåÀà¶ÔÓ¦µÄ±íÃû
+	 * æ ¹æ®å®ä½“ç±» è·å¾— å®ä½“ç±»å¯¹åº”çš„è¡¨å
 	 * @param entity
 	 * @return
 	 */
@@ -62,7 +62,7 @@ public class ClassUtils {
 			Id idAnnotation = null ;
 			Field idField = null ;
 			
-			for(Field field : fields){ //ï¿½ï¿½å³°ï¿½ï¿?IDå¨???¨Ğ?
+			for(Field field : fields){ //è·å–IDæ³¨è§£
 				idAnnotation = field.getAnnotation(Id.class);
 				if(idAnnotation != null){
 					idField = field;
@@ -70,11 +70,11 @@ public class ClassUtils {
 				}
 			}
 			
-			if(idAnnotation != null){ //ï¿½ï¿½ï¿?IDå¨???¨Ğ?
+			if(idAnnotation != null){ //æœ‰IDæ³¨è§£
 				primaryKey = idAnnotation.column();
 				if(primaryKey == null || primaryKey.trim().length() == 0)
 					primaryKey = idField.getName();
-			}else{ //å¨????ï¿½ï¿½IDå¨???¨Ğ?,æ¦?ï¿½ç?????ï¿½ç??ï¿½ï¿½ _id ï¿½ï¿½ï¿? id æ¶?è½°å??ï¿½ï¿½ï¿½é??ï¿½æµ¼ï¿½ï¿½ï¿½ï¿½??µç??ï¿½ï¿½ _id
+			}else{ //æ²¡æœ‰IDæ³¨è§£,é»˜è®¤å»æ‰¾ _id å’Œ id ä¸ºä¸»é”®ï¼Œä¼˜å…ˆå¯»æ‰¾ _id
 				for(Field field : fields){
 					if("_id".equals(field.getName()))
 						return "_id";
@@ -93,7 +93,7 @@ public class ClassUtils {
 	
 	
 	/**
-	 * ¸ù¾İÊµÌåÀà »ñµÃ ÊµÌåÀà¶ÔÓ¦µÄ±íÃû
+	 * æ ¹æ®å®ä½“ç±» è·å¾— å®ä½“ç±»å¯¹åº”çš„è¡¨å
 	 * @param entity
 	 * @return
 	 */
@@ -102,14 +102,14 @@ public class ClassUtils {
 		Field[] fields = clazz.getDeclaredFields();
 		if(fields != null){
 			
-			for(Field field : fields){ //ï¿½ï¿½å³°ï¿½ï¿?IDå¨???¨Ğ?
+			for(Field field : fields){ //è·å–IDæ³¨è§£
 				if(field.getAnnotation(Id.class) != null){
 					primaryKeyField = field;
 					break;
 				}
 			}
 			
-			if(primaryKeyField == null){ //å¨????ï¿½ï¿½IDå¨???¨Ğ?
+			if(primaryKeyField == null){ //æ²¡æœ‰IDæ³¨è§£
 				for(Field field : fields){
 					if("_id".equals(field.getName())){
 						primaryKeyField = field;
@@ -118,7 +118,7 @@ public class ClassUtils {
 				}
 			}
 			
-			if(primaryKeyField == null){ // æ¿¡ï¿½ï¿½ï¿½ï¿½å?????ï¿½ï¿½_idï¿½ï¿½ï¿½ç??ï¿½å??ï¿?
+			if(primaryKeyField == null){  // å¦‚æœæ²¡æœ‰_idçš„å­—æ®µ
 				for(Field field : fields){
 					if("id".equals(field.getName())){
 						primaryKeyField = field;
@@ -135,7 +135,7 @@ public class ClassUtils {
 	
 	
 	/**
-	 * ¸ù¾İÊµÌåÀà »ñµÃ ÊµÌåÀà¶ÔÓ¦µÄ±íÃû
+	 * æ ¹æ®å®ä½“ç±» è·å¾— å®ä½“ç±»å¯¹åº”çš„è¡¨å
 	 * @param entity
 	 * @return
 	 */
@@ -147,10 +147,10 @@ public class ClassUtils {
 	
 	
 	/**
-	 * ½«¶ÔÏó×ª»»ÎªContentValues
+	 * å°†å¯¹è±¡è½¬æ¢ä¸ºContentValues
 	 * 
 	 * @param entity
-	 * @param selective ÊÇ·ñºöÂÔ ÖµÎªnullµÄ×Ö¶Î
+	 * @param selective æ˜¯å¦å¿½ç•¥ å€¼ä¸ºnullçš„å­—æ®µ
 	 * @return
 	 */
 	public static List<Property> getPropertyList(Class<?> clazz) {
@@ -160,11 +160,11 @@ public class ClassUtils {
 			Field[] fs = clazz.getDeclaredFields();
 			String primaryKeyFieldName = getPrimaryKeyFieldName(clazz);
 			for (Field f : fs) {
-				//è¹?ï¿½æ¤¤ç»?ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ç»?è¯²ï¿½ï¿½ï¿½ï¿½ï¿½å¨????ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??µï¿½ï¿½ï¿½ï¿½ï¿½???ï¿½å??ï¿?
+				//å¿…é¡»æ˜¯åŸºæœ¬æ•°æ®ç±»å‹å’Œæ²¡æœ‰æ ‡ç¬æ—¶æ€çš„å­—æ®µ
 				if(!FieldUtils.isTransient(f)){
 					if (FieldUtils.isBaseDateType(f)) {
 						
-						if(f.getName().equals(primaryKeyFieldName)) //??©ï¿½å©????å¯?ï¿½ï¿½ï¿?
+						if(f.getName().equals(primaryKeyFieldName)) //è¿‡æ»¤ä¸»é”®
 							continue;
 						
 						Property property = new Property();
@@ -189,10 +189,10 @@ public class ClassUtils {
 	
 	
 	/**
-	 * ½«¶ÔÏó×ª»»ÎªContentValues
+	 * å°†å¯¹è±¡è½¬æ¢ä¸ºContentValues
 	 * 
 	 * @param entity
-	 * @param selective ÊÇ·ñºöÂÔ ÖµÎªnullµÄ×Ö¶Î
+	 * @param selective æ˜¯å¦å¿½ç•¥ å€¼ä¸ºnullçš„å­—æ®µ
 	 * @return
 	 */
 	public static List<ManyToOne> getManyToOneList(Class<?> clazz) {
@@ -204,7 +204,7 @@ public class ClassUtils {
 				if (!FieldUtils.isTransient(f) && FieldUtils.isManyToOne(f)) {
 					
 					ManyToOne mto = new ManyToOne();
-                    //æ¿¡ï¿½ï¿½ï¿½ï¿½ç»«è¯²ï¿½ï¿½æ??ï¿?ManyToOneLazyLoaderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç»?ï¿½æ??ï¿½æ??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¢?ï¿½ï¿½æ¶?ï¿?manyClass???ï¿½æ??ï¿½ï¿½ï¿½ç?°ï¿½ï¿½æµ£ï¿½é??ï¿? 2013-7-26
+					//å¦‚æœç±»å‹ä¸ºManyToOneLazyLoaderåˆ™å–ç¬¬äºŒä¸ªå‚æ•°ä½œä¸ºmanyClassï¼ˆä¸€æ–¹å®ä½“ï¼‰ 
                     if(f.getType()==ManyToOneLazyLoader.class){
                         Class<?> pClazz = (Class<?>)((ParameterizedType)f.getGenericType()).getActualTypeArguments()[1];
                         if(pClazz!=null)
@@ -229,10 +229,10 @@ public class ClassUtils {
 	
 	
 	/**
-	 * ½«¶ÔÏó×ª»»ÎªContentValues
+	 * å°†å¯¹è±¡è½¬æ¢ä¸ºContentValues
 	 * 
 	 * @param entity
-	 * @param selective ÊÇ·ñºöÂÔ ÖµÎªnullµÄ×Ö¶Î
+	 * @param selective æ˜¯å¦å¿½ç•¥ å€¼ä¸ºnullçš„å­—æ®µ
 	 * @return
 	 */
 	public static List<OneToMany> getOneToManyList(Class<?> clazz) {
@@ -252,7 +252,7 @@ public class ClassUtils {
 					
 					if(type instanceof ParameterizedType){
 						ParameterizedType pType = (ParameterizedType) f.getGenericType();
-                        //æ¿¡ï¿½ï¿½ï¿½ï¿½ç»«è¯²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¢?è´?2ï¿½ï¿½ï¿½ç?????è´?ï¿½ï¿½ï¿?LazyLoader 2013-7-25
+						//å¦‚æœç±»å‹å‚æ•°ä¸º2åˆ™è®¤ä¸ºæ˜¯LazyLoader
                         if(pType.getActualTypeArguments().length==1){
 						    Class<?> pClazz = (Class<?>)pType.getActualTypeArguments()[0];
 						    if(pClazz!=null)
@@ -265,7 +265,7 @@ public class ClassUtils {
 					}else{
 						throw new DbException("getOneToManyList Exception:"+f.getName()+"'s type is null");
 					}
-					/*æ·?ï¿½å??ï½?è¢?ï¿½ï¿½ï¿½ç?§ï¿½ï¿½ï¿½å¥¸ï¿½ï¿½ç??ï¿½ï¿½ï¿½ï¿½bug???ï¿?f.getClass??©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?Filed*/
+					//ä¿®æ­£ç±»å‹èµ‹å€¼é”™è¯¯çš„bugï¼Œf.getClassè¿”å›çš„æ˜¯Filed
 					otm.setDataType(f.getType());
 					otm.setSet(FieldUtils.getFieldSetMethod(clazz, f));
 					otm.setGet(FieldUtils.getFieldGetMethod(clazz, f));
