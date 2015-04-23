@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ï¿½ï¿½??ï¿½? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,21 +15,46 @@
  */
 package reco.frame.tv.bitmap.core;
 
+import reco.frame.tv.R;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.animation.Animation;
 
 public class BitmapDisplayConfig {
-	
-	
+
+	private Context mContext;
 	private int bitmapWidth;
 	private int bitmapHeight;
-	
+
 	private Animation animation;
-	
+
 	private int animationType;
 	private Bitmap loadingBitmap;
 	private Bitmap loadfailBitmap;
-	
+	private int loadingRes;
+	private int loadingFailRes;
+
+	public BitmapDisplayConfig(Context context) {
+		this.mContext = context;
+	}
+
+	public int getLoadingRes() {
+		return loadingRes;
+	}
+
+	public void setLoadingRes(int loadingRes) {
+		this.loadingRes = loadingRes;
+	}
+
+	public int getLoadingFailRes() {
+		return loadingFailRes;
+	}
+
+	public void setLoadingFailRes(int loadingFailRes) {
+		this.loadingFailRes = loadingFailRes;
+	}
 
 	public int getBitmapWidth() {
 		return bitmapWidth;
@@ -79,8 +104,7 @@ public class BitmapDisplayConfig {
 		this.loadfailBitmap = loadfailBitmap;
 	}
 
-	
-	public class AnimationType{
+	public class AnimationType {
 		public static final int userDefined = 0;
 		public static final int fadeIn = 1;
 	}

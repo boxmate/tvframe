@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang ??¨ç??æµ? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang ??ï¿½ï¿½??ï¿½? (www.yangfuhai.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ import android.graphics.Bitmap;
 
 public class BitmapCache {
 	
-	//Ä¬ÈÏµÄÄÚ´æ»º´æ´óĞ¡
+	//é»˜è®¤çš„å†…å­˜ç¼“å­˜å¤§å°
     private static final int DEFAULT_MEM_CACHE_SIZE = 1024 * 1024 * 8; // 8MB
 
-    //Ä¬ÈÏµÄ´ÅÅÌ»º´æ´óĞ¡
+    //é»˜è®¤çš„ç£ç›˜ç¼“å­˜å¤§å°
     private static final int DEFAULT_DISK_CACHE_SIZE = 1024 * 1024 * 50; // 50MB
-    private static final int DEFAULT_DISK_CACHE_COUNT = 1000 * 10 ; // ç¼?å­??????¾ç????°é??
+    private static final int DEFAULT_DISK_CACHE_COUNT = 1000 * 10 ; // ç¼“å­˜çš„å›¾ç‰‡æ•°é‡
 
-    //BitmapCacheµÄÒ»Ğ©Ä¬ÈÏÅäÖÃ
+    //BitmapCacheçš„ä¸€äº›é»˜è®¤é…ç½®
     private static final boolean DEFAULT_MEM_CACHE_ENABLED = true;
     private static final boolean DEFAULT_DISK_CACHE_ENABLED = true;
 
@@ -51,22 +51,22 @@ public class BitmapCache {
 
 
     /**
-     * ³õÊ¼»¯ Í¼Æ¬»º´æ
+     * åˆå§‹åŒ– å›¾ç‰‡ç¼“å­˜
      * @param cacheParams
      */
     private void init(ImageCacheParams cacheParams) {
         mCacheParams = cacheParams;
 
-        // ???????????¨å??å­?ç¼?å­?
+        // æ˜¯å¦å¯ç”¨å†…å­˜ç¼“å­˜
         if (mCacheParams.memoryCacheEnabled) {
-        	//??????ç«???³å????¶å??å­?
+        	//æ˜¯å¦ç«‹å³å›æ”¶å†…å­˜
         	if(mCacheParams.recycleImmediately) 
         		mMemoryCache = new SoftMemoryCacheImpl(mCacheParams.memCacheSize);
         	else
         		mMemoryCache = new BaseMemoryCacheImpl(mCacheParams.memCacheSize);
         }
 
-        // ????????????sdcardç¼?å­?
+        // æ˜¯å¦å¯ç”¨sdcardç¼“å­˜
         if (cacheParams.diskCacheEnabled) {
         	try {
         		String path = mCacheParams.diskCacheDir.getAbsolutePath();
@@ -79,9 +79,9 @@ public class BitmapCache {
 
 
     /**
-     * Ìí¼ÓÍ¼Æ¬µ½ÄÚ´æ»º´æÖĞ
-     * @param url Url µØÖ·
-     * @param bitmap Í¼Æ¬Êı¾İ
+     * æ·»åŠ å›¾ç‰‡åˆ°å†…å­˜ç¼“å­˜ä¸­
+     * @param url Url åœ°å€
+     * @param bitmap å›¾ç‰‡æ•°æ®
      */
     public void addToMemoryCache(String url, Bitmap bitmap) {
         if (url == null || bitmap == null) {
@@ -91,9 +91,9 @@ public class BitmapCache {
     }
     
     /**
-     * Ìí¼Ó Êı¾İµ½sdcard»º´æÖĞ
-     * @param url urlµØÖ·
-     * @param data Êı¾İĞÅÏ¢
+     * æ·»åŠ  æ•°æ®åˆ°sdcardç¼“å­˜ä¸­
+     * @param url urlåœ°å€
+     * @param data æ•°æ®ä¿¡æ¯
      */
     public void addToDiskCache(String url, byte[] data) {
         if (mDiskCache == null || url == null || data == null) {
@@ -116,10 +116,10 @@ public class BitmapCache {
     }
     
     /**
-     * ´ÓsdcardÖĞ»ñÈ¡ÄÚ´æ»º´æ
-     * @param url Í¼Æ¬urlµØÖ·
-     * @param buffer Ìî³ä»º´æÇø
-     * @return ÊÇ·ñ»ñµÃÍ¼Æ¬
+     * ä»sdcardä¸­è·å–å†…å­˜ç¼“å­˜
+     * @param url å›¾ç‰‡urlåœ°å€
+     * @param buffer å¡«å……ç¼“å­˜åŒº
+     * @return æ˜¯å¦è·å¾—å›¾ç‰‡
      */
     public boolean getImageData(String url, BytesBuffer buffer){
     	if(mDiskCache == null)
@@ -148,7 +148,7 @@ public class BitmapCache {
     }
 
     /**
-     * ´ÓÄÚ´æ»º´æÖĞ»ñÈ¡bitmap.
+     * ä»å†…å­˜ç¼“å­˜ä¸­è·å–bitmap.
      */
     public Bitmap getBitmapFromMemoryCache(String data) {
         if (mMemoryCache != null)
@@ -157,7 +157,7 @@ public class BitmapCache {
     }
 
     /**
-     * Çå¿ÕÄÚ´æ»º´æºÍsdcard»º´æ
+     * æ¸…ç©ºå†…å­˜ç¼“å­˜å’Œsdcardç¼“å­˜
      */
     public void clearCache() {
     	clearMemoryCache();
@@ -201,7 +201,7 @@ public class BitmapCache {
     
     
     /**
-     * Image cache µÄÅäÖÃĞÅÏ¢.
+     * Image cache çš„é…ç½®ä¿¡æ¯.
      */
     public static class ImageCacheParams {
         public int memCacheSize = DEFAULT_MEM_CACHE_SIZE;
@@ -222,9 +222,9 @@ public class BitmapCache {
         }
 
         /**
-         * ÉèÖÃ»º´æ´óĞ¡ 
+         * è®¾ç½®ç¼“å­˜å¤§å° 
          * @param context
-         * @param percent °Ù·Ö±È£¬ÖµµÄ·¶Î§ÊÇÔÚ 0.05 µ½ 0.8Ö®¼ä
+         * @param percent ç™¾åˆ†æ¯”ï¼Œå€¼çš„èŒƒå›´æ˜¯åœ¨ 0.05 åˆ° 0.8ä¹‹é—´
          */
         public void setMemCacheSizePercent(Context context, float percent) {
             if (percent < 0.05f || percent > 0.8f) {

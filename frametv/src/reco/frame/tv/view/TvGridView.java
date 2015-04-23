@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObservable;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -33,6 +32,7 @@ public class TvGridView extends RelativeLayout {
 	 * 光标
 	 */
 	private ImageView cursor;
+	private int cursorId;
 	/**
 	 * 光标资源
 	 */
@@ -128,7 +128,7 @@ public class TvGridView extends RelativeLayout {
 	 * item真实宽高 包括纵横间距
 	 */
 	private int rowWidth, rowHeight;
-	private Map<Integer, Integer> itemIds;
+	private SparseArray<Integer> itemIds;
 
 	private OnItemSelectListener onItemSelectListener;
 	private OnItemClickListener onItemClickListener;
@@ -139,6 +139,7 @@ public class TvGridView extends RelativeLayout {
 	private WindowManager wm;
 	private Scroller mScroller;
 	private boolean isInit = true;
+	private boolean canAdd = true;
 
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
@@ -237,7 +238,8 @@ public class TvGridView extends RelativeLayout {
 	}
 
 	private void init() {
-		itemIds = new HashMap<Integer, Integer>();
+
+		itemIds = new SparseArray<Integer>();
 		mScroller = new Scroller(getContext());
 
 		wm = (WindowManager) getContext().getSystemService(
@@ -272,7 +274,11 @@ public class TvGridView extends RelativeLayout {
 	private void clear() {
 		itemIds.clear();
 		this.removeAllViews();
-		// this.removeAllViewsInLayout();
+		this.clearDisappearingChildren();
+		this.destroyDrawingCache();
+		mScroller.setFinalY(0);
+		parentLayout = false;
+		currentChildCount = 0;
 	}
 
 	/**
@@ -281,7 +287,6 @@ public class TvGridView extends RelativeLayout {
 	public void initGridView() {
 		// 重设参数
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) getLayoutParams();
-
 		RelativeLayout.LayoutParams newParams = new RelativeLayout.LayoutParams(
 				params.width, params.height);
 		this.setPadding((int) (boarderLeft * scale),
@@ -297,10 +302,7 @@ public class TvGridView extends RelativeLayout {
 
 	}
 
-	private boolean canAdd = true;
-
 	private void initItems() {
-
 		// 避免冲突
 		if (getChildCount() > 0) {
 			return;
@@ -309,9 +311,9 @@ public class TvGridView extends RelativeLayout {
 		int screenHeight = wm.getDefaultDisplay().getHeight();
 		int initRows = screenHeight % rowHeight == 0 ? screenHeight / rowHeight
 				: screenHeight / rowHeight + 1;
-		// Log.e(VIEW_LOG_TAG, "screenRows"+initRows);
-		int initLength = Math.min(adapter.getCount(), initRows * 2 * columns);
 
+		int initLength = Math.min(adapter.getCount(), initRows * 2 * columns);
+		Log.e(VIEW_LOG_TAG, "---" + initLength);
 		for (int i = 0; i < initLength; i++) {
 			int left = (i % columns) * (itemWidth + spaceHori);
 			int top = (i / columns) * (spaceVert + itemHeight);
@@ -339,7 +341,8 @@ public class TvGridView extends RelativeLayout {
 				: itemIds.size() / columns + 1;
 
 		cursor = new ImageView(getContext());
-		cursor.setId(TvConfig.buildId());
+		cursorId = TvConfig.buildId();
+		cursor.setId(cursorId);
 		cursor.setBackgroundResource(cursorRes);
 		this.addView(cursor);
 		cursor.setVisibility(View.INVISIBLE);
@@ -355,11 +358,13 @@ public class TvGridView extends RelativeLayout {
 	}
 
 	private void addNewItems() {
+
 		currentChildCount = getChildCount();
-		// Log.e(VIEW_LOG_TAG, "添加数据" + currentChildCount);
 		parentLayout = false;
 		int start = itemIds.size();
-		int end = Math.min(start + screenMaxRow * 2, adapter.getCount());
+		int end = Math.min(start + screenMaxRow * columns * 2,
+				adapter.getCount());
+
 		for (int i = start; i < end; i++) {
 			int left = (i % columns) * (itemWidth + spaceHori);
 			int top = (i / columns) * (spaceVert + itemHeight);
@@ -453,8 +458,8 @@ public class TvGridView extends RelativeLayout {
 		 * 根据childView计算的出的宽和高，以及设置的margin计算容器的宽和高，主要用于容器是warp_content时
 		 */
 
-		// Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
-		// + cCount);
+		Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
+				+ cCount + "---" + parentLayout);
 		for (int i = currentChildCount; i < cCount; i++) {
 			View childView = getChildAt(i);
 			cWidth = childView.getMeasuredWidth();
@@ -464,7 +469,6 @@ public class TvGridView extends RelativeLayout {
 			// 上面两个childView
 			width += cWidth + cParams.leftMargin + cParams.rightMargin;
 			height += cHeight + cParams.topMargin + cParams.bottomMargin;
-
 		}
 
 		/**
@@ -497,27 +501,34 @@ public class TvGridView extends RelativeLayout {
 			 * 遍历所有childView根据其宽和高，以及margin进行布局
 			 */
 			int start = currentChildCount;
-			// Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount +
-			// "---cCount="
-			// + cCount);
+//			Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount + "----"
+//					+ itemIds.size());
 			for (int i = start; i < cCount; i++) {
-				View childView = getChildAt(i);
+
 				// 跳过光标子项
 				int index = i;
 				if (currentChildCount != 0) {
 					index = i - 1;
 				}
-				cWidth = childView.getMeasuredWidth();
-				cHeight = childView.getMeasuredHeight();
 
-				int cl = 0, ct = 0, cr = 0, cb = 0;
-				cl = (index % columns) * (itemWidth + spaceHori);
-				ct = (index / columns) * (spaceVert + itemHeight);
+				View childView = findViewById(itemIds.keyAt(index));
+				if (childView != null) {
+//					Log.e(VIEW_LOG_TAG, "index" + index);
+//					Log.e(VIEW_LOG_TAG, cursorId + "---" + childView.getId()
+//							+ "---" + itemIds.keyAt(index));
+					cWidth = childView.getMeasuredWidth();
+					cHeight = childView.getMeasuredHeight();
 
-				cr = cl + cWidth;
-				cb = cHeight + ct;
-				childView.layout(cl + paddingLeft, ct + paddingTop, cr
-						+ paddingLeft, cb + paddingTop);
+					int cl = 0, ct = 0, cr = 0, cb = 0;
+					cl = (index % columns) * (itemWidth + spaceHori);
+					ct = (index / columns) * (spaceVert + itemHeight);
+
+					cr = cl + cWidth;
+					cb = cHeight + ct;
+					childView.layout(cl + paddingLeft, ct + paddingTop, cr
+							+ paddingLeft, cb + paddingTop);
+				}
+
 			}
 			screenMaxRow = getHeight() % rowHeight == 0 ? getHeight()
 					/ rowHeight : getHeight() / rowHeight + 1;
@@ -552,6 +563,7 @@ public class TvGridView extends RelativeLayout {
 			}
 
 			View focused = this.findFocus();
+
 			if (focused != null && direction != 0) {
 				View next = focused.focusSearch(direction);
 				// 根据下标算出所在行

@@ -29,11 +29,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 /**
  * 通过对viewpager再加工而成,当前版本只适用多fragment布局
+ * 
  * @author keYence
- *
+ * 
  */
 public class TvTabHost extends RelativeLayout {
 
@@ -106,6 +106,7 @@ public class TvTabHost extends RelativeLayout {
 	 */
 	private boolean isTopFocused = false;
 	private ScrollPageChangerListener scrollPageChangerListener;
+	private OnTopBarFocusChange onTopBarFocusChange;
 	private FragmentManager fragmentManager;
 	private List<Fragment> fragList = new ArrayList<Fragment>();
 	private List<View> titleList;
@@ -205,7 +206,7 @@ public class TvTabHost extends RelativeLayout {
 		tv.setTextSize(ViewUtil.Px2Dp(getContext(), textSize));
 		tv.setText(title);
 		tv.setGravity(Gravity.CENTER);
-		int tempId=TvConfig.buildId();
+		int tempId = TvConfig.buildId();
 		tv.setId(tempId + titleList.size() + 1);
 		idToPages.put(tempId + titleList.size() + 1, titleList.size());
 		tv.setTag(titleList.size());
@@ -215,7 +216,7 @@ public class TvTabHost extends RelativeLayout {
 			@Override
 			public void onFocusChange(final View item, boolean focus) {
 				if (focus) {
-					
+
 					// 翻页
 					int targetPage = Integer.parseInt(item.getTag().toString());
 					// Log.e(TAG,
@@ -265,6 +266,10 @@ public class TvTabHost extends RelativeLayout {
 							isTopFocused = false;
 						}
 
+					}
+					if (onTopBarFocusChange != null) {
+						onTopBarFocusChange.onFocusChange(isTopFocused,
+								pageCurrent);
 					}
 
 				}
@@ -364,18 +369,18 @@ public class TvTabHost extends RelativeLayout {
 		}
 
 	}
-	
-	private void flushTopBar(int position){
-		
+
+	private void flushTopBar(int position) {
+
 		for (int i = 0; i < titleList.size(); i++) {
 			// 变色
-			TextView title=(TextView) titleList.get(i);
-			if (i==position) {
+			TextView title = (TextView) titleList.get(i);
+			if (i == position) {
 				title.setTextColor(textColorSelected);
-			}else{
+			} else {
 				title.setTextColor(textColorDefault);
 			}
-			
+
 		}
 	}
 
@@ -591,8 +596,16 @@ public class TvTabHost extends RelativeLayout {
 		this.scrollPageChangerListener = listener;
 	}
 
+	public void setOnTopBarFocusChangeListener(OnTopBarFocusChange listener) {
+		this.onTopBarFocusChange = listener;
+	}
+
 	public interface ScrollPageChangerListener {
 		public void onPageSelected(int pageCurrent);
+	}
+
+	public interface OnTopBarFocusChange {
+		public void onFocusChange(boolean hasFocus, int postion);
 	}
 
 }

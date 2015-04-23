@@ -379,7 +379,8 @@ public class TvButton extends TextView {
 	 */
 	public void configImageUrl(String url, int loadingRes) {
 
-		TvBitmap.create(getContext()).display(this, url, loadingRes);
+		TvBitmap.create(getContext()).display(this, url,loadingRes);
+		
 
 	}
 

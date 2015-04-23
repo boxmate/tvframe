@@ -133,6 +133,7 @@ public class TvLoadingBar extends RelativeLayout {
 	 * 停止旋转
 	 */
 	public void stopAnim() {
+		if(rotateAnimator!=null)
 		rotateAnimator.cancel();
 	}
 

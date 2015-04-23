@@ -15,6 +15,7 @@ import reco.frame.tv.bitmap.download.Downloader;
 import reco.frame.tv.bitmap.download.SimpleDownloader;
 import reco.frame.tv.core.AsyncTask;
 import reco.frame.tv.util.Utils;
+import android.R;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,38 +41,28 @@ public class TvBitmap {
 
 	private static TvBitmap mTvBitmap;
 
-
 	private TvBitmap(Context context) {
 		mContext = context;
 		mConfig = new TvBitmapConfig(context);
 		configDiskCachePath(Utils.getDiskCacheDir(context, "afinalCache")
 				.getAbsolutePath());// 配置缓存路径
-		configDisplayer(new SimpleDisplayer());////配置显示器
-		configDownlader(new SimpleDownloader());////配置下载器
+		configDisplayer(new SimpleDisplayer());// //配置显示器
+		configDownlader(new SimpleDownloader());// //配置下载器
 	}
 
 	/**
-	 * 创建
+	 * 创建单例
 	 * 
 	 * @param ctx
 	 * @return
 	 */
 	public static synchronized TvBitmap create(Context ctx) {
-		if (mTvBitmap == null) {
+		if (mTvBitmap==null) {
 			mTvBitmap = new TvBitmap(ctx.getApplicationContext());
 		}
 		return mTvBitmap;
 	}
 
-	/**
-	 * 设置统一加载图
-	 * 
-	 * @param bitmap
-	 */
-	public TvBitmap configLoadingImage(Bitmap bitmap) {
-		mConfig.defaultDisplayConfig.setLoadingBitmap(bitmap);
-		return this;
-	}
 
 	/**
 	 * 设置统一加载图
@@ -78,8 +70,7 @@ public class TvBitmap {
 	 * @param bitmap
 	 */
 	public TvBitmap configLoadingImage(int resId) {
-		mConfig.defaultDisplayConfig.setLoadingBitmap(BitmapFactory
-				.decodeResource(mContext.getResources(), resId));
+		mConfig.defaultDisplayConfig.setLoadingRes(resId);
 		return this;
 	}
 
@@ -162,7 +153,8 @@ public class TvBitmap {
 	/**
 	 * 配置内存缓存大小 大于2MB以上有效
 	 * 
-	 * @param size 缓存大小
+	 * @param size
+	 *            缓存大小
 	 */
 	public TvBitmap configMemoryCacheSize(int size) {
 		mConfig.memCacheSize = size;
@@ -230,7 +222,7 @@ public class TvBitmap {
 				if (mConfig.memCacheSize > 1024 * 1024 * 2) {
 					imageCacheParams.setMemCacheSize(mConfig.memCacheSize);
 				} else {
-					//设置默认的内存缓存大小
+					// 设置默认的内存缓存大小
 					imageCacheParams.setMemCacheSizePercent(mContext, 0.3f);
 				}
 			}
@@ -263,13 +255,11 @@ public class TvBitmap {
 		return this;
 	}
 
-
 	public void display(View view, String uri) {
 		doDisplay(view, uri, null);
 	}
 
-	public void display(View view, String uri, int imageWidth,
-			int imageHeight) {
+	public void display(View view, String uri, int imageWidth, int imageHeight) {
 		BitmapDisplayConfig displayConfig = configMap.get(imageWidth + "_"
 				+ imageHeight);
 		if (displayConfig == null) {
@@ -321,8 +311,8 @@ public class TvBitmap {
 		doDisplay(imageView, uri, displayConfig);
 	}
 
-	public void display(View view, String uri, int imageWidth,
-			int imageHeight, Bitmap loadingBitmap, Bitmap laodfailBitmap) {
+	public void display(View view, String uri, int imageWidth, int imageHeight,
+			Bitmap loadingBitmap, Bitmap laodfailBitmap) {
 		BitmapDisplayConfig displayConfig = configMap.get(imageWidth + "_"
 				+ imageHeight + "_" + String.valueOf(loadingBitmap) + "_"
 				+ String.valueOf(laodfailBitmap));
@@ -357,6 +347,7 @@ public class TvBitmap {
 
 		if (displayConfig == null)
 			displayConfig = mConfig.defaultDisplayConfig;
+		
 
 		Bitmap bitmap = null;
 
@@ -374,7 +365,9 @@ public class TvBitmap {
 		} else if (checkImageTask(uri, view)) {
 			final BitmapLoadAndDisplayTask task = new BitmapLoadAndDisplayTask(
 					view, displayConfig);
-			//设置默认图片
+
+
+			// 设置默认图片
 			final AsyncDrawable asyncDrawable = new AsyncDrawable(
 					mContext.getResources(), displayConfig.getLoadingBitmap(),
 					task);
@@ -389,11 +382,10 @@ public class TvBitmap {
 		}
 	}
 
-
 	private HashMap<String, BitmapDisplayConfig> configMap = new HashMap<String, BitmapDisplayConfig>();
 
 	private BitmapDisplayConfig getDisplayConfig() {
-		BitmapDisplayConfig config = new BitmapDisplayConfig();
+		BitmapDisplayConfig config = new BitmapDisplayConfig(mContext);
 		config.setAnimation(mConfig.defaultDisplayConfig.getAnimation());
 		config.setAnimationType(mConfig.defaultDisplayConfig.getAnimationType());
 		config.setBitmapHeight(mConfig.defaultDisplayConfig.getBitmapHeight());
@@ -456,6 +448,7 @@ public class TvBitmap {
 
 	/**
 	 * 从缓存（内存缓存和磁盘缓存）中直接获取bitmap，注意此处有io操作，不可置于ui线程执行
+	 * 
 	 * @param key
 	 * @return
 	 */
@@ -511,7 +504,7 @@ public class TvBitmap {
 
 	/**
 	 * activity onDestroy的时候调用这个方法，释放缓存
-     * 执行过此方法后,TvBitmap的缓存将失效,建议通过TvBitmap.create()获取新的实例
+	 * 执行过此方法后,TvBitmap的缓存将失效,建议通过TvBitmap.create()获取新的实例
 	 * 
 	 * @author fantouch
 	 */
@@ -572,8 +565,7 @@ public class TvBitmap {
 	}
 
 	/**
-	 * 关闭缓存
-     * 执行过此方法后,TvBitmap的缓存已经失效,建议通过TvBitmap.create()获取新的实例
+	 * 关闭缓存 执行过此方法后,TvBitmap的缓存已经失效,建议通过TvBitmap.create()获取新的实例
 	 * 
 	 * @author fantouch
 	 */
@@ -594,7 +586,9 @@ public class TvBitmap {
 
 	/**
 	 * 暂停正在加载的线程，监听listview或者gridview正在滑动的时候条用词方法
-	 * @param pauseWork true停止暂停线程，false继续线程
+	 * 
+	 * @param pauseWork
+	 *            true停止暂停线程，false继续线程
 	 */
 	public void pauseWork(boolean pauseWork) {
 		synchronized (mPauseWorkLock) {
@@ -624,11 +618,12 @@ public class TvBitmap {
 	}
 
 	/**
-     * 检测 imageView中是否已经有线程在运行
-     * @param data
-     * @param imageView
-     * @return true 没有 false 有线程在运行了
-     */
+	 * 检测 imageView中是否已经有线程在运行
+	 * 
+	 * @param data
+	 * @param imageView
+	 * @return true 没有 false 有线程在运行了
+	 */
 	public static boolean checkImageTask(Object data, View imageView) {
 		final BitmapLoadAndDisplayTask bitmapWorkerTask = getBitmapTaskFromImageView(imageView);
 
@@ -785,20 +780,20 @@ public class TvBitmap {
 		public Displayer displayer;
 		public Downloader downloader;
 		public BitmapDisplayConfig defaultDisplayConfig;
-		public float memCacheSizePercent;//缓存百分比，android系统分配给每个apk内存的大小
-		public int memCacheSize;//内存缓存百分比
-		public int diskCacheSize;//磁盘百分比
-		public int poolSize = 3;//默认的线程池线程并发数量
-		public boolean recycleImmediately = true;//是否立即回收内存
+		public float memCacheSizePercent;// 缓存百分比，android系统分配给每个apk内存的大小
+		public int memCacheSize;// 内存缓存百分比
+		public int diskCacheSize;// 磁盘百分比
+		public int poolSize = 3;// 默认的线程池线程并发数量
+		public boolean recycleImmediately = true;// 是否立即回收内存
 
 		public TvBitmapConfig(Context context) {
-			defaultDisplayConfig = new BitmapDisplayConfig();
+			defaultDisplayConfig = new BitmapDisplayConfig(context);
 
 			defaultDisplayConfig.setAnimation(null);
 			defaultDisplayConfig
 					.setAnimationType(BitmapDisplayConfig.AnimationType.fadeIn);
 
-			//设置图片的显示最大尺寸（为屏幕的大小,默认为屏幕宽度的1/2）
+			// 设置图片的显示最大尺寸（为屏幕的大小,默认为屏幕宽度的1/2）
 			DisplayMetrics displayMetrics = context.getResources()
 					.getDisplayMetrics();
 			int defaultWidth = (int) Math.floor(displayMetrics.widthPixels / 2);
