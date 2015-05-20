@@ -10,28 +10,39 @@ import android.widget.TextView;
  * @author keYence
  *
  */
-public class FreeStyleTextview extends TextView {
+public class FreeStyleTextView extends TextView {
+	
+	private static Typeface type;
 
-	public FreeStyleTextview(Context context) {
+	public FreeStyleTextView(Context context) {
 		super(context);
 	}
 
-	public FreeStyleTextview(Context context, AttributeSet attrs, int defStyle) {
+	public FreeStyleTextView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
-	public FreeStyleTextview(Context context, AttributeSet attrs) {
+	public FreeStyleTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	private void changeStyle(){
-		Typeface type=Typeface.createFromAsset(getContext().getAssets(), "fonts/lth.ttf");
-		this.setTypeface(type);
+	private synchronized void changeStyle(){
+		if (type==null) {
+			try {
+				type=Typeface.createFromAsset(getContext().getAssets(), "fonts/lth.ttf");
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		if (type!=null) {
+			this.setTypeface(type);
+		}
+		
 	}
 	
 	@Override
 	public void setText(CharSequence text, BufferType type) {
-		// TODO Auto-generated method stub
 		super.setText(text, type);
 		changeStyle();
 	}

@@ -9,6 +9,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.graphics.Paint.FontMetrics;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
@@ -44,6 +45,23 @@ public class TvMarqueeText extends TextView {
 	 * 背景色 默认为透明色
 	 */
 	private int backgroundColor;
+	
+	/**
+	 * 字体
+	 */
+	private int textStyle;
+	
+	public int getTextStyle() {
+		return textStyle;
+	}
+
+	public void setTextStyle(int textStyle) {
+		this.textStyle = textStyle;
+	}
+
+	private final static int STYLE_DEFAULT=0,STYLE_LTH=1;
+	
+	private static Typeface type;
 
 	public int getPeriod() {
 		return period;
@@ -86,6 +104,7 @@ public class TvMarqueeText extends TextView {
 		this.mText = custom.getString(R.styleable.TvMarqueeText_text)+"";
 		this.period = custom.getInteger(R.styleable.TvMarqueeText_period, 30);
 		this.vague = custom.getBoolean(R.styleable.TvMarqueeText_vague, true);
+		this.textStyle=custom.getInt(R.styleable.TvMarqueeText_textStyle, STYLE_DEFAULT);
 		mCoordinateX = 3;
 		mCoordinateY = 15;
 		backgroundColor=Color.TRANSPARENT;
@@ -96,6 +115,10 @@ public class TvMarqueeText extends TextView {
 	
 	private void init(){
 		mTextWidth = getPaint().measureText(mText);
+		if (textStyle==STYLE_LTH) {
+			changeStyle();
+		}
+		
 	}
 
 
@@ -141,6 +164,23 @@ public class TvMarqueeText extends TextView {
 		
 
 	}
+	
+	
+	private synchronized void changeStyle(){
+		if (type==null) {
+			try {
+				type=Typeface.createFromAsset(getContext().getAssets(), "fonts/lth.ttf");
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		if (type!=null) {
+			this.setTypeface(type);
+		}
+		
+	}
+	
 	/**
 	 * 开启跑马灯
 	 */

@@ -20,7 +20,6 @@ import android.widget.RelativeLayout;
  * 
  */
 public class TvRelativeLayout extends RelativeLayout {
-	private final int SCREEN_720 = 0, SCREEN_1080 = 1;
 	/**
 	 * 光标
 	 */

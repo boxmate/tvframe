@@ -5,7 +5,7 @@ import java.util.List;
 import reco.frame.tv.R;
 import reco.frame.tv.util.ViewUtil;
 import reco.frame.tv.view.component.FragmentAdapter;
-import reco.frame.tv.view.component.TvConfig;
+import reco.frame.tv.view.component.TvUtil;
 import reco.frame.tv.view.component.TvSlowViewPager;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -206,7 +206,7 @@ public class TvTabHost extends RelativeLayout {
 		tv.setTextSize(ViewUtil.Px2Dp(getContext(), textSize));
 		tv.setText(title);
 		tv.setGravity(Gravity.CENTER);
-		int tempId = TvConfig.buildId();
+		int tempId = TvUtil.buildId();
 		tv.setId(tempId + titleList.size() + 1);
 		idToPages.put(tempId + titleList.size() + 1, titleList.size());
 		tv.setTag(titleList.size());
