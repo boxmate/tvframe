@@ -13,6 +13,8 @@
     <attr name="durationSmall" format="integer"></attr>
     <attr name="durationScroll" format="integer"></attr>
     <attr name="delay" format="integer" />
+    <attr name="paddingLeft" format="dimension"></attr>
+    <attr name="paddingTop" format="dimension"></attr>
     <attr name="boarder" format="dimension"></attr>
     <attr name="boarderTop" format="dimension"></attr>
     <attr name="boarderLeft" format="dimension"></attr>
@@ -130,6 +132,8 @@
         <attr name="spaceVert"></attr>
         <attr name="itemWidth"></attr>
         <attr name="itemHeight"></attr>
+        <attr name="paddingLeft"></attr>
+        <attr name="paddingTop"></attr>
     </declare-styleable>
     <declare-styleable name="TvRelativeLayout">
         <attr name="cursorRes"></attr>

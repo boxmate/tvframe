@@ -16,8 +16,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,6 +142,10 @@ public class TvGridView extends RelativeLayout {
 	private Scroller mScroller;
 	private boolean isInit = true;
 	private boolean canAdd = true;
+	/**
+	 * 以1280为准,其余分辨率放大比率 用于适配
+	 */
+	private float screenScale = 1;
 
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
@@ -202,6 +208,11 @@ public class TvGridView extends RelativeLayout {
 				R.styleable.TvGridView_itemHeight, 10);
 		rowHeight = itemHeight + spaceVert;
 		rowWidth = itemWidth + spaceHori;
+
+		paddingLeft = (int) custom.getDimension(
+				R.styleable.TvGridView_paddingLeft, 0);
+		paddingTop = (int) custom.getDimension(
+				R.styleable.TvGridView_paddingTop, 0);
 
 		this.boarder = (int) custom.getDimension(
 				R.styleable.TvGridView_boarder, 0)
@@ -295,10 +306,27 @@ public class TvGridView extends RelativeLayout {
 				params.rightMargin, params.bottomMargin);
 		this.setLayoutParams(newParams);
 
-		paddingLeft = (int) (boarderLeft * scale + itemWidth * (scale - 1) / 2
-				+ 3 + this.getPaddingLeft());
-		paddingTop = (int) (boarderTop * scale + itemHeight * (scale - 1) / 2 + this
-				.getPaddingTop()) + 3;
+//		switch (getResources().getDisplayMetrics().widthPixels) {
+//		case TvConfig.SCREEN_1280:
+//			screenScale = 1f;
+//			break;
+//
+//		case TvConfig.SCREEN_1920:
+//			screenScale = 1.5f;
+//			break;
+//		case TvConfig.SCREEN_2560:
+//			screenScale = 2f;
+//			break;
+//		case TvConfig.SCREEN_3840:
+//			screenScale = 3f;
+//			break;
+//		}
+
+		//
+		// paddingLeft = (int) (screenScale*boarderLeft + itemWidth
+		// * (scale - 1) / 2 );
+		// paddingTop = (int) (boarderTop * screenScale + itemHeight * (scale -
+		// 1) / 2);
 
 	}
 
@@ -313,7 +341,6 @@ public class TvGridView extends RelativeLayout {
 				: screenHeight / rowHeight + 1;
 
 		int initLength = Math.min(adapter.getCount(), initRows * 2 * columns);
-		Log.e(VIEW_LOG_TAG, "---" + initLength);
 		for (int i = 0; i < initLength; i++) {
 			int left = (i % columns) * (itemWidth + spaceHori);
 			int top = (i / columns) * (spaceVert + itemHeight);
@@ -458,8 +485,8 @@ public class TvGridView extends RelativeLayout {
 		 * 根据childView计算的出的宽和高，以及设置的margin计算容器的宽和高，主要用于容器是warp_content时
 		 */
 
-		Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
-				+ cCount + "---" + parentLayout);
+		// Log.e(VIEW_LOG_TAG, "onMeasure=" + currentChildCount + "---cCount="
+		// + cCount + "---" + parentLayout);
 		for (int i = currentChildCount; i < cCount; i++) {
 			View childView = getChildAt(i);
 			cWidth = childView.getMeasuredWidth();
@@ -501,8 +528,8 @@ public class TvGridView extends RelativeLayout {
 			 * 遍历所有childView根据其宽和高，以及margin进行布局
 			 */
 			int start = currentChildCount;
-//			Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount + "----"
-//					+ itemIds.size());
+			// Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount + "----"
+			// + itemIds.size());
 			for (int i = start; i < cCount; i++) {
 
 				// 跳过光标子项
@@ -513,9 +540,9 @@ public class TvGridView extends RelativeLayout {
 
 				View childView = findViewById(itemIds.keyAt(index));
 				if (childView != null) {
-//					Log.e(VIEW_LOG_TAG, "index" + index);
-//					Log.e(VIEW_LOG_TAG, cursorId + "---" + childView.getId()
-//							+ "---" + itemIds.keyAt(index));
+					// Log.e(VIEW_LOG_TAG, "index" + index);
+					// Log.e(VIEW_LOG_TAG, cursorId + "---" + childView.getId()
+					// + "---" + itemIds.keyAt(index));
 					cWidth = childView.getMeasuredWidth();
 					cHeight = childView.getMeasuredHeight();
 
