@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+
+
 /**
  * 此控件暂只支持兰亭黑 尚未完善 请斟酌使用
  * @author keYence
