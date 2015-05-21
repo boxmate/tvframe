@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/ll_detail"
+        android:layout_width="@dimen/px832"
+        android:layout_height="@dimen/px80"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/px40"
+            android:layout_height="@dimen/px40"
+            android:layout_marginLeft="@dimen/px22"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="@dimen/px300"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px122"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/px36" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_launcher"
+        android:layout_width="@dimen/px130"
+        android:layout_height="@dimen/px80"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_toRightOf="@+id/ll_detail"
+        android:background="@android:color/holo_blue_light"
+        android:text="按钮1"
+        android:textColor="@android:color/black"
+         />
+
+    <Button
+        android:id="@+id/bt_uninstall"
+        android:layout_width="@dimen/px130"
+        android:layout_height="@dimen/px80"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_marginRight="@dimen/px10"
+        android:layout_toRightOf="@+id/bt_launcher"
+        android:background="@android:color/holo_blue_light"
+        android:text="按钮2"
+        android:textColor="@android:color/black"
+        />
+
+</RelativeLayout>

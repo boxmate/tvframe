@@ -21,26 +21,26 @@
 
     <!--  -->
     <reco.frame.tv.view.TvButton 
-        android:id="@+id/tb_tv_relativeLayout"
+        android:id="@+id/tb_tv_relativeLayoutAsGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="@dimen/px50"
         android:layout_below="@+id/tv_views"
-        android:text="TvRelativeLayout选中放大容器示例"
+        android:text="TvRelativeLayoutAsGroup选中放大容器示例"
         android:textSize="@dimen/px36"
         android:background="@android:color/holo_blue_light"
         tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
         />
     
     <reco.frame.tv.view.TvButton 
-        android:id="@+id/tb_tv_button"
+        android:id="@+id/tb_tv_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="@dimen/px50"
-        android:layout_below="@+id/tb_tv_relativeLayout"
-        android:text="TvButton选中放大按钮示例"
+        android:layout_below="@+id/tb_tv_relativeLayoutAsGroup"
+        android:text="TvListView简单示例"
         android:textSize="@dimen/px36"
         android:background="@android:color/holo_blue_light"
         tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="@dimen/px50"
-        android:layout_below="@+id/tb_tv_button"
+        android:layout_below="@+id/tb_tv_listview"
         android:text="TvProgressBar自定义进度条示例"
         android:textSize="@dimen/px36"
         android:background="@android:color/holo_blue_light"

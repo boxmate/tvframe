@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class TvRelativeLayoutActivity extends Activity {
+public class TvRelativeLayoutAsGroupActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -5,20 +5,22 @@
     android:layout_height="match_parent"
     
     >
-    <!-- 此处有四个自定义参数: cursorRes指定光标图片 itemWidth为子项宽度 itemHeight为子项高度 columns为列数-->
-    <reco.frame.tv.view.TvGridView 
-        android:id="@+id/tgv_imagelist"
+    <!-- 此处有四个自定义参数: cursorRes指定光标图片 itemWidth为子项宽度 itemHeight为子项高度 focusOption为焦点模式(默认子控件得焦点)-->
+    <reco.frame.tv.view.TvListView 
+        android:id="@+id/tlv_list"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/px1280"
+        android:layout_height="@dimen/px700"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/px300"
+        android:layout_marginLeft="@dimen/px400"
+        android:layout_marginTop="@dimen/px100"
         tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
-        tv:itemWidth="@dimen/px230"
-        tv:itemHeight="@dimen/px230"
-        tv:columns="3"
+        tv:itemWidth="@dimen/px1122"
+        tv:itemHeight="@dimen/px80"
         tv:paddingLeft="@dimen/px21"
+        tv:focusOption="CHILD_ONLY"
+        tv:paddingTop="@dimen/px4"
         >
-    </reco.frame.tv.view.TvGridView> 
+    </reco.frame.tv.view.TvListView> 
 
     <reco.frame.tv.view.TvButton
         android:id="@+id/tb_add"

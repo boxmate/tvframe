@@ -7,12 +7,12 @@ import reco.frame.demo.sample.TvButtonActivity;
 import reco.frame.demo.sample.TvDbActivity;
 import reco.frame.demo.sample.TvGridViewActivity;
 import reco.frame.demo.sample.TvHttpActivity;
+import reco.frame.demo.sample.TvListViewActivity;
 import reco.frame.demo.sample.TvLoadingBarActivity;
 import reco.frame.demo.sample.TvMarqueeTextActivity;
 import reco.frame.demo.sample.TvProgressBarActivity;
 import reco.frame.demo.sample.TvRelativeLayoutActivity;
 import reco.frame.demo.sample.TvTabHostActivity;
-import reco.frame.demo.templet.TempletA;
 import reco.frame.tv.view.TvButton;
 import reco.frame.tv.view.TvProgressBar;
 import reco.frame.tv.view.TvTabHost;
@@ -45,11 +45,11 @@ public class MainActivity extends Activity {
 	}
 	
 	private void load(){
-		findViewById(R.id.tb_tv_relativeLayout).setOnClickListener(mClickListener);
+		findViewById(R.id.tb_tv_relativeLayoutAsGroup).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_progressbar).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_marqueetext).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_gridview).setOnClickListener(mClickListener);
-		findViewById(R.id.tb_tv_button).setOnClickListener(mClickListener);
+		findViewById(R.id.tb_tv_listview).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_bitmap).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_db).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_http).setOnClickListener(mClickListener);
@@ -62,13 +62,13 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
-			case R.id.tb_tv_relativeLayout:
+			case R.id.tb_tv_relativeLayoutAsGroup:
 				
 				startActivity(new Intent(MainActivity.this,TvRelativeLayoutActivity.class));
 				break;
-			case R.id.tb_tv_button:
+			case R.id.tb_tv_listview:
 				
-				startActivity(new Intent(MainActivity.this,TvButtonActivity.class));
+				startActivity(new Intent(MainActivity.this,TvListViewActivity.class));
 				break;
 			case R.id.tb_tv_progressbar:
 				
@@ -80,6 +80,8 @@ public class MainActivity extends Activity {
 				break;
 			case R.id.tb_tv_gridview:
 				startActivity(new Intent(MainActivity.this,TvGridViewActivity.class));
+
+			
 				break;
 			case R.id.tb_tv_tabhost:
 				startActivity(new Intent(MainActivity.this,TvTabHostActivity.class));
