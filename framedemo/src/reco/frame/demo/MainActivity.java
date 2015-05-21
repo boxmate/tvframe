@@ -3,7 +3,6 @@ package reco.frame.demo;
 import com.umeng.analytics.MobclickAgent;
 
 import reco.frame.demo.sample.TvBitmapActivity;
-import reco.frame.demo.sample.TvButtonActivity;
 import reco.frame.demo.sample.TvDbActivity;
 import reco.frame.demo.sample.TvGridViewActivity;
 import reco.frame.demo.sample.TvHttpActivity;
@@ -11,7 +10,7 @@ import reco.frame.demo.sample.TvListViewActivity;
 import reco.frame.demo.sample.TvLoadingBarActivity;
 import reco.frame.demo.sample.TvMarqueeTextActivity;
 import reco.frame.demo.sample.TvProgressBarActivity;
-import reco.frame.demo.sample.TvRelativeLayoutActivity;
+import reco.frame.demo.sample.TvRelativeLayoutAsGroupActivity;
 import reco.frame.demo.sample.TvTabHostActivity;
 import reco.frame.tv.view.TvButton;
 import reco.frame.tv.view.TvProgressBar;
@@ -64,7 +63,7 @@ public class MainActivity extends Activity {
 			switch (v.getId()) {
 			case R.id.tb_tv_relativeLayoutAsGroup:
 				
-				startActivity(new Intent(MainActivity.this,TvRelativeLayoutActivity.class));
+				startActivity(new Intent(MainActivity.this,TvRelativeLayoutAsGroupActivity.class));
 				break;
 			case R.id.tb_tv_listview:
 				

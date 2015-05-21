@@ -492,7 +492,7 @@ public class TvGridView extends RelativeLayout {
 			@Override
 			public void onClick(View item) {
 				if (onItemClickListener != null) {
-					onItemClickListener.onItemClick(item, selectIndex);
+					onItemClickListener.onItemClick(item, index);
 				}
 
 			}

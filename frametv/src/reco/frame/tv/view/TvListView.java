@@ -480,7 +480,7 @@ public class TvListView extends RelativeLayout {
 
 					@Override
 					public void onClick(View item) {
-						onItemClickListener.onItemClick(item, selectIndex);
+						onItemClickListener.onItemClick(item, index);
 
 					}
 				});
@@ -534,7 +534,7 @@ public class TvListView extends RelativeLayout {
 
 						@Override
 						public void onClick(View item) {
-							onItemClickListener.onItemClick(item, selectIndex);
+							onItemClickListener.onItemClick(item, index);
 
 						}
 					});

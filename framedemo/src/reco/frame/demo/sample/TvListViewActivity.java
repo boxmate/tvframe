@@ -51,7 +51,7 @@ public class TvListViewActivity extends Activity {
 		// 初始加载模拟数据
 
 		List<AppInfo> appList = new ArrayList<AppInfo>();
-		for (int i = 0; i < 45; i++) {
+		for (int i = 0; i < 20; i++) {
 			AppInfo app = new AppInfo();
 			app.title = "全家盒框架" + i;
 			appList.add(app);
@@ -118,12 +118,12 @@ public class TvListViewActivity extends Activity {
 	}
 
 	/**
-	 * 加载更多数据 多用于分页加载 此处每次加载45条数据
+	 * 加载更多数据 多用于分页加载 此处每次加载20条数据
 	 * 
 	 * @param v
 	 */
 	public void add(View v) {
-		for (int i = 0; i < 45; i++) {
+		for (int i = 0; i < 20; i++) {
 			AppInfo app = new AppInfo();
 			app.title = "全家盒框架" + i;
 			adapter.addItem(app);

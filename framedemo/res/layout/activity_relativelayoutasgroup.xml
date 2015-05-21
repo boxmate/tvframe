@@ -54,7 +54,7 @@
             android:layout_marginLeft="@dimen/px20"
             android:layout_toRightOf="@+id/tv_1"
             android:background="@android:color/white"
-            android:focusable="false" >
+            android:focusable="true" >
 
             <ImageView
                 android:layout_width="@dimen/px70"
@@ -123,7 +123,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px50"
             android:background="@drawable/icon_reco"
-            android:focusable="false" >
+            android:focusable="true" >
         </ImageView>
 
         <ImageView
