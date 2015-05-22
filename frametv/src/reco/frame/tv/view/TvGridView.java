@@ -390,7 +390,7 @@ public class TvGridView extends RelativeLayout {
 			RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
 					itemWidth, itemHeight);
 			if (initLength == 1) {
-				rlp.setMargins(left, top, paddingLeft, 0);
+				rlp.setMargins(left, top, paddingLeft*2, 0);
 			} else {
 				rlp.setMargins(left, top, 0, 0);
 			}
@@ -577,21 +577,24 @@ public class TvGridView extends RelativeLayout {
 				if (currentChildCount != 0) {
 					index = i - 1;
 				}
+				if (index<itemIds.size()) {
+					View childView = findViewById(itemIds.keyAt(index));
+					if (childView != null) {
+						cWidth = childView.getMeasuredWidth();
+						cHeight = childView.getMeasuredHeight();
 
-				View childView = findViewById(itemIds.keyAt(index));
-				if (childView != null) {
-					cWidth = childView.getMeasuredWidth();
-					cHeight = childView.getMeasuredHeight();
+						int cl = 0, ct = 0, cr = 0, cb = 0;
+						cl = (index % columns) * (itemWidth + spaceHori);
+						ct = (index / columns) * (spaceVert + itemHeight);
 
-					int cl = 0, ct = 0, cr = 0, cb = 0;
-					cl = (index % columns) * (itemWidth + spaceHori);
-					ct = (index / columns) * (spaceVert + itemHeight);
-
-					cr = cl + cWidth;
-					cb = cHeight + ct;
-					childView.layout(cl + paddingLeft, ct + paddingTop, cr
-							+ paddingLeft, cb + paddingTop);
+						cr = cl + cWidth;
+						cb = cHeight + ct;
+						childView.layout(cl + paddingLeft, ct + paddingTop, cr
+								+ paddingLeft, cb + paddingTop);
+					}
 				}
+
+				
 
 			}
 			screenMaxRow = getHeight() % rowHeight == 0 ? getHeight()
