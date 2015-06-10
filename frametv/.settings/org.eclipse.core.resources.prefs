@@ -56,6 +56,7 @@ encoding//src/reco/frame/tv/util/Utils.java=UTF-8
 encoding//src/reco/frame/tv/view/FreeStyleTextView.java=UTF-8
 encoding//src/reco/frame/tv/view/TvButton.java=UTF-8
 encoding//src/reco/frame/tv/view/TvGridView.java=UTF-8
+encoding//src/reco/frame/tv/view/TvHorizontalGridView.java=UTF-8
 encoding//src/reco/frame/tv/view/TvImageView.java=UTF-8
 encoding//src/reco/frame/tv/view/TvListView.java=UTF-8
 encoding//src/reco/frame/tv/view/TvLoadingBar.java=UTF-8

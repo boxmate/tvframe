@@ -5,6 +5,7 @@ import com.umeng.analytics.MobclickAgent;
 import reco.frame.demo.sample.TvBitmapActivity;
 import reco.frame.demo.sample.TvDbActivity;
 import reco.frame.demo.sample.TvGridViewActivity;
+import reco.frame.demo.sample.TvHorizontalGridViewActivity;
 import reco.frame.demo.sample.TvHttpActivity;
 import reco.frame.demo.sample.TvListViewActivity;
 import reco.frame.demo.sample.TvLoadingBarActivity;
@@ -48,6 +49,7 @@ public class MainActivity extends Activity {
 		findViewById(R.id.tb_tv_progressbar).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_marqueetext).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_gridview).setOnClickListener(mClickListener);
+		findViewById(R.id.tb_tv_horizontalgridview).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_listview).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_bitmap).setOnClickListener(mClickListener);
 		findViewById(R.id.tb_tv_db).setOnClickListener(mClickListener);
@@ -79,6 +81,9 @@ public class MainActivity extends Activity {
 				break;
 			case R.id.tb_tv_gridview:
 				startActivity(new Intent(MainActivity.this,TvGridViewActivity.class));
+				break;
+			case R.id.tb_tv_horizontalgridview:
+				startActivity(new Intent(MainActivity.this,TvHorizontalGridViewActivity.class));
 
 			
 				break;

@@ -7,12 +7,15 @@
 
     <!-- 无阴影四边形光标 四边边框宽度均为2 cursorRes属性不设置 则无光标-->
 
-    <RelativeLayout
+     <reco.frame.tv.view.TvRelativeLayoutAsGroup
         android:layout_width="match_parent"
         android:layout_height="@dimen/px200"
-        android:layout_marginTop="@dimen/px100" >
+        android:layout_marginTop="@dimen/px100"
+        tv:boarder="@dimen/px2"
+        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
+        tv:scale="1.1" >
 
-        <reco.frame.tv.view.TvRelativeLayout
+        <RelativeLayout
             android:id="@+id/tv_1"
             android:layout_width="@dimen/px170"
             android:layout_height="@dimen/px170"
@@ -20,11 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px50"
             android:background="@android:color/white"
-            android:focusable="true"
-            tv:boarder="@dimen/px2"
-            tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
-            tv:durationLarge="170"
-            tv:scale="1.1" >
+            android:focusable="true" >
 
             <ImageView
                 android:layout_width="@dimen/px70"
@@ -42,9 +41,9 @@
                 android:maxLength="7"
                 android:singleLine="true"
                 android:text="尾页" />
-        </reco.frame.tv.view.TvRelativeLayout>
+        </RelativeLayout>
 
-        <reco.frame.tv.view.TvRelativeLayout
+        <RelativeLayout
             android:id="@+id/tv_2"
             android:layout_width="@dimen/px170"
             android:layout_height="@dimen/px170"
@@ -52,11 +51,7 @@
             android:layout_marginLeft="@dimen/px20"
             android:layout_toRightOf="@+id/tv_1"
             android:background="@android:color/white"
-            android:focusable="true"
-            tv:boarder="@dimen/px2"
-            tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
-            tv:durationLarge="170"
-            tv:scale="1.1" >
+            android:focusable="true" >
 
             <ImageView
                 android:layout_width="@dimen/px70"
@@ -74,9 +69,9 @@
                 android:maxLength="7"
                 android:singleLine="true"
                 android:text="尾页" />
-        </reco.frame.tv.view.TvRelativeLayout>
+        </RelativeLayout>
 
-        <reco.frame.tv.view.TvRelativeLayout
+        <RelativeLayout
             android:id="@+id/tv_3"
             android:layout_width="@dimen/px170"
             android:layout_height="@dimen/px170"
@@ -84,11 +79,7 @@
             android:layout_marginLeft="@dimen/px20"
             android:layout_toRightOf="@+id/tv_2"
             android:background="@android:color/white"
-            android:focusable="true"
-            tv:boarder="@dimen/px2"
-            tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
-            tv:durationLarge="170"
-            tv:scale="1.1" >
+            android:focusable="true" >
 
             <ImageView
                 android:layout_width="@dimen/px70"
@@ -106,8 +97,8 @@
                 android:maxLength="7"
                 android:singleLine="true"
                 android:text="尾页" />
-        </reco.frame.tv.view.TvRelativeLayout>
-    </RelativeLayout>
+        </RelativeLayout>
+    </reco.frame.tv.view.TvRelativeLayoutAsGroup>
 
    
  

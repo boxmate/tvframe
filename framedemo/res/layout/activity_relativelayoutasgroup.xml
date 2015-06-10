@@ -1,201 +1,93 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- animationType 默认无动画 此处设为平移
+	 durationTranslate 平移用时 默为7ms
+	 boarderInt 选中框边缘宽度-->
+<reco.frame.tv.view.TvRelativeLayoutAsGroup xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tv="http://schemas.android.com/apk/res/reco.frame.demo"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    
-    
-    <!-- 直接子控件得到焦点同时,获得选中效果; 注意,只有直接子VIEW,并且允许获取焦点,才能获是选中效果 -->
-    
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingTop="@dimen/px200"
+    android:paddingLeft="@dimen/px100"
+    tv:animationType="TRANSLATE"
+    tv:durationTranslate="11"
+    tv:boarderInt="2"
+    tv:cursorRes="@drawable/cursor_rectangle_boarder_orange" >
 
-    <!-- 无阴影四边形光标 四边边框宽度均为2 cursorRes属性不设置 则无光标 -->
+    <Button
+        android:id="@+id/fsb_flush"
+        android:layout_width="@dimen/px550"
+        android:layout_height="@dimen/px550"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/icon_storm"
+        android:nextFocusRight="@+id/fsb_gabage" />
 
-    <reco.frame.tv.view.TvRelativeLayoutAsGroup
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px200"
-        android:layout_marginTop="@dimen/px100"
-        tv:boarderInt="2"
-        tv:cursorRes="@drawable/cursor_rectangle_boarder_orange" >
+    <Button
+        android:id="@+id/fsb_gabage"
+        android:layout_width="@dimen/px550"
+        android:layout_height="@dimen/px270"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_flush"
+        android:background="@drawable/icon_storm"
+        android:nextFocusDown="@+id/fsb_uninstall" />
 
-        <RelativeLayout
-            android:id="@+id/tv_1"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px50"
-            android:background="@android:color/white"
-            android:focusable="true" >
+    <Button
+        android:id="@+id/fsb_bigfile"
+        android:layout_width="@dimen/px270"
+        android:layout_height="@dimen/px270"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_gabage"
+        android:background="@drawable/icon_storm" />
 
-            <ImageView
-                android:layout_width="@dimen/px70"
-                android:layout_height="@dimen/px70"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px40"
-                android:background="@drawable/icon_reco" />
+    <Button
+        android:id="@+id/fsb_netspeed"
+        android:layout_width="@dimen/px270"
+        android:layout_height="@dimen/px270"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_bigfile"
+        android:background="@drawable/icon_storm" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/px13"
-                android:maxLength="7"
-                android:singleLine="true"
-                android:text="@string/market_name" />
-        </RelativeLayout>
+    <Button
+        android:id="@+id/fsb_uninstall"
+        android:layout_width="@dimen/px270"
+        android:layout_height="@dimen/px270"
+        android:layout_below="@+id/fsb_gabage"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_marginTop="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_flush"
+        android:background="@drawable/icon_storm" />
 
-        <RelativeLayout
-            android:id="@+id/tv_2"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@+id/tv_1"
-            android:background="@android:color/white"
-            android:focusable="true" >
+    <Button
+        android:id="@+id/fsb_apk"
+        android:layout_width="@dimen/px270"
+        android:layout_height="@dimen/px270"
+        android:layout_below="@+id/fsb_gabage"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_marginTop="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_uninstall"
+        android:background="@drawable/icon_storm" />
 
-            <ImageView
-                android:layout_width="@dimen/px70"
-                android:layout_height="@dimen/px70"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px40"
-                android:background="@drawable/icon_reco" />
+    <Button
+        android:id="@+id/fsb_system"
+        android:layout_width="@dimen/px270"
+        android:layout_height="@dimen/px270"
+        android:layout_below="@+id/fsb_bigfile"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_marginTop="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_apk"
+        android:background="@drawable/icon_storm" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/px13"
-                android:maxLength="7"
-                android:singleLine="true"
-                android:text="@string/market_name" />
-        </RelativeLayout>
+    <Button
+        android:id="@+id/fsb_setting"
+        android:layout_width="@dimen/px270"
+        android:layout_height="@dimen/px270"
+        android:layout_below="@+id/fsb_netspeed"
+        android:layout_marginLeft="@dimen/px10"
+        android:layout_marginTop="@dimen/px10"
+        android:layout_toRightOf="@+id/fsb_system"
+        android:background="@drawable/icon_storm" />
 
-        <RelativeLayout
-            android:id="@+id/tv_3"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@+id/tv_2"
-            android:background="@android:color/white"
-            android:focusable="true" >
-
-            <ImageView
-                android:layout_width="@dimen/px70"
-                android:layout_height="@dimen/px70"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px40"
-                android:background="@drawable/icon_reco" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/px13"
-                android:maxLength="7"
-                android:singleLine="true"
-                android:text="@string/market_name" />
-        </RelativeLayout>
-    </reco.frame.tv.view.TvRelativeLayoutAsGroup>
-
-    <!-- 有阴影圆角光标 -->
-
-    <reco.frame.tv.view.TvRelativeLayoutAsGroup
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px200"
-        android:layout_marginTop="@dimen/px350"
-        tv:boarderBottomInt="8"
-        tv:boarderLeftInt="9"
-        tv:boarderRightInt="8"
-        tv:boarderTopInt="9"
-        tv:cursorRes="@drawable/cursor_shadow" >
-
-        <ImageView
-            android:id="@+id/tv_4"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px50"
-            android:background="@drawable/icon_reco"
-            android:focusable="true" >
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/tv_5"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@+id/tv_4"
-            android:background="@drawable/icon_reco"
-            android:focusable="true" >
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/tv_6"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@+id/tv_5"
-            android:background="@drawable/icon_reco"
-            android:focusable="true" >
-        </ImageView>
-    </reco.frame.tv.view.TvRelativeLayoutAsGroup>
-
-    <!-- 覆盖型光标 禁用放大 -->
-
-    <reco.frame.tv.view.TvRelativeLayoutAsGroup
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px200"
-        android:layout_marginTop="@dimen/px600"
-        tv:boarderBottomInt="25"
-        tv:boarderLeftInt="29"
-        tv:boarderRightInt="29"
-        tv:boarderTopInt="9"
-        tv:cursorRes="@drawable/cursor_shine"
-        tv:scalable="false" >
-
-        <Button
-            android:id="@+id/tv_7"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px50"
-            android:background="@android:color/holo_blue_light"
-            android:text="@string/market_name"
-            android:textColor="@android:color/white" >
-        </Button>
-
-        <Button
-            android:id="@+id/tv_8"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@+id/tv_7"
-            android:background="@android:color/holo_blue_light"
-            android:text="@string/market_name"
-            android:textColor="@android:color/white" >
-        </Button>
-
-        <Button
-            android:id="@+id/tv_9"
-            android:layout_width="@dimen/px170"
-            android:layout_height="@dimen/px170"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@+id/tv_8"
-            android:background="@android:color/holo_blue_light"
-            android:text="@string/market_name"
-            android:textColor="@android:color/white" />
-    </reco.frame.tv.view.TvRelativeLayoutAsGroup>
-
-</RelativeLayout>
+</reco.frame.tv.view.TvRelativeLayoutAsGroup>

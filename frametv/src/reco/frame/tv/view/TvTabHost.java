@@ -230,13 +230,13 @@ public class TvTabHost extends RelativeLayout {
 
 						@Override
 						public void run() {
-							moveCover(item);
+							if (item.isFocused()) {
+								moveCover(item);
+							}
+							
 						}
 					}, delay);
-					// 选中事件
-					if (scrollPageChangerListener != null) {
-						scrollPageChangerListener.onPageSelected(pageCurrent);
-					}
+				
 					if (isTopFocused) {
 						pageContainer.setCurrentItem(targetPage);
 					}
@@ -331,7 +331,6 @@ public class TvTabHost extends RelativeLayout {
 
 			@Override
 			public void onPageSelected(int postion) {
-				// TODO Auto-generated method stub
 				pageCurrent = postion;
 				if (scrollPageChangerListener != null) {
 					scrollPageChangerListener.onPageSelected(postion);
@@ -371,6 +370,9 @@ public class TvTabHost extends RelativeLayout {
 	}
 
 	private void flushTopBar(int position) {
+		if (this.findFocus()!=null) {
+			titleList.get(position).requestFocus();
+		}
 
 		for (int i = 0; i < titleList.size(); i++) {
 			// 变色

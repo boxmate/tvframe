@@ -1,34 +1,22 @@
 package reco.frame.tv.view;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-
 import reco.frame.tv.R;
 import reco.frame.tv.view.component.RecycleBin;
 import reco.frame.tv.view.component.TvBaseAdapter;
 import reco.frame.tv.view.component.TvUtil;
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObservable;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +26,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
-public class TvGridView extends RelativeLayout {
+/**
+ * 横向的gridview 自带选中框效果
+ * 
+ * @author keYence
+ * 
+ */
+public class TvHorizontalGridView extends RelativeLayout {
 
 	/**
 	 * 光标
@@ -113,6 +107,12 @@ public class TvGridView extends RelativeLayout {
 	 * 外层容器布局是否改变
 	 */
 	private boolean parentLayout = true;
+	
+	
+	/**
+	 * 焦点移出容器
+	 */
+	private boolean focusIsOut;
 
 	/**
 	 * 除光标外 当前子类数
@@ -130,14 +130,14 @@ public class TvGridView extends RelativeLayout {
 	 */
 	private final int DELAY = 371;
 	/**
-	 * 列数
+	 * 行数
 	 */
-	private int columns;
-	private int rowCount, selectRow;
+	private int rows;
+	private int colCount, selectCol;
 	/**
-	 * 屏幕可显示最大行数
+	 * 屏幕可显示最大列数
 	 */
-	private int screenMaxRow;
+	private int screenMaxColumns;
 	/**
 	 * 当前选中子项下示
 	 */
@@ -167,10 +167,6 @@ public class TvGridView extends RelativeLayout {
 	private boolean isInit = true;
 	private boolean initFocus;
 	/**
-	 * 焦点移出容器
-	 */
-	private boolean focusIsOut;
-	/**
 	 * 以1280为准,其余分辨率放大比率 用于适配
 	 */
 	private float screenScale = 1;
@@ -195,79 +191,80 @@ public class TvGridView extends RelativeLayout {
 		};
 	};
 
-	public TvGridView(Context context, AttributeSet attrs, int defStyle) {
+	public TvHorizontalGridView(Context context, AttributeSet attrs,
+			int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
-	public TvGridView(Context context) {
+	public TvHorizontalGridView(Context context) {
 		super(context);
 	}
 
-	public TvGridView(Context context, AttributeSet attrs) {
+	public TvHorizontalGridView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
 		TypedArray custom = getContext().obtainStyledAttributes(attrs,
-				R.styleable.TvGridView);
-		this.cursorRes = custom.getResourceId(R.styleable.TvGridView_cursorRes,
+				R.styleable.TvHorizontalGridView);
+		this.cursorRes = custom.getResourceId(R.styleable.TvHorizontalGridView_cursorRes,
 				0);
 		this.scalable = custom
-				.getBoolean(R.styleable.TvGridView_scalable, true);
-		this.initFocus = custom.getBoolean(R.styleable.TvGridView_initFocus,
+				.getBoolean(R.styleable.TvHorizontalGridView_scalable, true);
+		this.initFocus = custom.getBoolean(R.styleable.TvHorizontalGridView_initFocus,
 				true);
 
-		this.scale = custom.getFloat(R.styleable.TvGridView_scale, 1.1f);
+		this.scale = custom.getFloat(R.styleable.TvHorizontalGridView_scale, 1.1f);
 		this.animationType = custom.getInt(
-				R.styleable.TvGridView_animationType, 0);
-		this.delay = custom.getInteger(R.styleable.TvGridView_delay, 110);
+				R.styleable.TvHorizontalGridView_animationType, ANIM_DEFAULT);
+		this.delay = custom.getInteger(R.styleable.TvHorizontalGridView_delay, 110);
 		this.scrollDelay = custom.getInteger(
-				R.styleable.TvGridView_scrollDelay, 171);
+				R.styleable.TvHorizontalGridView_scrollDelay, 171);
 		this.scrollDuration = custom.getInteger(
-				R.styleable.TvGridView_scrollDuration, 371);
+				R.styleable.TvHorizontalGridView_scrollDuration, 371);
 		this.durationLarge = custom.getInteger(
-				R.styleable.TvGridView_durationLarge, 100);
-		this.durationSmall = custom.getInteger(
-				R.styleable.TvGridView_durationSmall, 100);
+				R.styleable.TvHorizontalGridView_durationLarge, 230);
 		this.durationTraslate=custom.getInteger(
-				R.styleable.TvGridView_durationTranslate, 170);
+				R.styleable.TvHorizontalGridView_durationTranslate, 170);
+		this.durationSmall = custom.getInteger(
+				R.styleable.TvHorizontalGridView_durationSmall, 230);
 
-		this.columns = custom.getInteger(R.styleable.TvGridView_columns, 2);
+		this.rows = custom.getInteger(R.styleable.TvHorizontalGridView_rows, 2);
 		this.spaceHori = (int) custom.getDimension(
-				R.styleable.TvGridView_spaceHori, 10);
+				R.styleable.TvHorizontalGridView_spaceHori, 10);
 		this.spaceVert = (int) custom.getDimension(
-				R.styleable.TvGridView_spaceVert, 10);
+				R.styleable.TvHorizontalGridView_spaceVert, 10);
 
-		itemWidth = (int) custom.getDimension(R.styleable.TvGridView_itemWidth,
+		itemWidth = (int) custom.getDimension(R.styleable.TvHorizontalGridView_itemWidth,
 				10);
 		itemHeight = (int) custom.getDimension(
-				R.styleable.TvGridView_itemHeight, 10);
-		rowHeight = itemHeight + spaceVert;
+				R.styleable.TvHorizontalGridView_itemHeight, 10);
+		rowWidth = itemHeight + spaceVert;
 		rowWidth = itemWidth + spaceHori;
 
 		paddingLeft = (int) custom.getDimension(
-				R.styleable.TvGridView_paddingLeft, 0);
+				R.styleable.TvHorizontalGridView_paddingLeft, 0);
 		paddingTop = (int) custom.getDimension(
-				R.styleable.TvGridView_paddingTop, 0);
+				R.styleable.TvHorizontalGridView_paddingTop, 0);
 
 		this.boarder = (int) custom.getDimension(
-				R.styleable.TvGridView_boarder, 0)
-				+ custom.getInteger(R.styleable.TvGridView_boarderInt, 0);
+				R.styleable.TvHorizontalGridView_boarder, 0)
+				+ custom.getInteger(R.styleable.TvHorizontalGridView_boarderInt, 0);
 
 		if (boarder == 0) {
 			this.boarderLeft = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderLeft, 0)
-					+ custom.getInteger(R.styleable.TvGridView_boarderLeftInt,
+					R.styleable.TvHorizontalGridView_boarderLeft, 0)
+					+ custom.getInteger(R.styleable.TvHorizontalGridView_boarderLeftInt,
 							0);
 			this.boarderTop = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderTop, 0)
-					+ custom.getInteger(R.styleable.TvGridView_boarderTopInt, 0);
+					R.styleable.TvHorizontalGridView_boarderTop, 0)
+					+ custom.getInteger(R.styleable.TvHorizontalGridView_boarderTopInt, 0);
 			this.boarderRight = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderRight, 0)
-					+ custom.getInteger(R.styleable.TvGridView_boarderRightInt,
+					R.styleable.TvHorizontalGridView_boarderRight, 0)
+					+ custom.getInteger(R.styleable.TvHorizontalGridView_boarderRightInt,
 							0);
 			this.boarderBottom = (int) custom.getDimension(
-					R.styleable.TvGridView_boarderBottom, 0)
+					R.styleable.TvHorizontalGridView_boarderBottom, 0)
 					+ custom.getInteger(
-							R.styleable.TvGridView_boarderBottomInt, 0);
+							R.styleable.TvHorizontalGridView_boarderBottomInt, 0);
 		} else {
 			this.boarderLeft = boarder;
 			this.boarderTop = boarder;
@@ -279,20 +276,20 @@ public class TvGridView extends RelativeLayout {
 			switch (getResources().getDisplayMetrics().widthPixels) {
 			case TvUtil.SCREEN_1280:
 				cursorRes = custom.getResourceId(
-						R.styleable.TvGridView_cursorRes_1280, 0);
+						R.styleable.TvHorizontalGridView_cursorRes_1280, 0);
 				break;
 
 			case TvUtil.SCREEN_1920:
 				cursorRes = custom.getResourceId(
-						R.styleable.TvGridView_cursorRes_1920, 0);
+						R.styleable.TvHorizontalGridView_cursorRes_1920, 0);
 				break;
 			case TvUtil.SCREEN_2560:
 				cursorRes = custom.getResourceId(
-						R.styleable.TvGridView_cursorRes_2560, 0);
+						R.styleable.TvHorizontalGridView_cursorRes_2560, 0);
 				break;
 			case TvUtil.SCREEN_3840:
 				cursorRes = custom.getResourceId(
-						R.styleable.TvGridView_cursorRes_3840, 0);
+						R.styleable.TvHorizontalGridView_cursorRes_3840, 0);
 				break;
 			}
 		}
@@ -344,9 +341,9 @@ public class TvGridView extends RelativeLayout {
 		this.removeAllViews();
 		this.clearDisappearingChildren();
 		this.destroyDrawingCache();
-		focusIsOut=true;
 		mScroller.setFinalY(0);
 		parentLayout = false;
+		focusIsOut=true;
 		currentChildCount = 0;
 	}
 
@@ -359,7 +356,9 @@ public class TvGridView extends RelativeLayout {
 		RelativeLayout.LayoutParams newParams = new RelativeLayout.LayoutParams(
 				params.width, params.height);
 		this.setPadding((int) (boarderLeft * scale),
-				(int) (boarderTop * scale), boarderRight, boarderBottom);
+				(int) (boarderTop * scale), (int)(boarderRight*scale), boarderBottom);
+		this.setClipChildren(false);
+		this.setClipToPadding(false);
 		newParams.setMargins(params.leftMargin, params.topMargin,
 				params.rightMargin, params.bottomMargin);
 		this.setLayoutParams(newParams);
@@ -368,7 +367,6 @@ public class TvGridView extends RelativeLayout {
 		// case TvConfig.SCREEN_1280:
 		// screenScale = 1f;
 		// break;
-		//
 		// case TvConfig.SCREEN_1920:
 		// screenScale = 1.5f;
 		// break;
@@ -379,7 +377,6 @@ public class TvGridView extends RelativeLayout {
 		// screenScale = 3f;
 		// break;
 		// }
-
 		//
 		// paddingLeft = (int) (screenScale*boarderLeft + itemWidth
 		// * (scale - 1) / 2 );
@@ -394,18 +391,18 @@ public class TvGridView extends RelativeLayout {
 			return;
 		}
 
-		int screenHeight = wm.getDefaultDisplay().getHeight();
-		int initRows = screenHeight % rowHeight == 0 ? screenHeight / rowHeight
-				: screenHeight / rowHeight + 1;
+		int screenWidth = wm.getDefaultDisplay().getWidth();
+		int initCols = screenWidth % rowWidth == 0 ? screenWidth / rowWidth
+				: screenWidth / rowWidth + 1;
 
-		int initLength = Math.min(adapter.getCount(), initRows * 2 * columns);
+		int initLength = Math.min(adapter.getCount(), initCols * 2 * rows);
 		for (int i = 0; i < initLength; i++) {
-			int left = (i % columns) * (itemWidth + spaceHori);
-			int top = (i / columns) * (spaceVert + itemHeight);
+			int left = (i / rows) * (itemWidth + spaceHori);
+			int top = (i % rows) * (spaceVert + itemHeight);
 			RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
 					itemWidth, itemHeight);
 			if (initLength == 1) {
-				rlp.setMargins(left, top, paddingLeft * 2, 0);
+				rlp.setMargins(left, top, 0, paddingTop*2);
 			} else {
 				rlp.setMargins(left, top, 0, 0);
 			}
@@ -422,8 +419,8 @@ public class TvGridView extends RelativeLayout {
 			bindEventOnChild(child, i);
 			layoutFlag=true;
 		}
-		rowCount = itemIds.size() % columns == 0 ? itemIds.size() / columns
-				: itemIds.size() / columns + 1;
+		colCount = itemIds.size() % rows == 0 ? itemIds.size() / rows : itemIds
+				.size() / rows + 1;
 
 		cursor = new ImageView(getContext());
 		cursorId = TvUtil.buildId();
@@ -443,23 +440,22 @@ public class TvGridView extends RelativeLayout {
 		}
 
 	}
+
 	/**
 	 * layout辅助标记 表面有添加新的子项
 	 */
 	private boolean layoutFlag=false;
-
 	private void addNewItems() {
 
 		currentChildCount = getChildCount();
 		parentLayout = false;
 		int start = itemIds.size();
-		int end = Math.min(start + screenMaxRow * columns * 2,
+		int end = Math.min(start + screenMaxColumns * rows * 2,
 				adapter.getCount());
-		
 
 		for (int i = start; i < end; i++) {
-			int left = (i % columns) * (itemWidth + spaceHori);
-			int top = (i / columns) * (spaceVert + itemHeight);
+			int left = (i / rows) * (itemWidth + spaceHori);
+			int top = (i % rows) * (spaceVert + itemHeight);
 			RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
 					itemWidth, itemHeight);
 			rlp.setMargins(left, top, 0, 0);
@@ -476,8 +472,8 @@ public class TvGridView extends RelativeLayout {
 			layoutFlag=true;
 		}
 
-		rowCount = itemIds.size() % columns == 0 ? itemIds.size() / columns
-				: itemIds.size() / columns + 1;
+		colCount = itemIds.size() % rows == 0 ? itemIds.size() / rows : itemIds
+				.size() / rows + 1;
 
 	}
 
@@ -489,6 +485,7 @@ public class TvGridView extends RelativeLayout {
 			public void onFocusChange(final View item, boolean focus) {
 
 				if (focus) {
+					
 					new Handler().postDelayed(new Runnable() {
 
 						@Override
@@ -496,13 +493,14 @@ public class TvGridView extends RelativeLayout {
 							moveCover(item);
 						}
 					}, delay);
+					
 					// 选中事件
 					if (onItemSelectListener != null) {
 						onItemSelectListener.onItemSelect(item, index);
 					}
 
 				} else {
-					
+
 					returnCover(item);
 				}
 			}
@@ -573,14 +571,12 @@ public class TvGridView extends RelativeLayout {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
-		
 		if (parentLayout) {
 			parentLayout = false;
 			return;
 		}
 
-		//有时addView后 changed依旧为false故添加此标记
-		if (layoutFlag||changed) {
+		if (changed||layoutFlag) {
 			int cCount = getChildCount();
 			int cWidth = 0;
 			int cHeight = 0;
@@ -589,6 +585,8 @@ public class TvGridView extends RelativeLayout {
 			 * 遍历所有childView根据其宽和高，以及margin进行布局
 			 */
 			int start = currentChildCount;
+			// Log.e(VIEW_LOG_TAG, "onLayout=" + currentChildCount + "----"
+			// + itemIds.size());
 			for (int i = start; i < cCount; i++) {
 
 				// 跳过光标子项
@@ -603,8 +601,8 @@ public class TvGridView extends RelativeLayout {
 						cHeight = childView.getMeasuredHeight();
 
 						int cl = 0, ct = 0, cr = 0, cb = 0;
-						cl = (index % columns) * (itemWidth + spaceHori);
-						ct = (index / columns) * (spaceVert + itemHeight);
+						cl = (index / rows) * (itemWidth + spaceHori);
+						ct = (index % rows) * (spaceVert + itemHeight);
 
 						cr = cl + cWidth;
 						cb = cHeight + ct;
@@ -614,8 +612,8 @@ public class TvGridView extends RelativeLayout {
 				}
 
 			}
-			screenMaxRow = getHeight() % rowHeight == 0 ? getHeight()
-					/ rowHeight : getHeight() / rowHeight + 1;
+			screenMaxColumns = getWidth() % rowWidth == 0 ? getWidth()
+					/ rowWidth : getWidth() / rowWidth + 1;
 			layoutFlag=false;
 		}
 
@@ -625,7 +623,6 @@ public class TvGridView extends RelativeLayout {
 	public boolean dispatchKeyEventPreIme(KeyEvent event) {
 
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
-			
 			if (!mScroller.isFinished()) {
 				return true;
 			}
@@ -647,47 +644,49 @@ public class TvGridView extends RelativeLayout {
 			}
 
 			View focused = this.findFocus();
+
 			if (focused != null && direction != 0) {
-				
+
 				View next = focused.focusSearch(direction);
 				// 根据下标算出所在行
 				if (next != null) {
+
 					int focusIndex = itemIds.get(focused.getId());
 
 					Integer temp = itemIds.get(next.getId());
 
 					// 焦点切出容器时
 					if (temp != null) {
-						focusIsOut=false;
 						selectIndex = temp;
+						focusIsOut=false;
 					} else {
 						parentLayout = true;
 						focusIsOut=true;
 						return super.dispatchKeyEventPreIme(event);
 					}
-					int nextRow = 0;
 
-					selectRow = focusIndex / columns;
-					nextRow = selectIndex / columns;
+					int nextCol = 0;
+
+					selectCol = focusIndex / rows;
+					nextCol = selectIndex / rows;
 
 					// 向下到达最后一完整行时,可滚动; 向上到达最上一行完整行时,可滚动
-
-					if (nextRow > selectRow) {
-						if ((next.getTop() - mScroller.getFinalY()) >= (rowHeight * (screenMaxRow - 1))
-								+ paddingTop) {
+					if (nextCol > selectCol) {
+						if ((next.getLeft() - mScroller.getFinalX()) >= (rowWidth * (screenMaxColumns - 1))
+								+ paddingLeft) {
 							flag = true;
 						}
-					} else if (nextRow < selectRow) {
-						if ((next.getTop() - mScroller.getFinalY()) < paddingTop
-								&& selectRow != 0) {
+					} else if (nextCol < selectCol) {
+						if ((next.getLeft() - mScroller.getFinalX()) < paddingLeft
+								&& selectCol != 0) {
 							flag = true;
 
 						}
 					}
 
 					if (flag) {
-						if (nextRow > -1 && mScroller.isFinished()) {
-							selectRow = nextRow;
+						if (nextCol > -1 && mScroller.isFinished()) {
+							selectCol = nextCol;
 							// 先清除按钮动画
 							Message msg = handler.obtainMessage();
 							msg.obj = direction;
@@ -711,10 +710,13 @@ public class TvGridView extends RelativeLayout {
 	@Override
 	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
 
-		if (t == mScroller.getFinalY()) {
-			if (t > oldt) {
+		if (l == mScroller.getFinalX()) {
+			if (l > oldl) {
 				// 下翻加载 当剩余行数小于一屏时
-				if ((rowCount - selectRow) < screenMaxRow) {
+				Log.i(VIEW_LOG_TAG, "添加更多条目=" + colCount + "--" + selectCol
+						+ "--" + screenMaxColumns);
+				if ((colCount - selectCol) < screenMaxColumns) {
+
 					Message msg = handler.obtainMessage();
 					msg.what = ACTION_ADD_ITEMS;
 					handler.sendMessageDelayed(msg, DELAY);
@@ -733,15 +735,19 @@ public class TvGridView extends RelativeLayout {
 	 * @param page
 	 */
 	private void scrollByRow(final int direction) {
-
-		if (selectRow < 0 || selectRow > rowCount - 1) {
+		if (selectCol < 0 || selectCol > colCount - 1) {
 			return;
 		}
-		if (direction == View.FOCUS_UP) {
-			mScroller.startScroll(0, mScroller.getFinalY(), 0, -rowHeight,
+		if (direction == View.FOCUS_LEFT) {
+			// mScroller.startScroll(0, mScroller.getFinalY(), 0, -rowWidth,
+			// scrollDuration);
+			
+			mScroller.startScroll(mScroller.getFinalX(), 0, -rowWidth, 0,
 					scrollDuration);
-		} else if (direction == View.FOCUS_DOWN) {
-			mScroller.startScroll(0, mScroller.getFinalY(), 0, rowHeight,
+		} else if (direction == View.FOCUS_RIGHT) {
+			// mScroller.startScroll(0, mScroller.getFinalY(), 0, rowWidth,
+			// scrollDuration);
+			mScroller.startScroll(mScroller.getFinalX(), 0, rowWidth, 0,
 					scrollDuration);
 		}
 
@@ -765,62 +771,62 @@ public class TvGridView extends RelativeLayout {
 	 */
 	private void recycle(int direction) {
 
-		if (selectRow < 0 || selectRow > rowCount - 1) {
+		if (selectCol < 0 || selectCol > colCount - 1) {
 			return;
 		}
-		if (direction == View.FOCUS_UP) {
+		if (direction == View.FOCUS_LEFT) {
 
-			int reloadRow = selectRow - screenMaxRow + 1;
+			int reloadRow = selectCol - screenMaxColumns + 1;
 			// 上翻刷新 并重新选中行前一屏的行
 			if (reloadRow > -1) {
 				View reloadView = null;
 				int reloadIndex = 0;
-				for (int i = 0; i < columns; i++) {
-					reloadIndex = reloadRow * columns + i;
+				for (int i = 0; i < rows; i++) {
+					reloadIndex = reloadRow * rows + i;
 					reloadView = findViewById(itemIds.keyAt(reloadIndex));
 					mRecycleBin.reloadView(reloadView);
 				}
 
 			}
 
-			// 回收行数大于selectRow 2倍屏数的子项
-			int recyleRow = selectRow + screenMaxRow * 2;
-			if (recyleRow < rowCount - 1) {
+			// 回收行数大于selectCol 2倍屏数的子项
+			int recyleRow = selectCol + screenMaxColumns * 2;
+			if (recyleRow < colCount - 1) {
 				View recyleView = null;
 				int recyleIndex = 0;
-				for (int i = 0; i < columns; i++) {
-					recyleIndex = recyleRow * columns + i;
+				for (int i = 0; i < rows; i++) {
+					recyleIndex = recyleRow * rows + i;
 					recyleView = findViewById(itemIds.keyAt(recyleIndex));
 					mRecycleBin.recycleView(recyleView);
 				}
 
 			}
 
-		} else if (direction == View.FOCUS_DOWN) {
+		} else if (direction == View.FOCUS_RIGHT) {
 
 			// 重新加载选中行以下一屏行数
-			int reloadRow = selectRow + screenMaxRow - 1;
+			int reloadRow = selectCol + screenMaxColumns - 1;
 
-			if (reloadRow < rowCount - 1) {
+			if (reloadRow < colCount - 1) {
 				// Log.e(VIEW_LOG_TAG, "reloadRow="+reloadRow);
 				View reloadView = null;
 				int reloadIndex = 0;
-				for (int i = 0; i < columns; i++) {
-					reloadIndex = reloadRow * columns + i;
+				for (int i = 0; i < rows; i++) {
+					reloadIndex = reloadRow * rows + i;
 					reloadView = findViewById(itemIds.keyAt(reloadIndex));
 					mRecycleBin.reloadView(reloadView);
 				}
 
 			}
 
-			// 回收行数小于selectRow 2倍屏数的子项
-			int recyleRow = selectRow - screenMaxRow * 2 - 1;
+			// 回收行数小于selectCol 2倍屏数的子项
+			int recyleRow = selectCol - screenMaxColumns * 2 - 1;
 			if (recyleRow > -1) {
 				// Log.e(VIEW_LOG_TAG, "recyleRow="+recyleRow);
 				View recyleView = null;
 				int recyleIndex = 0;
-				for (int i = 0; i < columns; i++) {
-					recyleIndex = recyleRow * columns + i;
+				for (int i = 0; i < rows; i++) {
+					recyleIndex = recyleRow * rows + i;
 					recyleView = findViewById(itemIds.keyAt(recyleIndex));
 					mRecycleBin.recycleView(recyleView);
 				}
@@ -839,7 +845,7 @@ public class TvGridView extends RelativeLayout {
 		if (mScroller.computeScrollOffset()) {
 
 			// 这里调用View的scrollTo()完成实际的滚动
-			scrollTo(0, mScroller.getCurrY());
+			scrollTo(mScroller.getCurrX(), 0);
 			// 必须调用该方法，否则不一定能看到滚动效果
 			postInvalidate();
 		}
@@ -858,11 +864,7 @@ public class TvGridView extends RelativeLayout {
 		}
 
 		setBorderParams(item);
-		item.bringToFront();
-		cursor.bringToFront();
-		if (scalable) {
-			scaleToLarge(item);
-		}
+		
 
 	}
 
@@ -874,8 +876,7 @@ public class TvGridView extends RelativeLayout {
 		if (cursor == null) {
 			return;
 		}
-		
-		cursor.setVisibility(View.INVISIBLE);
+			cursor.setVisibility(View.INVISIBLE);
 		if (scalable) {
 			scaleToNormal(item);
 		}
@@ -898,7 +899,6 @@ public class TvGridView extends RelativeLayout {
 
 		animatorSet.setDuration(durationLarge);
 		animatorSet.play(largeX).with(largeY).with(cursorX).with(cursorY);
-
 		animatorSet.start();
 	}
 
@@ -920,7 +920,7 @@ public class TvGridView extends RelativeLayout {
 	/**
 	 * 指定光标相对位置
 	 */
-	private void setBorderParams(View item) {
+	private void setBorderParams(final View item) {
 		cursor.clearAnimation();
 		cursor.setVisibility(View.VISIBLE);
 		final RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) item
@@ -958,8 +958,40 @@ public class TvGridView extends RelativeLayout {
 			animatorSet.play(transAnimatorY).with(transAnimatorX);
 			animatorSet.setDuration(durationTraslate);
 			animatorSet.setInterpolator(new DecelerateInterpolator(1));
+//			animatorSet.addListener(new AnimatorListener() {
+//
+//				@Override
+//				public void onAnimationStart(Animator arg0) {
+//				}
+//
+//				@Override
+//				public void onAnimationRepeat(Animator arg0) {
+//				}
+//
+//				@Override
+//				public void onAnimationEnd(Animator arg0) {
+//					cursor.layout(l, t, r, b);
+//					item.bringToFront();
+//					cursor.bringToFront();
+//					if (scalable) {
+//						scaleToLarge(item);
+//					}
+//				}
+//
+//				@Override
+//				public void onAnimationCancel(Animator arg0) {
+//				}
+//			});
 			animatorSet.start();
+			
+			break;
+			
+			
 		}
+
+		
+		
+
 	}
 
 	public void setOnItemSelectListener(OnItemSelectListener myListener) {
@@ -993,7 +1025,7 @@ public class TvGridView extends RelativeLayout {
 
 			} else {
 				// 添加刷新
-				if ((rowCount - selectRow) < screenMaxRow) {
+				if ((colCount - selectCol) < screenMaxColumns) {
 					Message msg = handler.obtainMessage();
 					msg.what = ACTION_ADD_ITEMS;
 					handler.sendMessageDelayed(msg, DELAY);

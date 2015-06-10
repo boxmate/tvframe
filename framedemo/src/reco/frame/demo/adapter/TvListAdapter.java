@@ -2,18 +2,21 @@ package reco.frame.demo.adapter;
 
 import java.util.List;
 
-
 import reco.frame.demo.R;
 import reco.frame.demo.entity.AppInfo;
 import reco.frame.tv.view.TvImageView;
 import reco.frame.tv.view.component.TvBaseAdapter;
 import android.content.Context;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TvListAdapter extends TvBaseAdapter {
 
@@ -58,6 +61,8 @@ public class TvListAdapter extends TvBaseAdapter {
 		AppInfo app=appList.get(position);
 		holder.tv_title.setText(app.getTitle());
 		holder.iv_icon.setBackgroundResource(R.drawable.icon_reco);
+		
+
 		
 		return contentView;
 	}

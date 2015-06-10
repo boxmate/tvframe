@@ -5,35 +5,35 @@
     android:layout_height="match_parent"
     
     >
-    <!-- 此处有五个自定义参数: 
+     <!-- 此处有五个自定义参数: 
     	cursorRes指定光标图片 
     	itemWidth为子项宽度 
     	itemHeight为子项高度 
-    	columns为列数
+    	rows为行数
     	animationType 动画类型 默认效果为跃迁 也可设为 TRANSLATE 平移-->
-    <reco.frame.tv.view.TvGridView 
-        android:id="@+id/tgv_imagelist"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/px1280"
+    <reco.frame.tv.view.TvHorizontalGridView 
+        android:id="@+id/tgv_list"
+        android:layout_width="@dimen/px1280"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/px300"
+        android:layout_marginTop="@dimen/px100"
         tv:cursorRes="@drawable/cursor_rectangle_boarder_orange"
         tv:itemWidth="@dimen/px230"
         tv:itemHeight="@dimen/px230"
-        tv:columns="3"
-        tv:paddingLeft="@dimen/px21"
+        tv:rows="3"
+        tv:paddingLeft="@dimen/px31"
         tv:paddingTop="@dimen/px21"
-        tv:animationType="DEFAULT"
-        >
-    </reco.frame.tv.view.TvGridView> 
+        tv:animationType="TRANSLATE"
+       />
 
     <reco.frame.tv.view.TvButton
         android:id="@+id/tb_add"
         android:layout_width="@dimen/px200"
         android:layout_height="@dimen/px100"
-        android:layout_marginLeft="@dimen/px17"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/px27"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:background="@android:color/holo_blue_light"
         android:onClick="add"
         android:text="加载更多"

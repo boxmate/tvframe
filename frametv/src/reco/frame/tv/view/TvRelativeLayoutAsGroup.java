@@ -1,22 +1,22 @@
 package reco.frame.tv.view;
 
+
 import reco.frame.tv.R;
 import reco.frame.tv.TvBitmap;
-import reco.frame.tv.view.TvGridView.OnItemClickListener;
-import reco.frame.tv.view.TvGridView.OnItemSelectListener;
 import reco.frame.tv.view.component.TvUtil;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 
 /**
@@ -58,6 +58,10 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 	 */
 	private int durationSmall = 100;
 	/**
+	 * 滑动用时
+	 */
+	private int durationTranslate;
+	/**
 	 * 触发延迟
 	 */
 	private int delay = 110;
@@ -85,11 +89,15 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 	private int paddingLeft, paddingTop;
 
 	private boolean initFlag = true;
-	
+	/**
+	 * 焦点离开容器
+	 */
+	private boolean focusIsOut;
+
 	/**
 	 * 是否初始化焦点
 	 */
-	private boolean initFocus=true;
+	private boolean initFocus = true;
 
 	public boolean isInitFocus() {
 		return initFocus;
@@ -112,10 +120,10 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 	public void setCursorRes(int cursorRes) {
 		this.cursorRes = cursorRes;
 	}
-	
-	public void setCursorResMultiDisplay(int cursorRes_1280,int cursorRes_1920,int cursorRes_2560,int cursorRes_3840) {
-		
-		
+
+	public void setCursorResMultiDisplay(int cursorRes_1280,
+			int cursorRes_1920, int cursorRes_2560, int cursorRes_3840) {
+
 		switch (getResources().getDisplayMetrics().widthPixels) {
 		case TvUtil.SCREEN_1280:
 			cursorRes = cursorRes_1280;
@@ -132,7 +140,6 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 			break;
 		}
 	}
-	
 
 	public boolean isScalable() {
 		return scalable;
@@ -158,8 +165,8 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 		this.delay = delay;
 	}
 
-
-	public void setBoarder(int boarderLeft,int boarderTop,int boarderRight,int boarderBottom) {
+	public void setBoarder(int boarderLeft, int boarderTop, int boarderRight,
+			int boarderBottom) {
 		this.boarderLeft = boarderLeft;
 		this.boarderTop = boarderTop;
 		this.boarderRight = boarderRight;
@@ -170,7 +177,6 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 		return boarderLeft;
 	}
 
-
 	public int getBoarderTop() {
 		return boarderTop;
 	}
@@ -179,11 +185,9 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 		return boarderRight;
 	}
 
-
 	public int getBoarderBottom() {
 		return boarderBottom;
 	}
-
 
 	public TvRelativeLayoutAsGroup(Context context) {
 		this(context, null);
@@ -212,6 +216,8 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 				R.styleable.TvRelativeLayoutAsGroup_durationLarge, 100);
 		this.durationSmall = custom.getInteger(
 				R.styleable.TvRelativeLayoutAsGroup_durationSmall, 100);
+		this.durationTranslate = custom.getInteger(
+				R.styleable.TvRelativeLayoutAsGroup_durationTranslate, 9);
 		this.boarder = (int) custom.getDimension(
 				R.styleable.TvRelativeLayoutAsGroup_boarder, 0)
 				+ custom.getInteger(
@@ -271,26 +277,48 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 
 		// 关闭子控件动画缓存 使嵌套动画更流畅
 		setAnimationCacheEnabled(false);
-		
 
+		init();
+
+	}
+
+	private void init() {
+		focusIsOut = true;
 	}
 
 	@Override
 	public boolean dispatchKeyEventPreIme(KeyEvent event) {
-		// Log.e(VIEW_LOG_TAG, "dispatchKeyEventPreIme");
-		// if (event.getAction() == KeyEvent.ACTION_UP) {
-		//
-		// if (preView != null) {
-		// returnCover(preView);
-		// }
-		// View focus = findFocus();
-		// if (focus != null) {
-		// moveCover(focus);
-		// preView = focus;
-		// }
-		// }
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
+			int direction = 0;
+			switch (event.getKeyCode()) {
+			case KeyEvent.KEYCODE_DPAD_DOWN:
+				direction = View.FOCUS_DOWN;
+				break;
+			case KeyEvent.KEYCODE_DPAD_RIGHT:
+				direction = View.FOCUS_RIGHT;
+				break;
+			case KeyEvent.KEYCODE_DPAD_UP:
+				direction = View.FOCUS_UP;
+				break;
+			case KeyEvent.KEYCODE_DPAD_LEFT:
+				direction = View.FOCUS_LEFT;
+				break;
+			}
+			View focus = findFocus();
 
-		// 出界判断
+			if (focus != null && direction != 0) {
+
+				View next = focus.focusSearch(direction);
+
+				if (next != null) {
+					focusIsOut = false;
+				} else {
+					focusIsOut = true;
+				}
+
+			}
+
+		}
 
 		return super.dispatchKeyEventPreIme(event);
 	}
@@ -329,22 +357,15 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 				cb = cHeight + ct;
 				childView.layout(cl, ct, cr, cb);
 			}
-
-			
-			if (initFlag) {
-				//bindEvent();
-			}
 		}
 
-
 	}
-	
+
 	@Override
 	protected void onAttachedToWindow() {
 		bindEvent();
 		super.onAttachedToWindow();
 	}
-	
 
 	// 初始化焦点
 	private void bindEvent() {
@@ -359,14 +380,13 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 			child = getChildAt(i);
 
 			if (child != null) {
-				
-				
+
 				child.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 					@Override
 					public void onFocusChange(final View child, boolean focus) {
 						if (focus) {
-							
+
 							new Handler().postDelayed(new Runnable() {
 
 								@Override
@@ -398,11 +418,10 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 			}
 		}
 
-		
-		//初始化焦点
+		// 初始化焦点
 		final View focus = findFocus();
-		if (focus != null&&initFocus) {
-			
+		if (focus != null && initFocus) {
+
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -427,11 +446,6 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 			this.addView(cursor);
 		}
 		setBorderParams(item);
-		item.bringToFront();
-		cursor.bringToFront();
-		if (scalable) {
-			scaleToLarge(item);
-		}
 
 	}
 
@@ -504,39 +518,186 @@ public class TvRelativeLayoutAsGroup extends RelativeLayout {
 		cursor.setVisibility(View.VISIBLE);
 
 		// 判断类型
-
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) item
 				.getLayoutParams();
-		int l, t, r, b;
-		// Log.e(VIEW_LOG_TAG, params.leftMargin + "---" + item.getLeft() +
-		// "----"
-		// + params.width + "---" + "----" + boarderLeft + "---"
-		// + boarderRight);
-		l = item.getLeft() - boarderLeft;
-		t = item.getTop() - boarderTop;
-		r = item.getLeft() + params.width + boarderRight;
-		b = item.getTop() + params.height + boarderBottom;
-		cursor.layout(l, t, r, b);
+		final int l = item.getLeft() - boarderLeft;
+		final int t = item.getTop() - boarderTop;
+		final int r = item.getLeft() + params.width + boarderRight;
+		final int b = item.getTop() + params.height + boarderBottom;
 
-		// Log.e(VIEW_LOG_TAG, cursor.getWidth() + "---" + item.getWidth());
+		switch (animationType) {
+		case ANIM_DEFAULT:
+			cursor.layout(l, t, r, b);
+			item.bringToFront();
+			cursor.bringToFront();
+			if (scalable) {
+				scaleToLarge(item);
+			}
+			break;
+		case ANIM_TRASLATE:
+			if (cursor.getLeft() <=0) {
+				cursor.layout(l, t, r, b);
+			}
 
-		// RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
-		// cursor
-		// .getLayoutParams();
-		// params.addRule(RelativeLayout.ALIGN_LEFT, item.getId());
-		// params.addRule(RelativeLayout.ALIGN_TOP, item.getId());
-		//
-		// int coverLeft = 0 - boarderLeft;
-		// int coverTop = 0 - boarderTop;
-		//
-		// params.leftMargin = coverLeft;
-		// params.topMargin = coverTop;
-		//
-		// params.width = boarderLeft + item.getWidth() + boarderRight;
-		// params.height = boarderBottom + item.getHeight() + boarderTop;
-		//
-		// cursor.setLayoutParams(params);
+			item.bringToFront();
+			cursor.bringToFront();
 
+//			if (focusIsOut) {
+//				return;
+//			}
+
+			//Log.e(VIEW_LOG_TAG, l + "--" + t + "--" + r + "--" + b);
+			TvAnimator animator = new TvAnimator(cursor, item);
+			animator.setTargetParams(l, t, r - l, b - t);
+			animator.execute();
+
+			break;
+
+		}
+
+	}
+
+	class TvAnimator extends AsyncTask<Void, Integer, Integer> {
+		private View target, item;
+		private int l, t, cl, ct;
+		private int width, cwidth, height, cheight;
+		private int dX, dY, dW, dH;
+		private int frequence = 17;
+
+		TvAnimator(View target, View item) {
+			this.target = target;
+			this.item = item;
+		}
+
+		public void setTargetParams(int l, int t, int width, int height) {
+			this.l = l;
+			this.t = t;
+			this.width = width;
+			this.height = height;
+			this.cl = target.getLeft();
+			this.ct = target.getTop();
+			this.cwidth = target.getWidth();
+			this.cheight = target.getHeight();
+		}
+
+		/** 
+         * 
+         */
+		@Override
+		protected void onPreExecute() {
+
+			dW = (int) (width - cwidth>0?Math.ceil((width - cwidth) / (frequence*1.0))
+					:Math.floor((width - cwidth) / (frequence*1.0)));
+			dH = (int) (height - cheight>0?Math.ceil((height - cheight) / (frequence*1.0))
+					:Math.floor((height - cheight) / (frequence*1.0)));
+			dX = (int) (l - cl > 0 ? Math.ceil((l - cl) / (frequence * 1.0))
+					: Math.floor((l - cl) / (frequence * 1.0)));
+			dY = (int) (t - ct >= 0 ? Math.ceil((t - ct) / (frequence * 1.0))
+					: Math.floor((t - ct) / (frequence * 1.0)));
+			
+
+//			Log.e(VIEW_LOG_TAG, cl + "---" + l + "---" + ct + "---" + t
+//					+ "====" + dX + ":" + dY + ":" + dW + ":" + dH + "---"
+//					+durationTranslate);
+		}
+
+		/** 
+         * 
+         */
+		@Override
+		protected Integer doInBackground(Void... params) {
+
+			while (cl != l || t != ct||cwidth!=width||cheight!=height) {
+
+				if (Math.abs(cl - l) <= Math.abs(dX)) {
+					cl = l;
+				} else {
+					cl += dX;
+				}
+
+				if (Math.abs(ct - t) <= Math.abs(dY)) {
+					ct = t;
+				} else {
+					ct += dY;
+				}
+
+				if (Math.abs(width - cwidth) <= Math.abs(dW)) {
+					cwidth = width;
+					dW=0;
+				} else {
+					cwidth += dW;
+				}
+
+				if (Math.abs(height - cheight) <= Math.abs(dH)) {
+					cheight = height;
+					dH=0;
+				} else {
+					cheight += dH;
+				}
+				
+				//Log.e(VIEW_LOG_TAG, cl+"=="+ct+"=="+(cl + cwidth + dW)+"=="+(ct + cheight + dH));
+
+				publishProgress(cl, ct, cl + cwidth + dW, ct + cheight + dH);
+				try {
+					Thread.sleep(durationTranslate);
+				} catch (InterruptedException e) {
+				}
+			}
+
+			return null;
+		}
+
+		/** 
+         * 
+         */
+		@Override
+		protected void onPostExecute(Integer integer) {
+			if (scalable) {
+				if (!item.isFocused()) {
+					return;
+				}
+
+				animatorSet = new AnimatorSet();
+				ValueAnimator largeX = ObjectAnimator.ofFloat(item, "ScaleX",
+						1f, scale);
+				ValueAnimator largeY = ObjectAnimator.ofFloat(item, "ScaleY",
+						1f, scale);
+
+				animatorSet.setDuration(durationLarge);
+				animatorSet.setInterpolator(new DecelerateInterpolator(3.0f));
+				animatorSet.play(largeX).with(largeY);
+				animatorSet.start();
+				// 中心放大 左上减 右下加
+				ValueAnimator animation = ValueAnimator.ofFloat(1f, scale);
+				animation.setDuration(durationLarge);
+				animation.setInterpolator(new DecelerateInterpolator(3.0f));
+				animation.addUpdateListener(new AnimatorUpdateListener() {
+					@Override
+					public void onAnimationUpdate(ValueAnimator animation) {
+//						Log.i("update", ((Float) animation.getAnimatedValue())
+//								.toString());
+						float curScale = (Float) animation.getAnimatedValue();
+
+						int dw = (int) (width * (curScale - 1) / 2);
+						int dh = (int) (height * (curScale - 1) / 2);
+
+						target.layout(l - dw, t - dh, l + width + dw, t
+								+ height + dh);
+					}
+				});
+				animation.start();
+
+			}
+
+		}
+
+		/** 
+         * 
+         */
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			target.layout(values[0], values[1], values[2], values[3]);
+		}
 	}
 
 	public void setOnChildSelectListener(OnChildSelectListener myListener) {

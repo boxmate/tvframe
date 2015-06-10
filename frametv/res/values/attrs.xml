@@ -11,7 +11,7 @@
     <attr name="scale" format="float"></attr>
     <attr name="animationType">
         <enum name="DEFAULT" value="0"></enum>
-        <enum name="TRASLATE" value="1"></enum>
+        <enum name="TRANSLATE" value="1"></enum>
     </attr>
     <attr name="focusOption">
         <enum name="PARENT_ONLY" value="0"></enum>
@@ -20,6 +20,7 @@
     <attr name="durationLarge" format="integer"></attr>
     <attr name="durationSmall" format="integer"></attr>
     <attr name="durationScroll" format="integer"></attr>
+    <attr name="durationTranslate" format="integer"></attr>
     <attr name="delay" format="integer" />
     <attr name="scrollDelay" format="integer" />
     <attr name="scrollDuration" format="integer" />
@@ -62,6 +63,7 @@
     <!-- 边缘模糊 -->
     <attr name="vague" format="boolean"></attr>
     <attr name="columns" format="integer"></attr>
+    <attr name="rows" format="integer"></attr>
     <attr name="spaceHori" format="dimension"></attr>
     <attr name="spaceVert" format="dimension"></attr>
     <attr name="itemWidth" format="dimension"></attr>
@@ -77,6 +79,8 @@
     <attr name="cursorMarginTop" format="dimension"></attr>
     <attr name="cursorMarginRight" format="dimension"></attr>
     <attr name="cursorMarginBottom" format="dimension"></attr>
+    
+    <attr name="initFocus" format="boolean"></attr>
 
     <declare-styleable name="TvTabHost">
         <attr name="cursorRes"></attr>
@@ -113,6 +117,7 @@
         <attr name="animationType"></attr>
         <attr name="durationLarge"></attr>
         <attr name="durationSmall"></attr>
+        <attr name="durationTranslate"></attr>
         <attr name="delay" />
         <attr name="boarder"></attr>
         <attr name="boarderTop"></attr>
@@ -128,6 +133,7 @@
         <attr name="itemHeight"></attr>
         <attr name="paddingLeft"></attr>
         <attr name="paddingTop"></attr>
+        <attr name="initFocus"></attr>
     </declare-styleable>
     
     <declare-styleable name="TvListView">
@@ -160,6 +166,7 @@
         <attr name="itemHeight"></attr>
         <attr name="paddingLeft"></attr>
         <attr name="paddingTop"></attr>
+        <attr name="initFocus"></attr>
     </declare-styleable>
     <declare-styleable name="TvGridView">
         <attr name="cursorRes"></attr>
@@ -172,6 +179,7 @@
         <attr name="animationType"></attr>
         <attr name="durationLarge"></attr>
         <attr name="durationSmall"></attr>
+        <attr name="durationTranslate"></attr>
         <attr name="delay" />
         <attr name="scrollDelay"></attr>
     	<attr name="scrollDuration"></attr>
@@ -192,7 +200,45 @@
         <attr name="itemHeight"></attr>
         <attr name="paddingLeft"></attr>
         <attr name="paddingTop"></attr>
+        <attr name="initFocus"></attr>
     </declare-styleable>
+    
+    <declare-styleable name="TvHorizontalGridView">
+        <attr name="cursorRes"></attr>
+        <attr name="cursorRes_1280"></attr>
+    	<attr name="cursorRes_1920"></attr>
+    	<attr name="cursorRes_2560"></attr>
+   	    <attr name="cursorRes_3840"></attr>
+        <attr name="scalable"></attr>
+        <attr name="scale"></attr>
+        <attr name="animationType"></attr>
+        <attr name="durationLarge"></attr>
+        <attr name="durationSmall"></attr>
+        <attr name="durationTranslate"></attr>
+        <attr name="delay" />
+        <attr name="scrollDelay"></attr>
+    	<attr name="scrollDuration"></attr>
+        <attr name="boarder"></attr>
+        <attr name="boarderTop"></attr>
+        <attr name="boarderLeft"></attr>
+        <attr name="boarderBottom"></attr>
+        <attr name="boarderRight"></attr>
+        <attr name="boarderInt"></attr>
+        <attr name="boarderTopInt"></attr>
+        <attr name="boarderLeftInt"></attr>
+        <attr name="boarderBottomInt"></attr>
+        <attr name="boarderRightInt"></attr>
+        <attr name="rows"></attr>
+        <attr name="spaceHori"></attr>
+        <attr name="spaceVert"></attr>
+        <attr name="itemWidth"></attr>
+        <attr name="itemHeight"></attr>
+        <attr name="paddingLeft"></attr>
+        <attr name="paddingTop"></attr>
+        <attr name="initFocus"></attr>
+    </declare-styleable>
+    
+    
     <declare-styleable name="TvRelativeLayout">
         <attr name="cursorRes"></attr>
         <attr name="scalable"></attr>

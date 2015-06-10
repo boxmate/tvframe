@@ -635,23 +635,24 @@ public class TvListView extends RelativeLayout {
 				if (currentChildCount != 0) {
 					index = i - 1;
 				}
+				if (index < itemIds.size()) {
+					View childView = findViewById(itemIds.keyAt(index));
+					if (childView != null) {
+						// Log.e(VIEW_LOG_TAG, "index" + index);
+						// Log.e(VIEW_LOG_TAG, cursorId + "---" + childView.getId()
+						// + "---" + itemIds.keyAt(index));
+						cWidth = childView.getMeasuredWidth();
+						cHeight = childView.getMeasuredHeight();
 
-				View childView = findViewById(itemIds.keyAt(index));
-				if (childView != null) {
-					// Log.e(VIEW_LOG_TAG, "index" + index);
-					// Log.e(VIEW_LOG_TAG, cursorId + "---" + childView.getId()
-					// + "---" + itemIds.keyAt(index));
-					cWidth = childView.getMeasuredWidth();
-					cHeight = childView.getMeasuredHeight();
+						int cl = 0, ct = 0, cr = 0, cb = 0;
+						cl = 0;
+						ct = index * (spaceVert + itemHeight);
 
-					int cl = 0, ct = 0, cr = 0, cb = 0;
-					cl = 0;
-					ct = index * (spaceVert + itemHeight);
-
-					cr = cl + cWidth;
-					cb = cHeight + ct;
-					childView.layout(cl + paddingLeft, ct + paddingTop, cr
-							+ paddingLeft, cb + paddingTop);
+						cr = cl + cWidth;
+						cb = cHeight + ct;
+						childView.layout(cl + paddingLeft, ct + paddingTop, cr
+								+ paddingLeft, cb + paddingTop);
+					}
 				}
 
 			}
